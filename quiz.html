@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>자하 모바일 퀴즈</title>
+    <title>자하 퀴즈 - 정렬 개선</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -14,34 +14,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
         #container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             padding: 24px;
             text-align: center;
         }
         .question {
-            font-size: 28px;
-            margin-bottom: 30px;
+            font-size: 36px;
+            margin-bottom: 32px;
             font-weight: bold;
             color: #000;
         }
         .choices {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
         .choice {
-            flex: 0 0 48%;
-            padding: 16px;
+            padding: 18px;
             font-size: 18px;
-            background-color: #eee;
+            background-color: #eeeeee;
             border-radius: 10px;
-            cursor: pointer;
             color: #111;
+            cursor: pointer;
         }
         .correct {
             background-color: #a0d995 !important;
@@ -50,7 +48,7 @@
 </head>
 <body>
     <div id="container">
-        <div class="question" id="question">문제 로딩 중...</div>
+        <div class="question" id="question">단어 로딩 중...</div>
         <div class="choices" id="choices"></div>
     </div>
     <script>
@@ -504,7 +502,7 @@
                     if (current < quiz.length) {
                         showQuestion();
                     } else {
-                        questionDiv.textContent = "🎉 100문제 퀴즈 완료!";
+                        questionDiv.textContent = "🎉 퀴즈 완료!";
                         choicesDiv.innerHTML = "";
                     }
                 }, 1500);
