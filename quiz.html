@@ -498,7 +498,12 @@
             const utter = new SpeechSynthesisUtterance(text);
             utter.lang = 'en-US';
             utter.rate = 0.9;
+            
+            const voices = speechSynthesis.getVoices();
+            const nativeVoice = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
+            if (nativeVoice) utter.voice = nativeVoice;
             speechSynthesis.speak(utter);
+    
         }
 
         // 자동 정답 강조 후 다음 문제
