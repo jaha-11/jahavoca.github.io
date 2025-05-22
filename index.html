@@ -2,58 +2,56 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <title>자하 영단어 퀴즈</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #login {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 6px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>자하 영단어 퀴즈 선택</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      color: #333;
+    }
+    .btn {
+      font-size: 20px;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .blue-btn {
+      background-color: #007bff;
+      color: white;
+    }
+    .orange-btn {
+      background-color: #ff6f00;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <div id="login">
-        <h2>비밀번호를 입력하세요</h2>
-        <input type="password" id="pw" placeholder="비밀번호" />
-        <br />
-        <button onclick="checkPassword()">확인</button>
-        <p id="msg" style="color:red;"></p>
-    </div>
-    <script>
-        function checkPassword() {
-            const input = document.getElementById('pw').value;
-            if (input === "소란1004") {
-                window.location.href = "quiz.html";
-            } else {
-                document.getElementById('msg').textContent = "비밀번호가 틀렸어요!";
-            }
-        }
-    </script>
+  <div class="container">
+    <h1>자하의 퀴즈앱을 선택하세요</h1>
+    <button class="btn blue-btn" onclick="location.href='quiz.html'">📘 1300 영단어 퀴즈</button>
+    <button class="btn orange-btn" onclick="location.href='quiz_withmaster.html'">📙 위드마스터 2000 퀴즈</button>
+  </div>
 </body>
 </html>
