@@ -2,529 +2,135 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>자하 퀴즈 - 정렬 개선</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fffdf6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        #container {
-            width: 100%;
-            max-width: 480px;
-            padding: 24px;
-            text-align: center;
-        }
-        .question {
-            font-size: 36px;
-            margin-bottom: 32px;
-            font-weight: bold;
-            color: #000;
-        }
-        .choices {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        .choice {
-            padding: 18px;
-            font-size: 18px;
-            background-color: #eeeeee;
-            border-radius: 10px;
-            color: #111;
-            cursor: pointer;
-        }
-        .correct {
-            background-color: #a0d995 !important;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>자하 퀴즈 - 1300 영단어</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffdf6;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    #question {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 90%;
+    }
+    .choice {
+      padding: 14px;
+      background: #eee;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .nav-btn {
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div id="container">
-        <div class="question" id="question">단어 로딩 중...</div>
-        <div class="choices" id="choices"></div>
-    </div>
-    <script>
-        const quiz = [
-    {
-        "word": "abdomen",
-        "meaning": "[명] 배, 복부."
-    },
-    {
-        "word": "enroll",
-        "meaning": "[동] 등록하다."
-    },
-    {
-        "word": "fowl",
-        "meaning": "[명] 닭; 가금."
-    },
-    {
-        "word": "condemn",
-        "meaning": "[동] 비난하다."
-    },
-    {
-        "word": "appease",
-        "meaning": "[동] 달래다, 진정시키다."
-    },
-    {
-        "word": "fraudulent",
-        "meaning": "[형] 부정한; 속이는."
-    },
-    {
-        "word": "plight",
-        "meaning": "[명] 곤경, 곤란."
-    },
-    {
-        "word": "reception",
-        "meaning": "[명] 환영회; 수령."
-    },
-    {
-        "word": "penchant",
-        "meaning": "[명] 경향, 취향."
-    },
-    {
-        "word": "ivory",
-        "meaning": "[명] 상아."
-    },
-    {
-        "word": "broker",
-        "meaning": "[명] 중개인."
-    },
-    {
-        "word": "fringe",
-        "meaning": "[명] 술 장식; 가장자리."
-    },
-    {
-        "word": "insecure",
-        "meaning": "[형] 불안정한."
-    },
-    {
-        "word": "averse",
-        "meaning": "[형] 혐오하는, 반대하는."
-    },
-    {
-        "word": "respectable",
-        "meaning": "[형] 존경할 만한."
-    },
-    {
-        "word": "sovereign",
-        "meaning": "[명][형] 주권자; 주권국의."
-    },
-    {
-        "word": "lively",
-        "meaning": "[형] 생기 넘치는."
-    },
-    {
-        "word": "badger",
-        "meaning": "[동][명] 조르다, 괴롭히다, 오소리."
-    },
-    {
-        "word": "outbreak",
-        "meaning": "[명] (전쟁, 질병의) 발발."
-    },
-    {
-        "word": "close-up",
-        "meaning": "[명] 근접 사진, 클로즈업."
-    },
-    {
-        "word": "bait",
-        "meaning": "[명] 미끼; 꾀다."
-    },
-    {
-        "word": "slack",
-        "meaning": "[형] 느긋한; 꾸물거리는."
-    },
-    {
-        "word": "dissonance",
-        "meaning": "[명] 불협화음; 부조화."
-    },
-    {
-        "word": "fitness",
-        "meaning": "[명] 적합; 타당성."
-    },
-    {
-        "word": "reserved",
-        "meaning": "[형] 보류된; 예약의."
-    },
-    {
-        "word": "itinerary",
-        "meaning": "[명] 여정, 여행 일정."
-    },
-    {
-        "word": "hamper",
-        "meaning": "[동] 방해하다."
-    },
-    {
-        "word": "inconsistent",
-        "meaning": "[형] 일치하지 않는, 모순된."
-    },
-    {
-        "word": "affront",
-        "meaning": "[명][동] 무례, 모욕; 모욕하다."
-    },
-    {
-        "word": "mutate",
-        "meaning": "[동] 변화하다; 돌연변이하다."
-    },
-    {
-        "word": "prevalent",
-        "meaning": "[형] 널리 보급된; 우세한."
-    },
-    {
-        "word": "deputy",
-        "meaning": "[명][형] 대리인; 대리의; 부~."
-    },
-    {
-        "word": "somber",
-        "meaning": "[형] 흐린; 거무스름한."
-    },
-    {
-        "word": "allegory",
-        "meaning": "[명] 우화, 비유담."
-    },
-    {
-        "word": "tram",
-        "meaning": "[명] 전차."
-    },
-    {
-        "word": "dividend",
-        "meaning": "[명] 배당금; 몫."
-    },
-    {
-        "word": "paddle",
-        "meaning": "[명][동] 노; 노를 젓다."
-    },
-    {
-        "word": "assort",
-        "meaning": "[동] 분류하다."
-    },
-    {
-        "word": "impel",
-        "meaning": "[동] 재촉하다."
-    },
-    {
-        "word": "centennial",
-        "meaning": "[형] 100년마다의."
-    },
-    {
-        "word": "transport",
-        "meaning": "[동] 운송하다."
-    },
-    {
-        "word": "stew",
-        "meaning": "[동] 끓이다; 졸이다."
-    },
-    {
-        "word": "halve",
-        "meaning": "[동] 반으로 나누다; 줄이다."
-    },
-    {
-        "word": "trek",
-        "meaning": "[동][명] (소가) 수레를 끌다; 여행."
-    },
-    {
-        "word": "toil",
-        "meaning": "[명][동] 수고; 수고하다."
-    },
-    {
-        "word": "consecutive",
-        "meaning": "[형] 연속적인, 잇따른."
-    },
-    {
-        "word": "rage",
-        "meaning": "[명][동] 격노; 격노하다."
-    },
-    {
-        "word": "periodical",
-        "meaning": "[형][명] 주기적인; 정기간행물."
-    },
-    {
-        "word": "inland",
-        "meaning": "[형][부] 내륙의; 내륙으로."
-    },
-    {
-        "word": "relic",
-        "meaning": "[명] 유물, 유적."
-    },
-    {
-        "word": "esoteric",
-        "meaning": "[형] 비법의; 은밀한."
-    },
-    {
-        "word": "tractor",
-        "meaning": "[명] 트랙터; 견인차."
-    },
-    {
-        "word": "tint",
-        "meaning": "[명][동] 엷은 빛깔; 채색하다."
-    },
-    {
-        "word": "stereotype",
-        "meaning": "[형][명] 판에 박힌; 상투적인 수단."
-    },
-    {
-        "word": "objection",
-        "meaning": "[명] 반대; 반감."
-    },
-    {
-        "word": "parish",
-        "meaning": "[명] (교회) 본당, 교구."
-    },
-    {
-        "word": "inept",
-        "meaning": "[형] 부적당한, 서툰."
-    },
-    {
-        "word": "hoarse",
-        "meaning": "[형] 목이 쉰; 귀에 거슬리는."
-    },
-    {
-        "word": "monetary",
-        "meaning": "[형] 화폐의."
-    },
-    {
-        "word": "overnight",
-        "meaning": "[형][부] 간밤의; 밤새도록."
-    },
-    {
-        "word": "advocacy",
-        "meaning": "[명] 옹호, 지지."
-    },
-    {
-        "word": "pentagon",
-        "meaning": "[명] 5각형; 미국국방부."
-    },
-    {
-        "word": "biochemical",
-        "meaning": "[명][형] 생화학 물질; 생화학의."
-    },
-    {
-        "word": "shawl",
-        "meaning": "[명] 숄, 어깨걸이."
-    },
-    {
-        "word": "suffice",
-        "meaning": "[동] 충분하다."
-    },
-    {
-        "word": "harass",
-        "meaning": "[동] 괴롭히다; 희롱하다."
-    },
-    {
-        "word": "acquit",
-        "meaning": "[동] 석방하다, 무죄 방면하다."
-    },
-    {
-        "word": "irrigate",
-        "meaning": "[동] 물을 대다, 관개하다."
-    },
-    {
-        "word": "segment",
-        "meaning": "[명][동] 단편, 부분; 분할하다."
-    },
-    {
-        "word": "privacy",
-        "meaning": "[명] 사생활."
-    },
-    {
-        "word": "bygone",
-        "meaning": "[형][명] 지나간; 과거사."
-    },
-    {
-        "word": "sprint",
-        "meaning": "[명][동] 전력 질주; 역주하다."
-    },
-    {
-        "word": "downturn",
-        "meaning": "[명] 하강, 침체."
-    },
-    {
-        "word": "dummy",
-        "meaning": "[형][명] 가짜의; 가짜."
-    },
-    {
-        "word": "delete",
-        "meaning": "[동] 삭제하다."
-    },
-    {
-        "word": "exodus",
-        "meaning": "[명] 집단이동."
-    },
-    {
-        "word": "overlap",
-        "meaning": "[명][동] 중첩, 오버랩; 겹치다."
-    },
-    {
-        "word": "mast",
-        "meaning": "[동] 돛대."
-    },
-    {
-        "word": "gland",
-        "meaning": "[명] 분비기관."
-    },
-    {
-        "word": "ignite",
-        "meaning": "[동] 불을 붙이다."
-    },
-    {
-        "word": "decipher",
-        "meaning": "[동] (암호 등을) 해독하다."
-    },
-    {
-        "word": "impair",
-        "meaning": "[동] 손상시키다, 해치다."
-    },
-    {
-        "word": "proxy",
-        "meaning": "[명] 대리; 대리인."
-    },
-    {
-        "word": "recess",
-        "meaning": "[명][동] 휴회; 휴회하다."
-    },
-    {
-        "word": "cumbersome",
-        "meaning": "[형] 성가신; 주책 맞은."
-    },
-    {
-        "word": "maternal",
-        "meaning": "[형] 어머니의, 모성의."
-    },
-    {
-        "word": "maxim",
-        "meaning": "[명] 격언, 금언."
-    },
-    {
-        "word": "wire",
-        "meaning": "[명] 철사; 전선."
-    },
-    {
-        "word": "delineate",
-        "meaning": "[동] 윤곽을 그리다."
-    },
-    {
-        "word": "sneak",
-        "meaning": "[동] 몰래 움직이다."
-    },
-    {
-        "word": "leash",
-        "meaning": "[명] 가죽 끈; 속박."
-    },
-    {
-        "word": "ingenuous",
-        "meaning": "[형] 솔직한; 순진한."
-    },
-    {
-        "word": "intrigue",
-        "meaning": "[명][동] 음모; 음모를 꾸미다."
-    },
-    {
-        "word": "intrude",
-        "meaning": "[동] 간섭하다; 끼어들다."
-    },
-    {
-        "word": "defendant",
-        "meaning": "[명][형] 피고; 피고의."
-    },
-    {
-        "word": "breast",
-        "meaning": "[명] 가슴."
-    },
-    {
-        "word": "therapy",
-        "meaning": "[명] 치료."
-    },
-    {
-        "word": "trifle",
-        "meaning": "[명] 하찮은 것."
-    },
-    {
-        "word": "infuse",
-        "meaning": "[동] 주입하다."
-    },
-    {
-        "word": "condolence",
-        "meaning": "[명] 애도."
+  <div id="question">문제 로딩 중...</div>
+  <div class="choices" id="choices"></div>
+  <div class="controls">
+    <button class="nav-btn" onclick="goBack()">⬅️ 이전</button>
+    <button class="nav-btn" id="pauseBtn" onclick="togglePause()">⏸ 일시 정지</button>
+    <button class="nav-btn" onclick="goNext()">➡️ 다음</button>
+  </div>
+  <script>
+    const quiz = [{'word': 'c]E', 'meaning': '0838'}, {'word': 'a. ^||7]|7€ioJ. ^||7||2F9|9|', 'meaning': 'n.  ^||7]|°L. EXI|°J'}, {'word': 'v. EEEi,  IfiErL|Ei', 'meaning': 'n, J=ii='}, {'word': 'uL]', 'meaning': '1536'}, {'word': 'r]u', 'meaning': '0111'}, {'word': 't]E', 'meaning': '1312'}, {'word': 'n.  flog.  LID17:I', 'meaning': 'a.  Ite}q.  L|D|7:|g'}, {'word': 'n.  =X=', 'meaning': 'v. (=7| . 5r 5=) D|E.|E|'}, {'word': 'n.  DolEE!.  DorE57:I', 'meaning': 'v.  []orE3^|7|L|'}, {'word': 't]r]', 'meaning': '1127'}, {'word': 'v.  O][H6|L|', 'meaning': 'n.  X±^||'}, {'word': 'rL]|', 'meaning': '0190'}, {'word': 'n.  tL]L_lE]Tr,  l]El[HJF', 'meaning': "v.  tlL_rETlr6H=|.  '±r[HJF6[|"}, {'word': '[]f]', 'meaning': '0096'}, {'word': 'a. ZFfiir. iL=D|E.|e|', 'meaning': 'n. =ED|E|'}, {'word': 'v, =7±7ii[7 |±7i|] 6r[r', 'meaning': 'n. =7:ii(O±), |r±i'}, {'word': 'EL]', 'meaning': '1458'}, {'word': 'v.  ~9i aoLoi  EiEi. Of7i6r[i', 'meaning': 'n.  aoL'}, {'word': 'n.  7Hjit 7:I', 'meaning': 'a.  7Hji€ I:19|'}, {'word': 'n.  Z;r9|', 'meaning': 'v.  7or9|E 6LE|'}, {'word': 'a.  Er7=F EOc>F9|.  Er%%9|', 'meaning': 'n.  E1%j:1l'}, {'word': 'v.  7{1|ir6r[r.  7LE[|', 'meaning': 'n.  ir7]|'}, {'word': 'n.  %±L±', 'meaning': 'a.  %AL±7|q'}, {'word': '•[]', 'meaning': '0169'}, {'word': 'v.  jlE}6H=|', 'meaning': 'n. I:q:'}, {'word': 't].', 'meaning': '1221'}, {'word': 'n. lei', 'meaning': 'v. ±Ei6H=L'}, {'word': 'LLi', 'meaning': '0113'}, {'word': 'a.  7:|6rg|,  t]|D±g|', 'meaning': 'ri.  7:|6L'}, {'word': 'V.  J==E|', 'meaning': 'n.  noH%l'}, {'word': 'L-]H', 'meaning': 'o893'}, {'word': 'n.  7rEj', 'meaning': 'a.  7h%[7r3]9I'}, {'word': 'n.  e]7|', 'meaning': 'v.  q7i  LiEi'}, {'word': 'v.  i3iE6rE|', 'meaning': 'n.  DHE]'}, {'word': 'c]H', 'meaning': 'o892'}, {'word': 'v.  (X!*J  8|0|) EOLE|L|[|', 'meaning': 'n.  i==r.  EolorE;I'}, {'word': 'n.  ±DH', 'meaning': 'v.  ADH6rE|'}, {'word': "v. 4896H=|. ^E'^|6H=t", 'meaning': 'n.  68fl. OL_r"'}, {'word': 'v.  e!El', 'meaning': 'n.  0101'}, {'word': 'n.  =Z3', 'meaning': 'a. =Z391. ±lj±=±Er9|'}, {'word': 'v.. tir¥ro |E|', 'meaning': 'n.  EL]+Elo±'}, {'word': 'v.  EIEEE.|[r', 'meaning': 'n.  n+9. =i]=L'}, {'word': 'n.  EN^1%t', 'meaning': 'a.  [H^|0oFg|'}, {'word': 'n.  %EH. =j=', 'meaning': 'v.  %%6LE|'}, {'word': 'n.  8E3.  7:It]HEi', 'meaning': 'v.  E3E36rEl.  xlil6r[l'}, {'word': 'a. ¥ItlQl', 'meaning': 'n. ¥IEL ^J5  v. *1k±6m. L[E|"E|'}, {'word': 'a.  oL_r%E', 'meaning': 'n.  EripL+'}, {'word': 'n.  7H¥', 'meaning': 'v.  7H¥6[r'}, {'word': 'a.  *|=9|. j=7|9|', 'meaning': 'n.  D|E|=XK0|L|^±)'}, {'word': 'tlH', 'meaning': '1382'}, {'word': 'n.  E;rE]|4', 'meaning': 'a.  2;rE]|9|'}, {'word': 'v.  Jj:+^|6L[|.  LiErLHEi', 'meaning': 'n.  7:j^i'}, {'word': 'LiH', 'meaning': '0167'}, {'word': 'n.  =.  ELJL_L=', 'meaning': 'v,  =j==:i6rEi.  =o iEr'}, {'word': 'Dfl', 'meaning': '1859'}, {'word': 'L]u', 'meaning': '0187'}, {'word': 'n.  7|E:', 'meaning': 'v,  7|qu71|  6L[l'}, {'word': 'v.  o]|uH6tE|.  €uW6rE|', 'meaning': 'n.  o]|t]H.  €BH'}, {'word': 'v.  EnH6LEl.  ±lE6rEI', 'meaning': 'n.  EHH.  4El'}, {'word': 'a. E[H91', 'meaning': 'n. ±[H'}, {'word': 'v. =3 7jPr. LH7|= 6pr. (~0|) E=itltl', 'meaning': 'n.  Ltl7i'}, {'word': 'tlD', 'meaning': '0061'}, {'word': 'n.  °8^11', 'meaning': 'v.  `]E5^116Fl'}, {'word': 'n.  E]L_rE}.  Ei=', 'meaning': 'v.  EIE6LLI'}, {'word': 'n.  Q]ffl.  EJth', 'meaning': 'a.  q91.  tL]LtEN9l'}, {'word': 'v.  Er[L_6L[t', 'meaning': 'n.  IHEhE±'}, {'word': 'n.  EOH', 'meaning': 'a.  EDHg'}, {'word': 'a.  7HO|  °JE', 'meaning': 'v.  Z7IT±E|.  7H[|'}, {'word': 'n.  XE. Z;lE:|XJ!. 57 I', 'meaning': 'a.  7iE;|6h='}, {'word': 'n.  Er7|E|  Z3ZS', 'meaning': 'v.  JJtJE=  I±j=6H=|'}, {'word': 'Et]', 'meaning': 'o203'}, {'word': 'a.  o±%il. EE]Q|', 'meaning': "n. (4irotl^19l) %'±"}, {'word': 'v.  FDH6l[l', 'meaning': 'n.  FOH'}, {'word': 'I,I', 'meaning': '0185'}, {'word': 'v.  e]716[l.  nlE[r', 'meaning': 'n.  J:Ie]'}, {'word': 'n.  E;I,  °d7|', 'meaning': 'v.  E;L= Lt|E|[|'}, {'word': 'a.  fBi}. J:ill q', 'meaning': 'n. (Et*1lq) 2;t. 2FQ3'}, {'word': 'Er]', 'meaning': '1222'}, {'word': 'n. E=', 'meaning': 'v,  fig:Oil ou|EEE|E|'}, {'word': 'v.  E!€r6rct.  i±7l[r', 'meaning': 'n.  E!%l.  E3.nil'}, {'word': 'n.  7t|2F', 'meaning': 'v.  7tlz;6r[I'}, {'word': 'c]E', 'meaning': '0604'}, {'word': 'Dr]', 'meaning': '0293'}, {'word': 'r]r]', 'meaning': '1767'}, {'word': 'v.  ±17 ILL', 'meaning': "n.  ±L3±'±.  7:||El|"}, {'word': 'n.  ^Ht±', 'meaning': 'v.  0|6HE7I  ^lx+6LIt.  i+Ol  ^H[L'}, {'word': 'i-J|', 'meaning': '0179'}, {'word': 'v.  (Eiigo|) =[1', 'meaning': 'n.  EIIg.  qu7r'}, {'word': 'Dtl', 'meaning': '0990'}, {'word': 'v.  E|EEr.  [H*16[r', 'meaning': 'n.  71EH'}, {'word': 'v.  E30L_r6|7{|  6F|,  S|E6r[|', 'meaning': 'n.  EOL_r.  fl±'}, {'word': 'a.  o±tL]_LxioL', 'meaning': 'n.  (=± . 8= . 6Ht9[H)  [HXor'}, {'word': 'v.  D|HE.17:|E|. ^±+6rLi', 'meaning': 'n. sol zs7+'}, {'word': 'I,I', 'meaning': '1303'}, {'word': 'n.  OLF7J. SE.I.  Bfll', 'meaning': 'v.  97]1= [H[l'}, {'word': 'Dc]', 'meaning': '0735'}, {'word': 'c]H', 'meaning': 'o681'}, {'word': 'v, j=±16r[r.  irEL_r6r[r', 'meaning': 'n. j#t]L. ±±i'}, {'word': 'Et]', 'meaning': '0796'}, {'word': 'v.  Xl^115  fl6[I.  (E}XIE)  J<11716H=I', 'meaning': 'n.  Xl^1I'}];
+    let current = 0;
+    let paused = false;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
     }
-];
 
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      const voices = speechSynthesis.getVoices();
+      const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
+      if (native) utter.voice = native;
+      speechSynthesis.speak(utter);
+    }
 
-        shuffle(quiz);
-        let current = 0;
+    function renderQuestion(index) {
+      const q = quiz[index];
+      document.getElementById("question").textContent = q.word || q.idiom;
+      speak(q.word || q.idiom);
 
-        function showQuestion() {
-            const q = quiz[current];
-            const questionDiv = document.getElementById("question");
-            const choicesDiv = document.getElementById("choices");
+      const options = [q.meaning];
+      while (options.length < 4) {
+        let random = quiz[Math.floor(Math.random() * quiz.length)].meaning;
+        if (!options.includes(random)) options.push(random);
+      }
+      shuffle(options);
 
-            questionDiv.textContent = q.word;
-            speakWord(q.word);
+      const choicesDiv = document.getElementById("choices");
+      choicesDiv.innerHTML = "";
+      options.forEach(opt => {
+        const div = document.createElement("div");
+        div.className = "choice";
+        div.textContent = opt;
+        if (opt === q.meaning) div.dataset.correct = "true";
+        choicesDiv.appendChild(div);
+      });
+    }
 
-            const options = [q.meaning];
-            while (options.length < 4) {
-                let rand = quiz[Math.floor(Math.random() * quiz.length)].meaning;
-                if (!options.includes(rand)) {
-                    options.push(rand);
-                }
-            }
-            shuffle(options);
+    function goNext() {
+      if (current < quiz.length - 1) {
+        current++;
+        renderQuestion(current);
+      }
+    }
 
-            choicesDiv.innerHTML = "";
-            options.forEach(option => {
-                const btn = document.createElement("div");
-                btn.className = "choice";
-                btn.textContent = option;
-                if (option === q.meaning) {
-                    btn.dataset.correct = "true";
-                }
-                choicesDiv.appendChild(btn);
-            });
+    function goBack() {
+      if (current > 0) {
+        current--;
+        renderQuestion(current);
+      }
+    }
 
-            
-        function speakWord(text) {
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = 'en-US';
-            utter.rate = 0.9;
-            
-            const voices = speechSynthesis.getVoices();
-            const nativeVoice = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
-            if (nativeVoice) utter.voice = nativeVoice;
-            speechSynthesis.speak(utter);
-    
-        }
+    function togglePause() {
+      paused = !paused;
+      document.getElementById("pauseBtn").textContent = paused ? "▶️ 재시작" : "⏸ 일시 정지";
+    }
 
-        // 자동 정답 강조 후 다음 문제
-    
-            setTimeout(() => {
-                const correctBtn = [...document.querySelectorAll(".choice")].find(el => el.dataset.correct);
-                if (correctBtn) correctBtn.classList.add("correct");
+    document.addEventListener("click", (e) => {
+      if (!paused && e.target.id !== "pauseBtn" && !e.target.classList.contains("nav-btn")) goNext();
+    });
 
-                setTimeout(() => {
-                    current++;
-                    if (current < quiz.length) {
-                        showQuestion();
-                    } else {
-                        questionDiv.textContent = "🎉 퀴즈 완료!";
-                        choicesDiv.innerHTML = "";
-                    }
-                }, 1500);
-            }, 5000);
-        }
-
-        showQuestion();
-    </script>
+    window.onload = function () {
+      shuffle(quiz);
+      renderQuestion(current);
+      setInterval(() => {
+        if (!paused) goNext();
+      }, 5000);
+    };
+  </script>
 </body>
 </html>
