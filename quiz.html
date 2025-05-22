@@ -471,6 +471,7 @@
             const choicesDiv = document.getElementById("choices");
 
             questionDiv.textContent = q.word;
+            speakWord(q.word);
 
             const options = [q.meaning];
             while (options.length < 4) {
@@ -492,7 +493,16 @@
                 choicesDiv.appendChild(btn);
             });
 
-            // 자동 정답 강조 후 다음 문제
+            
+        function speakWord(text) {
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'en-US';
+            utter.rate = 0.9;
+            speechSynthesis.speak(utter);
+        }
+
+        // 자동 정답 강조 후 다음 문제
+    
             setTimeout(() => {
                 const correctBtn = [...document.querySelectorAll(".choice")].find(el => el.dataset.correct);
                 if (correctBtn) correctBtn.classList.add("correct");
