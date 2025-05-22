@@ -3,67 +3,70 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>자하 숙어 퀴즈 - 전체 1350 기반</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>자하 퀴즈 - 고난도 숙어</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fffdf6;
+      font-family: Arial, sans-serif;
+      background: #fffdf6;
       margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      flex-direction: column;
     }
-    #container {
-      width: 100%;
-      max-width: 480px;
-      padding: 24px;
-      text-align: center;
-    }
-    .question {
-      font-size: 30px;
-      margin-bottom: 24px;
+    #question {
+      font-size: 32px;
       font-weight: bold;
-      color: #000;
+      margin-bottom: 20px;
     }
     .choices {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      width: 90%;
     }
     .choice {
       padding: 14px;
+      background: #eee;
+      border-radius: 12px;
+      text-align: center;
       font-size: 16px;
-      background-color: #eeeeee;
-      border-radius: 10px;
-      color: #111;
-      cursor: pointer;
     }
     .correct {
-      background-color: #a0d995 !important;
+      background-color: #c8f7c5 !important;
+      border: 2px solid #2ecc71;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .nav-btn {
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <div class="question" id="question">숙어 로딩 중...</div>
-    <div class="choices" id="choices"></div>
+  <div id="question">문제 로딩 중...</div>
+  <div class="choices" id="choices"></div>
+  <div class="controls">
+    <button class="nav-btn" onclick="goBack()">⬅️ 이전</button>
+    <button class="nav-btn" id="pauseBtn" onclick="togglePause()">⏸ 일시 정지</button>
+    <button class="nav-btn" onclick="goNext(true)">➡️ 다음</button>
   </div>
   <script>
-    
-    function speakWord(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'en-US';
-      const voices = speechSynthesis.getVoices();
-      const nativeVoice = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
-      if (nativeVoice) utter.voice = nativeVoice;
-      speechSynthesis.speak(utter);
-    }
-
-    const quiz =
-     [{'idiom': 'better left unsaid', 'meaning': '말하지 않는 것이 낫다'}, {'idiom': 'come ashore', 'meaning': '상륙하다'}, {'idiom': 'in full flourish', 'meaning': '전성하여, 원기 왕성하여'}, {'idiom': 'make no disguise of', 'meaning': '~을 드러내다'}, {'idiom': 'polished rice', 'meaning': '백미, 도정미'}, {'idiom': '(The) chances are that', 'meaning': '아마 ~일 것이다'}, {'idiom': 'be acquainted with', 'meaning': '~와 아는 사이이다. ~을 알고 있다'}, {'idiom': 'Beats me / I have no idea', 'meaning': '잘 모르겠다.'}, {'idiom': 'go through', 'meaning': '완수하다, 끝내다, 견디다'}, {'idiom': 'comparable  to', 'meaning': '~에 필적하는, 상응하는'}, {'idiom': 'set out', 'meaning': '출발하다'}, {'idiom': 'carry off', 'meaning': '잘 해내다. (상) 획득하다'}, {'idiom': 'a tempest in a teapot', 'meaning': '사소한 일로 벌어진 대소동'}, {'idiom': 'ask a favor of', 'meaning': '부탁하다'}, {'idiom': "pick one's words", 'meaning': '말을 골라하다, 말조심하다'}, {'idiom': "at one's convenience", 'meaning': '편리한 때에'}, {'idiom': 'put on', 'meaning': '~을 놀리다'}, {'idiom': 'give a free hand to', 'meaning': '결정권을 주다'}, {'idiom': 'age before beauty', 'meaning': '(양보할 때 농담으로 하는 말) 미녀보다 노인먼저'}, {'idiom': 'derive from', 'meaning': '~에서 끌어내다, 얻다'}, {'idiom': 'behind bars', 'meaning': '감옥에 갇혀 있는'}, {'idiom': 'stand treat', 'meaning': '한턱 내다'}, {'idiom': 'at any moment', 'meaning': '언제 어느 때나'}, {'idiom': 'have the nerve to', 'meaning': '~할 용기가 있다'}, {'idiom': 'Put out the fire!', 'meaning': '불을 꺼라!'}, {'idiom': 'plastic surgeon', 'meaning': '성형외과 의사'}, {'idiom': 'get into trouble', 'meaning': '말썽을 일으키다'}, {'idiom': 'be suitable for', 'meaning': '적당하다. 알맞다'}, {'idiom': 'the dumb millions', 'meaning': '말없는 다수, 민중'}, {'idiom': 'get cold feet / lose courage', 'meaning': '용기를[배짱을] 잃다'}, {'idiom': 'attribute A to B', 'meaning': 'A 의 원인을 B 로 귀착시키다, ~의 탓으로 하다'}, {'idiom': 'take place', 'meaning': '일어나다, 발생하다'}, {'idiom': 'meet the need of', 'meaning': '~의 욕구를 충족시키다'}, {'idiom': 'get off the hook', 'meaning': '곤경에서 빠져 나오다'}, {'idiom': 'gun down', 'meaning': '저격하다'}, {'idiom': 'arrive on the scene', 'meaning': '현장에 나타나다'}, {'idiom': 'call to order', 'meaning': '개회하다'}, {'idiom': 'give the benefit of the doubt', 'meaning': '(의심은 가지만) 일단은 믿어보다'}, {'idiom': 'cut ~ off from', 'meaning': '고립시키다'}, {'idiom': 'a gleam of hope', 'meaning': '한 가닥 희망'}, {'idiom': 'lust after', 'meaning': '절실히 바라다, 갈망하다'}, {'idiom': 'think highly of', 'meaning': '~을 높이 평가하다'}, {'idiom': 'associate with', 'meaning': '교제하다. 제휴하다'}, {'idiom': 'catch on (to)', 'meaning': '터득하다'}, {'idiom': 'play the bully', 'meaning': '약한 자를 곯리다, 큰소리치다'}, {'idiom': 'get off the ground get started', 'meaning': '출발하다, 성공적으로 시작하다'}, {'idiom': 'Birds of a feather flock together', 'meaning': '유유상종'}, {'idiom': 'butter up', 'meaning': '아부하다'}, {'idiom': 'up front', 'meaning': '돈을 미리 지불하는'}, {'idiom': 'instill A in B', 'meaning': 'A 를 B 에 주입하다, 가르치다'}];
+    const quiz = [{'word': 'c]E', 'meaning': '0838'}, {'word': 'a. ^||7]|7€ioJ. ^||7||2F9|9|', 'meaning': 'n.  ^||7]|°L. EXI|°J'}, {'word': 'v. EEEi,  IfiErL|Ei', 'meaning': 'n, J=ii='}, {'word': 'uL]', 'meaning': '1536'}, {'word': 'r]u', 'meaning': '0111'}, {'word': 't]E', 'meaning': '1312'}, {'word': 'n.  flog.  LID17:I', 'meaning': 'a.  Ite}q.  L|D|7:|g'}, {'word': 'n.  =X=', 'meaning': 'v. (=7| . 5r 5=) D|E.|E|'}, {'word': 'n.  DolEE!.  DorE57:I', 'meaning': 'v.  []orE3^|7|L|'}, {'word': 't]r]', 'meaning': '1127'}, {'word': 'v.  O][H6|L|', 'meaning': 'n.  X±^||'}, {'word': 'rL]|', 'meaning': '0190'}, {'word': 'n.  tL]L_lE]Tr,  l]El[HJF', 'meaning': "v.  tlL_rETlr6H=|.  '±r[HJF6[|"}, {'word': '[]f]', 'meaning': '0096'}, {'word': 'a. ZFfiir. iL=D|E.|e|', 'meaning': 'n. =ED|E|'}, {'word': 'v, =7±7ii[7 |±7i|] 6r[r', 'meaning': 'n. =7:ii(O±), |r±i'}, {'word': 'EL]', 'meaning': '1458'}, {'word': 'v.  ~9i aoLoi  EiEi. Of7i6r[i', 'meaning': 'n.  aoL'}, {'word': 'n.  7Hjit 7:I', 'meaning': 'a.  7Hji€ I:19|'}, {'word': 'n.  Z;r9|', 'meaning': 'v.  7or9|E 6LE|'}, {'word': 'a.  Er7=F EOc>F9|.  Er%%9|', 'meaning': 'n.  E1%j:1l'}, {'word': 'v.  7{1|ir6r[r.  7LE[|', 'meaning': 'n.  ir7]|'}, {'word': 'n.  %±L±', 'meaning': 'a.  %AL±7|q'}, {'word': '•[]', 'meaning': '0169'}, {'word': 'v.  jlE}6H=|', 'meaning': 'n. I:q:'}, {'word': 't].', 'meaning': '1221'}, {'word': 'n. lei', 'meaning': 'v. ±Ei6H=L'}, {'word': 'LLi', 'meaning': '0113'}, {'word': 'a.  7:|6rg|,  t]|D±g|', 'meaning': 'ri.  7:|6L'}, {'word': 'V.  J==E|', 'meaning': 'n.  noH%l'}, {'word': 'L-]H', 'meaning': 'o893'}, {'word': 'n.  7rEj', 'meaning': 'a.  7h%[7r3]9I'}, {'word': 'n.  e]7|', 'meaning': 'v.  q7i  LiEi'}, {'word': 'v.  i3iE6rE|', 'meaning': 'n.  DHE]'}, {'word': 'c]H', 'meaning': 'o892'}, {'word': 'v.  (X!*J  8|0|) EOLE|L|[|', 'meaning': 'n.  i==r.  EolorE;I'}, {'word': 'n.  ±DH', 'meaning': 'v.  ADH6rE|'}, {'word': "v. 4896H=|. ^E'^|6H=t", 'meaning': 'n.  68fl. OL_r"'}, {'word': 'v.  e!El', 'meaning': 'n.  0101'}, {'word': 'n.  =Z3', 'meaning': 'a. =Z391. ±lj±=±Er9|'}, {'word': 'v.. tir¥ro |E|', 'meaning': 'n.  EL]+Elo±'}, {'word': 'v.  EIEEE.|[r', 'meaning': 'n.  n+9. =i]=L'}, {'word': 'n.  EN^1%t', 'meaning': 'a.  [H^|0oFg|'}, {'word': 'n.  %EH. =j=', 'meaning': 'v.  %%6LE|'}, {'word': 'n.  8E3.  7:It]HEi', 'meaning': 'v.  E3E36rEl.  xlil6r[l'}, {'word': 'a. ¥ItlQl', 'meaning': 'n. ¥IEL ^J5  v. *1k±6m. L[E|"E|'}, {'word': 'a.  oL_r%E', 'meaning': 'n.  EripL+'}, {'word': 'n.  7H¥', 'meaning': 'v.  7H¥6[r'}, {'word': 'a.  *|=9|. j=7|9|', 'meaning': 'n.  D|E|=XK0|L|^±)'}, {'word': 'tlH', 'meaning': '1382'}, {'word': 'n.  E;rE]|4', 'meaning': 'a.  2;rE]|9|'}, {'word': 'v.  Jj:+^|6L[|.  LiErLHEi', 'meaning': 'n.  7:j^i'}, {'word': 'LiH', 'meaning': '0167'}, {'word': 'n.  =.  ELJL_L=', 'meaning': 'v,  =j==:i6rEi.  =o iEr'}, {'word': 'Dfl', 'meaning': '1859'}, {'word': 'L]u', 'meaning': '0187'}, {'word': 'n.  7|E:', 'meaning': 'v,  7|qu71|  6L[l'}, {'word': 'v.  o]|uH6tE|.  €uW6rE|', 'meaning': 'n.  o]|t]H.  €BH'}, {'word': 'v.  EnH6LEl.  ±lE6rEI', 'meaning': 'n.  EHH.  4El'}, {'word': 'a. E[H91', 'meaning': 'n. ±[H'}, {'word': 'v. =3 7jPr. LH7|= 6pr. (~0|) E=itltl', 'meaning': 'n.  Ltl7i'}, {'word': 'tlD', 'meaning': '0061'}, {'word': 'n.  °8^11', 'meaning': 'v.  `]E5^116Fl'}, {'word': 'n.  E]L_rE}.  Ei=', 'meaning': 'v.  EIE6LLI'}, {'word': 'n.  Q]ffl.  EJth', 'meaning': 'a.  q91.  tL]LtEN9l'}, {'word': 'v.  Er[L_6L[t', 'meaning': 'n.  IHEhE±'}, {'word': 'n.  EOH', 'meaning': 'a.  EDHg'}, {'word': 'a.  7HO|  °JE', 'meaning': 'v.  Z7IT±E|.  7H[|'}, {'word': 'n.  XE. Z;lE:|XJ!. 57 I', 'meaning': 'a.  7iE;|6h='}, {'word': 'n.  Er7|E|  Z3ZS', 'meaning': 'v.  JJtJE=  I±j=6H=|'}, {'word': 'Et]', 'meaning': 'o203'}, {'word': 'a.  o±%il. EE]Q|', 'meaning': "n. (4irotl^19l) %'±"}, {'word': 'v.  FDH6l[l', 'meaning': 'n.  FOH'}, {'word': 'I,I', 'meaning': '0185'}, {'word': 'v.  e]716[l.  nlE[r', 'meaning': 'n.  J:Ie]'}, {'word': 'n.  E;I,  °d7|', 'meaning': 'v.  E;L= Lt|E|[|'}, {'word': 'a.  fBi}. J:ill q', 'meaning': 'n. (Et*1lq) 2;t. 2FQ3'}, {'word': 'Er]', 'meaning': '1222'}, {'word': 'n. E=', 'meaning': 'v,  fig:Oil ou|EEE|E|'}, {'word': 'v.  E!€r6rct.  i±7l[r', 'meaning': 'n.  E!%l.  E3.nil'}, {'word': 'n.  7t|2F', 'meaning': 'v.  7tlz;6r[I'}, {'word': 'c]E', 'meaning': '0604'}, {'word': 'Dr]', 'meaning': '0293'}, {'word': 'r]r]', 'meaning': '1767'}, {'word': 'v.  ±17 ILL', 'meaning': "n.  ±L3±'±.  7:||El|"}, {'word': 'n.  ^Ht±', 'meaning': 'v.  0|6HE7I  ^lx+6LIt.  i+Ol  ^H[L'}, {'word': 'i-J|', 'meaning': '0179'}, {'word': 'v.  (Eiigo|) =[1', 'meaning': 'n.  EIIg.  qu7r'}, {'word': 'Dtl', 'meaning': '0990'}, {'word': 'v.  E|EEr.  [H*16[r', 'meaning': 'n.  71EH'}, {'word': 'v.  E30L_r6|7{|  6F|,  S|E6r[|', 'meaning': 'n.  EOL_r.  fl±'}, {'word': 'a.  o±tL]_LxioL', 'meaning': 'n.  (=± . 8= . 6Ht9[H)  [HXor'}, {'word': 'v.  D|HE.17:|E|. ^±+6rLi', 'meaning': 'n. sol zs7+'}, {'word': 'I,I', 'meaning': '1303'}, {'word': 'n.  OLF7J. SE.I.  Bfll', 'meaning': 'v.  97]1= [H[l'}, {'word': 'Dc]', 'meaning': '0735'}, {'word': 'c]H', 'meaning': 'o681'}, {'word': 'v, j=±16r[r.  irEL_r6r[r', 'meaning': 'n. j#t]L. ±±i'}, {'word': 'Et]', 'meaning': '0796'}, {'word': 'v.  Xl^115  fl6[I.  (E}XIE)  J<11716H=I', 'meaning': 'n.  Xl^1I'}];
+    let current = 0;
+    let paused = false;
+    let interval = null;
+    let delayTimeout = null;
 
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -72,54 +75,82 @@
       }
     }
 
-    shuffle(quiz);
-    let current = 0;
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      const voices = speechSynthesis.getVoices();
+      const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
+      if (native) utter.voice = native;
+      speechSynthesis.speak(utter);
+    }
 
-    function showQuestion() {
-      const q = quiz[current];
-      const questionDiv = document.getElementById("question");
-      const choicesDiv = document.getElementById("choices");
-
-      questionDiv.textContent = q.idiom;
-      speakWord(q.idiom);
+    function renderQuestion(index) {
+      const q = quiz[index];
+      document.getElementById("question").textContent = q.word || q.idiom;
+      speak(q.word || q.idiom);
 
       const options = [q.meaning];
       while (options.length < 4) {
-        let rand = quiz[Math.floor(Math.random() * quiz.length)].meaning;
-        if (!options.includes(rand)) {
-          options.push(rand);
-        }
+        let random = quiz[Math.floor(Math.random() * quiz.length)].meaning;
+        if (!options.includes(random)) options.push(random);
       }
       shuffle(options);
 
+      const choicesDiv = document.getElementById("choices");
       choicesDiv.innerHTML = "";
-      options.forEach(option => {
-        const btn = document.createElement("div");
-        btn.className = "choice";
-        btn.textContent = option;
-        if (option === q.meaning) {
-          btn.dataset.correct = "true";
-        }
-        choicesDiv.appendChild(btn);
+      options.forEach(opt => {
+        const div = document.createElement("div");
+        div.className = "choice";
+        div.textContent = opt;
+        if (opt === q.meaning) div.dataset.correct = "true";
+        choicesDiv.appendChild(div);
       });
 
-      setTimeout(() => {
-        const correctBtn = [...document.querySelectorAll(".choice")].find(el => el.dataset.correct);
-        if (correctBtn) correctBtn.classList.add("correct");
+      // Highlight correct after short delay
+      clearTimeout(delayTimeout);
+      delayTimeout = setTimeout(() => {
+        const correct = [...choicesDiv.children].find(el => el.dataset.correct === "true");
+        if (correct) {
+          correct.classList.add("correct");
+        }
+      }, 4000);
 
-        setTimeout(() => {
-          current++;
-          if (current < quiz.length) {
-            showQuestion();
-          } else {
-            questionDiv.textContent = "🎉 숙어 퀴즈 완료!";
-            choicesDiv.innerHTML = "";
-          }
-        }, 1500);
+      // Auto move after 5 seconds
+      if (interval) clearInterval(interval);
+      interval = setInterval(() => {
+        if (!paused) goNext();
       }, 5000);
     }
 
-    showQuestion();
+    function goNext(force = false) {
+      if (current < quiz.length - 1) {
+        current++;
+        renderQuestion(current);
+      } else if (force) {
+        alert("마지막 문제입니다!");
+      }
+    }
+
+    function goBack() {
+      if (current > 0) {
+        current--;
+        renderQuestion(current);
+      }
+    }
+
+    function togglePause() {
+      paused = !paused;
+      document.getElementById("pauseBtn").textContent = paused ? "▶️ 재시작" : "⏸ 일시 정지";
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!paused && e.target.id !== "pauseBtn" && !e.target.classList.contains("nav-btn")) goNext();
+    });
+
+    window.onload = function () {
+      shuffle(quiz);
+      renderQuestion(current);
+    };
   </script>
 </body>
 </html>
