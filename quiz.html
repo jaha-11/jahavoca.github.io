@@ -2,16 +2,40 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>자하 퀴즈 - 1300 영단어</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>자하 퀴즈 - 1300 영단어 개선버전</title>
   <style>
-    body {{ font-family:sans-serif;text-align:center;background:#fff;margin:0;padding:1rem }}
-    #timer {{ font-size:2rem;font-weight:bold;margin-bottom:10px }}
-    #question {{ font-size:2rem;margin:1rem 0 }}
-    .choices {{ display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:400px;margin:0 auto }}
-    .choice {{ padding:1rem;background:#eee;border-radius:10px;font-size:1.1rem }}
-    .correct {{ background:#cfc }}
-    .incorrect {{ background:#fcc }}
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 1rem;
+      text-align: center;
+    }
+    #timer {
+      font-size: 2rem;
+      font-weight: bold;
+      color: green;
+    }
+    #question {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .choice {
+      padding: 1rem;
+      background: #eee;
+      border-radius: 10px;
+      font-size: 1.2rem;
+    }
+    .correct { background: #cfc }
+    .incorrect { background: #fcc }
   </style>
 </head>
 <body>
@@ -19,42 +43,82 @@
 <div id="question">문제 로딩 중...</div>
 <div class="choices" id="choices"></div>
 <script>
-const quiz = [{"단어": "advise", "뜻": "조언하다, 충고하다"}, {"단어": "relationship", "뜻": "관계"}, {"단어": "attitude", "뜻": "태도, 입장"}, {"단어": "influence", "뜻": "영향을 끼치다"}, {"단어": "volunteer", "뜻": "자원봉사자, 자원하다"}, {"단어": "require", "뜻": "요구하다"}, {"단어": "social", "뜻": "사회의, 사교적인"}, {"단어": "improve", "뜻": "향상시키다"}, {"단어": "behave", "뜻": "행동하다"}, {"단어": "terrible", "뜻": "끔찍한, 무서운"}, {"단어": "inform", "뜻": "알리다, 통지하다"}, {"단어": "amount", "뜻": "총액, 총계, 양"}, {"단어": "research", "뜻": "연구하다, 조사하다"}, {"단어": "employ", "뜻": "고용하다"}, {"단어": "provide", "뜻": "공급하다, 준비하다"}, {"단어": "individual", "뜻": "개인, 개인적인"}, {"단어": "audience", "뜻": "청중"}, {"단어": "service", "뜻": "서비스, 봉사"}, {"단어": "opportunity", "뜻": "기회"}, {"단어": "develop", "뜻": "개발하다, 발전하다"}];
-let i=0,timer=5,interval;let paused=false;
-const timerEl=document.getElementById("timer"),qEl=document.getElementById("question"),cEl=document.getElementById("choices");
-function speak(t){ let u=new SpeechSynthesisUtterance(t);u.lang="en-US";speechSynthesis.speak(u); }
-function wrongSave(w,d){ let l=JSON.parse(localStorage.getItem("wrongnote_1300")||"[]");
-if(!l.some(e=>e.단어===w)){ l.push({ 단어:w, 뜻:d }); localStorage.setItem("wrongnote_1300",JSON.stringify(l)); } }
-function render(){
-  let q=quiz[i];qEl.textContent=q.단어;speak(q.단어);let opts=[q.뜻];
-  while(opts.length<4){ let r=quiz[Math.floor(Math.random()*quiz.length)].뜻; if(!opts.includes(r)) opts.push(r); }
-  opts.sort(()=>Math.random()-.5);cEl.innerHTML="";
-  opts.forEach(o=>{ let div=document.createElement("div");
-    div.textContent=o;div.className="choice";div.onclick=()=>{
+const quiz = [{"단어": "addictive", "뜻": "중독성의"}, {"단어": "diurnal", "뜻": "주간의"}, {"단어": "cogent", "뜻": "적절한; 설득력 있는"}, {"단어": "alongside", "뜻": "나란히"}, {"단어": "altruism", "뜻": "이타주의"}, {"단어": "monetary", "뜻": "화폐의"}, {"단어": "therapy", "뜻": "치료"}, {"단어": "departure", "뜻": "출발, 떠남"}, {"단어": "seemingly", "뜻": "외관상으로"}, {"단어": "atop", "뜻": "정상에"}, {"단어": "colossal", "뜻": "거대한"}, {"단어": "bombast", "뜻": "과장, 호언장담"}, {"단어": "combat", "뜻": "전투; 싸우다"}, {"단어": "slander", "뜻": "비방; 헐뜯다"}, {"단어": "caste", "뜻": "카스트, 특권계급"}, {"단어": "telepathy", "뜻": "텔레파시"}, {"단어": "decompose", "뜻": "분해하다"}, {"단어": "bypass", "뜻": "우회로; 우회하다"}, {"단어": "underneath", "뜻": "아래에"}, {"단어": "brag", "뜻": "자랑하다"}];
+let i = 0, timer = 5, interval;
+const timerEl = document.getElementById("timer");
+const qEl = document.getElementById("question");
+const cEl = document.getElementById("choices");
+
+function speak(text) {
+  let utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "en-US";
+  speechSynthesis.speak(utter);
+}
+
+function saveWrong(word, meaning) {
+  let notes = JSON.parse(localStorage.getItem("wrongnote_1300") || "[]");
+  if (!notes.some(e => e.단어 === word)) {
+    notes.push({ 단어: word, 뜻: meaning });
+    localStorage.setItem("wrongnote_1300", JSON.stringify(notes));
+  }
+}
+
+function render() {
+  clearInterval(interval);
+  timer = 5;
+  timerEl.textContent = timer;
+  timerEl.style.color = "green";
+  const q = quiz[i];
+  qEl.textContent = q.단어;
+  speak(q.단어);
+  let opts = [q.뜻];
+  while (opts.length < 4) {
+    let r = quiz[Math.floor(Math.random()*quiz.length)].뜻;
+    if (!opts.includes(r)) opts.push(r);
+  }
+  opts.sort(() => Math.random() - 0.5);
+  cEl.innerHTML = "";
+  opts.forEach(o => {
+    let div = document.createElement("div");
+    div.className = "choice";
+    div.textContent = o;
+    div.onclick = () => {
       clearInterval(interval);
-      if(o===q.뜻){ div.classList.add("correct"); }
-      else{ div.classList.add("incorrect"); wrongSave(q.단어,q.뜻); }
-      setTimeout(next,800);
+      if (o === q.뜻) {
+        div.classList.add("correct");
+      } else {
+        div.classList.add("incorrect");
+        saveWrong(q.단어, q.뜻);
+      }
+      setTimeout(next, 1000);
     };
-    cEl.append(div);
+    cEl.appendChild(div);
   });
-}
-function next(){ if(i<quiz.length-1){ i++;run(); } else alert("끝!"); }
-function run(){
-  timer=5;render();timerEl.textContent=timer;timerEl.style.color="green";
-  interval=setInterval(()=>{
-    if(--timer>=0){
-      timerEl.textContent=timer;
-      timerEl.style.color=timer<=1?"red":timer<=3?"orange":"green";
-    } else {
+  interval = setInterval(() => {
+    timer--;
+    timerEl.textContent = timer;
+    timerEl.style.color = timer <= 1 ? "red" : timer <= 3 ? "orange" : "green";
+    if (timer <= 0) {
       clearInterval(interval);
-      [...cEl.children].forEach(el=>{ if(el.textContent===quiz[i].뜻) el.classList.add("correct"); });
-      wrongSave(quiz[i].단어,quiz[i].뜻);
-      setTimeout(next,800);
+      [...cEl.children].forEach(el => {
+        if (el.textContent === q.뜻) el.classList.add("correct");
+      });
+      saveWrong(q.단어, q.뜻);
+      setTimeout(next, 1000);
     }
-  },1000);
+  }, 1000);
 }
-run();
+
+function next() {
+  if (i < quiz.length - 1) {
+    i++;
+    render();
+  } else {
+    alert("퀴즈 완료!");
+  }
+}
+
+render();
 </script>
 </body>
 </html>
