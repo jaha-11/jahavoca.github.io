@@ -3,137 +3,72 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>자하 퀴즈 – 위드마스터 수능2000</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>자하 퀴즈 - 위드마스터 2000</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fffdf6;
+      font-family: Arial, sans-serif;
+      background: #fffdf6;
       margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      flex-direction: column;
     }
-    #container {
-      width: 100%;
-      max-width: 480px;
-      padding: 24px;
-      text-align: center;
-    }
-    .question {
-      font-size: 36px;
-      margin-bottom: 32px;
+    #question {
+      font-size: 28px;
       font-weight: bold;
-      color: #000;
+      text-align: center;
+      word-break: break-word;
+      margin-bottom: 20px;
     }
     .choices {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 90%;
     }
     .choice {
-      padding: 18px;
-      font-size: 18px;
-      background-color: #eeeeee;
-      border-radius: 10px;
-      color: #111;
-      cursor: pointer;
+      padding: 14px;
+      background: #eee;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 16px;
     }
     .correct {
-      background-color: #a0d995 !important;
+      background-color: #c8f7c5 !important;
+      border: 2px solid #2ecc71;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .nav-btn {
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <div class="question" id="question">단어 로딩 중...</div>
-    <div class="choices" id="choices"></div>
+  <div id="question">문제 로딩 중...</div>
+  <div class="choices" id="choices"></div>
+  <div class="controls">
+    <button class="nav-btn" onclick="goBack()">⬅️ 이전</button>
+    <button class="nav-btn" id="pauseBtn" onclick="togglePause()">⏸ 일시 정지</button>
+    <button class="nav-btn" onclick="goNext(true)">➡️ 다음</button>
   </div>
   <script>
-    const quiz = [
-  {
-    "word": "provide",
-    "meaning": "제공하다"
-  },
-  {
-    "word": "develop",
-    "meaning": "개발하다"
-  },
-  {
-    "word": "service",
-    "meaning": "서비스"
-  },
-  {
-    "word": "inform",
-    "meaning": "알리다"
-  },
-  {
-    "word": "relationship",
-    "meaning": "관계"
-  },
-  {
-    "word": "improve",
-    "meaning": "향상시키다"
-  },
-  {
-    "word": "individual",
-    "meaning": "개인"
-  },
-  {
-    "word": "require",
-    "meaning": "요구하다"
-  },
-  {
-    "word": "advise",
-    "meaning": "충고하다"
-  },
-  {
-    "word": "social",
-    "meaning": "사회적인"
-  },
-  {
-    "word": "amount",
-    "meaning": "양"
-  },
-  {
-    "word": "behave",
-    "meaning": "행동하다"
-  },
-  {
-    "word": "employ",
-    "meaning": "고용하다"
-  },
-  {
-    "word": "attitude",
-    "meaning": "태도"
-  },
-  {
-    "word": "research",
-    "meaning": "연구"
-  },
-  {
-    "word": "audience",
-    "meaning": "청중"
-  },
-  {
-    "word": "volunteer",
-    "meaning": "자원봉사자"
-  },
-  {
-    "word": "influence",
-    "meaning": "영향을 주다"
-  },
-  {
-    "word": "terrible",
-    "meaning": "끔찍한"
-  },
-  {
-    "word": "opportunity",
-    "meaning": "기회"
-  }
-];
+    const quiz = [{'단어': 'provide', '뜻': '공급하다, 준비하다'}, {'단어': 'develop', '뜻': '개발하다, 발전하다'}, {'단어': 'service', '뜻': '서비스, 봉사'}, {'단어': 'inform', '뜻': '알리다, 통지하다'}, {'단어': 'relationship', '뜻': '관계'}, {'단어': 'improve', '뜻': '향상시키다'}, {'단어': 'individual', '뜻': '개인'}, {'단어': 'require', '뜻': '요구하다'}, {'단어': 'advise', '뜻': '조언하다'}, {'단어': 'social', '뜻': '사회의'}];
+    let current = 0;
+    let paused = false;
+    let interval = null;
+    let delayTimeout = null;
 
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -142,63 +77,81 @@
       }
     }
 
-    function speakWord(text) {
+    function speak(text) {
       const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'en-US';
+      utter.lang = "en-US";
       const voices = speechSynthesis.getVoices();
-      const nativeVoice = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
-      if (nativeVoice) utter.voice = nativeVoice;
+      const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
+      if (native) utter.voice = native;
       speechSynthesis.speak(utter);
     }
 
-    shuffle(quiz);
-    let current = 0;
+    function renderQuestion(index) {
+      const q = quiz[index];
+      document.getElementById("question").textContent = q.단어 || q.word;
+      speak(q.단어 || q.word);
 
-    function showQuestion() {
-      const q = quiz[current];
-      const questionDiv = document.getElementById("question");
-      const choicesDiv = document.getElementById("choices");
-
-      questionDiv.textContent = q.word;
-      speakWord(q.word);
-
-      const options = [q.meaning];
+      const options = [q.뜻];
       while (options.length < 4) {
-        let rand = quiz[Math.floor(Math.random() * quiz.length)].meaning;
-        if (!options.includes(rand)) {
-          options.push(rand);
-        }
+        let random = quiz[Math.floor(Math.random() * quiz.length)];
+        let m = random.뜻;
+        if (!options.includes(m)) options.push(m);
       }
       shuffle(options);
 
+      const choicesDiv = document.getElementById("choices");
       choicesDiv.innerHTML = "";
-      options.forEach(option => {
-        const btn = document.createElement("div");
-        btn.className = "choice";
-        btn.textContent = option;
-        if (option === q.meaning) {
-          btn.dataset.correct = "true";
-        }
-        choicesDiv.appendChild(btn);
+      options.forEach(opt => {
+        const div = document.createElement("div");
+        div.className = "choice";
+        div.textContent = opt;
+        if (opt === q.뜻) div.dataset.correct = "true";
+        choicesDiv.appendChild(div);
       });
 
-      setTimeout(() => {
-        const correctBtn = [...document.querySelectorAll(".choice")].find(el => el.dataset.correct);
-        if (correctBtn) correctBtn.classList.add("correct");
+      clearTimeout(delayTimeout);
+      delayTimeout = setTimeout(() => {
+        const correct = [...choicesDiv.children].find(el => el.dataset.correct === "true");
+        if (correct) {
+          correct.classList.add("correct");
+        }
+      }, 4000);
 
-        setTimeout(() => {
-          current++;
-          if (current < quiz.length) {
-            showQuestion();
-          } else {
-            questionDiv.textContent = "🎉 퀴즈 완료!";
-            choicesDiv.innerHTML = "";
-          }
-        }, 1500);
+      if (interval) clearInterval(interval);
+      interval = setInterval(() => {
+        if (!paused) goNext();
       }, 5000);
     }
 
-    showQuestion();
+    function goNext(force = false) {
+      if (current < quiz.length - 1) {
+        current++;
+        renderQuestion(current);
+      } else if (force) {
+        alert("마지막 문제입니다!");
+      }
+    }
+
+    function goBack() {
+      if (current > 0) {
+        current--;
+        renderQuestion(current);
+      }
+    }
+
+    function togglePause() {
+      paused = !paused;
+      document.getElementById("pauseBtn").textContent = paused ? "▶️ 재시작" : "⏸ 일시 정지";
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!paused && e.target.id !== "pauseBtn" && !e.target.classList.contains("nav-btn")) goNext();
+    });
+
+    window.onload = function () {
+      shuffle(quiz);
+      renderQuestion(current);
+    };
   </script>
 </body>
 </html>
