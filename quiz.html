@@ -107,7 +107,7 @@ function render() {
     div.onclick = () => {
       clearInterval(interval);
       if (opt === q.뜻) {
-        div.classList.add("correct");
+        div.classList.add("correct"); correctCount++;
       } else {
         div.classList.add("incorrect");
         saveWrong(q.단어, q.뜻);
@@ -138,7 +138,29 @@ function next() {
     current++;
     render();
   } else {
-    alert("퀴즈 완료!");
+    
+      const resultBox = document.createElement('div');
+      resultBox.innerHTML = `<h2>퀴즈 완료!</h2><p>✅ 맞춘 문제 수: ${correctCount} / ${quiz.length}</p>`;
+      const retryBtn = document.createElement('button');
+      retryBtn.textContent = "📒 오답노트 다시 도전";
+      retryBtn.style.padding = "10px 20px";
+      retryBtn.style.marginTop = "10px";
+      retryBtn.onclick = () => {
+        const wrong = JSON.parse(localStorage.getItem("wrongnote_1300") || "[]");
+        if (wrong.length === 0) {
+          alert("오답노트에 저장된 단어가 없습니다.");
+          return;
+        }
+        quiz.length = 0;
+        wrong.forEach(e => quiz.push(e));
+        current = 0;
+        correctCount = 0;
+        render();
+      };
+      document.body.innerHTML = "";
+      document.body.appendChild(resultBox);
+      document.body.appendChild(retryBtn);
+
   }
 }
 
