@@ -6,6 +6,13 @@ let timerInterval;
 let paused = false;
 let quiz = [...quizData];
 let wrongAnswers = [];
+let selectedVoice = null;
+
+// Load voices for mobile compatibility
+window.speechSynthesis.onvoiceschanged = () => {
+  const voices = speechSynthesis.getVoices();
+  selectedVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes("Google") || v.name.includes("Microsoft")));
+};
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -18,9 +25,7 @@ function shuffle(array) {
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = 'en-US';
-  const voices = speechSynthesis.getVoices();
-  const voice = voices.find(v => v.lang === 'en-US' && (v.name.includes("Google") || v.name.includes("Microsoft")));
-  if (voice) utter.voice = voice;
+  if (selectedVoice) utter.voice = selectedVoice;
   speechSynthesis.speak(utter);
 }
 
@@ -33,7 +38,7 @@ function updateTimer() {
 function markAnswer(_, correct) {
   const buttons = document.querySelectorAll(".choice");
   buttons.forEach(b => {
-    if (b.innerText === correct) b.classList.add("correct");
+    if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
   });
   wrongAnswers.push(quiz[current]);
   setTimeout(() => {
@@ -46,10 +51,10 @@ function checkAnswer(selected, correct) {
   clearInterval(timerInterval);
   const buttons = document.querySelectorAll(".choice");
   buttons.forEach(b => {
-    if (b.innerText === correct) b.classList.add("correct");
-    if (b.innerText === selected && selected !== correct) b.classList.add("incorrect");
+    if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
+    if (b.innerText.trim() === selected.trim() && selected.trim() !== correct.trim()) b.classList.add("incorrect");
   });
-  if (selected === correct) {
+  if (selected.trim() === correct.trim()) {
     score++;
   } else {
     wrongAnswers.push(quiz[current]);
