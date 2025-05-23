@@ -1,156 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>자하 퀴즈 - 1300 영단어</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fffdf6;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-    #question {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .choices {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      width: 90%;
-    }
-    .choice {
-      padding: 14px;
-      background: #eee;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 16px;
-    }
-    .correct {
-      background-color: #c8f7c5 !important;
-      border: 2px solid #2ecc71;
-    }
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .nav-btn {
-      padding: 10px 16px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-    }
+    body {{ font-family:sans-serif;text-align:center;background:#fff;margin:0;padding:1rem }}
+    #timer {{ font-size:2rem;font-weight:bold;margin-bottom:10px }}
+    #question {{ font-size:2rem;margin:1rem 0 }}
+    .choices {{ display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:400px;margin:0 auto }}
+    .choice {{ padding:1rem;background:#eee;border-radius:10px;font-size:1.1rem }}
+    .correct {{ background:#cfc }}
+    .incorrect {{ background:#fcc }}
   </style>
 </head>
 <body>
-  <div id="question">문제 로딩 중...</div>
-  <div class="choices" id="choices"></div>
-  <div class="controls">
-    <button class="nav-btn" onclick="goBack()">⬅️ 이전</button>
-    <button class="nav-btn" id="pauseBtn" onclick="togglePause()">⏸ 일시 정지</button>
-    <button class="nav-btn" onclick="goNext(true)">➡️ 다음</button>
-  </div>
-  <script>
-    const quiz = [{'word': 'addictive', 'meaning': '[형] 중독성의.'}, {'word': 'diurnal', 'meaning': '[형] 주간의.'}, {'word': 'cogent', 'meaning': '[형] 적절한; 설득력 있는.'}, {'word': 'alongside', 'meaning': '[부] 나란히.'}, {'word': 'altruism', 'meaning': '[명] 이타주의.'}, {'word': 'monetary', 'meaning': '[형] 화폐의.'}, {'word': 'therapy', 'meaning': '[명] 치료.'}, {'word': 'departure', 'meaning': '[명] 출발, 떠남.'}, {'word': 'seemingly', 'meaning': '[부] 외관상으로.'}, {'word': 'atop', 'meaning': '[전] ~의 정상에.'}, {'word': 'colossal', 'meaning': '[형] 거대한.'}, {'word': 'bombast', 'meaning': '[명] 과장, 호언장담.'}, {'word': 'combat', 'meaning': '[명][동] 전투; 싸우다.'}, {'word': 'slander', 'meaning': '[명][동] 비방; 헐뜯다.'}, {'word': 'caste', 'meaning': '[명] 카스트, 특권계급.'}, {'word': 'telepathy', 'meaning': '[명] 텔레파시; 이심전심.'}, {'word': 'decompose', 'meaning': '[동] 분해하다; 부패시키다.'}, {'word': 'bypass', 'meaning': '[명][동] 우회로; 우회하다.'}, {'word': 'underneath', 'meaning': '[전] ~의 아래에.'}, {'word': 'brag', 'meaning': '[동][명] 자랑하다; 허풍 떨다; 자랑.'}, {'word': 'persecute', 'meaning': '[동] 박해하다.'}, {'word': 'prowl', 'meaning': '[동] 배회하다.'}, {'word': 'rectangle', 'meaning': '[명] 직사각형.'}, {'word': 'decree', 'meaning': '[명] 법령, 폭.'}, {'word': 'vinegar', 'meaning': '[명] 식초.'}, {'word': 'attribute', 'meaning': '[명] 특질.'}, {'word': 'pierce', 'meaning': '[동] 꿰뚫다, 관통하다.'}, {'word': 'hunch', 'meaning': '[명] 혹; 군살.'}, {'word': 'formation', 'meaning': '[명] 형성.'}, {'word': 'calamity', 'meaning': '[명] 재난.'}, {'word': 'ongoing', 'meaning': '[형] 전진하는, 진행하는.'}, {'word': 'cliche', 'meaning': '[명] 진부한 표현, 상투적인 말.'}, {'word': 'consecutive', 'meaning': '[형] 연속적인, 잇따른.'}, {'word': 'patrol', 'meaning': '[명][동] 순찰; 순찰하다.'}, {'word': 'wire', 'meaning': '[명] 철사; 전선.'}, {'word': 'invert', 'meaning': '[동] 거꾸로 하다, 뒤집다.'}, {'word': 'advocacy', 'meaning': '[명] 옹호, 지지.'}, {'word': 'amorphous', 'meaning': '[형] 정해진 형태가 없는.'}, {'word': 'circulation', 'meaning': '[명] 순환, 유통.'}, {'word': 'fraudulent', 'meaning': '[형] 부정한; 속이는.'}, {'word': 'hurl', 'meaning': '[동] 집어던지다.'}, {'word': 'repose', 'meaning': '[명][동] 휴식; 휴식을 취하다.'}, {'word': 'chime', 'meaning': '[명][동] 종, 차임; 종을 울리다.'}, {'word': 'hideous', 'meaning': '[형] 섬뜩한, 무시무시한.'}, {'word': 'deadline', 'meaning': '[명] 마감 시간, 기한.'}, {'word': 'reckon', 'meaning': '[동] 세다; 간주하다.'}, {'word': 'celestial', 'meaning': '[형] 하늘의, 천상의.'}, {'word': 'male', 'meaning': '[형] 남성의, 수컷의.'}, {'word': 'suspicion', 'meaning': '[명] 의심; 의혹.'}, {'word': 'corrode', 'meaning': '[동] 부식하다.'}, {'word': 'momentary', 'meaning': '[형] 순간의, 순간적인.'}, {'word': 'tarnish', 'meaning': '[동] 변색시키다; 더럽히다.'}, {'word': 'swap', 'meaning': '[동] 교환하다; 맞바꾸다.'}, {'word': 'credit', 'meaning': '[명][동] 신용; 신뢰하다.'}, {'word': 'crossroad', 'meaning': '[명] 십자로, 교차로.'}, {'word': 'bow', 'meaning': '[명] 활.'}, {'word': 'dummy', 'meaning': '[형][명] 가짜의; 가짜.'}, {'word': 'rival', 'meaning': '[명][동] 경쟁자; 경쟁하다.'}, {'word': 'puff', 'meaning': '[동][명] 훅 불다; 불기.'}, {'word': 'emanate', 'meaning': '[동] 발산하다.'}, {'word': 'fugitive', 'meaning': '[명][형] 도망자; 도망치는.'}, {'word': 'scary', 'meaning': '[형] 겁나는; 못생긴.'}, {'word': 'tactics', 'meaning': '[명] 전술.'}, {'word': 'intrepid', 'meaning': '[형] 용맹스러운.'}, {'word': 'temptation', 'meaning': '[명] 유혹.'}, {'word': 'peddle', 'meaning': '[동] 행상하다.'}, {'word': 'plumber', 'meaning': '[명] 배관공.'}, {'word': 'brittle', 'meaning': '[형] 부서지기 쉬운.'}, {'word': 'pier', 'meaning': '[명] 부두; 방파제.'}, {'word': 'cognizant', 'meaning': '[형] 인식하고 있는.'}, {'word': 'bondage', 'meaning': '[동] 노예 신분; 속박.'}, {'word': 'counter', 'meaning': '[명][형] 계산대; 반대의.'}, {'word': 'imminent', 'meaning': '[형] 절박한, 급박한.'}, {'word': 'incumbent', 'meaning': '[형] 현직의.'}, {'word': 'stimulus', 'meaning': '[명] 자극, 격려.'}, {'word': 'crag', 'meaning': '[명] 울통불퉁한 바위.'}, {'word': 'speck', 'meaning': '[명] 반점, 얼룩.'}, {'word': 'benefactor', 'meaning': '[명] 은인; 자선가.'}, {'word': 'diagonal', 'meaning': '[명][형] 대각선; 대각선의.'}, {'word': 'tram', 'meaning': '[명] 전차.'}, {'word': 'recourse', 'meaning': '[명] 의지, 의존.'}, {'word': 'enslave', 'meaning': '[동] 노예로 만들다.'}, {'word': 'innocence', 'meaning': '[명] 순진; 결벽; 순결.'}, {'word': 'prevalent', 'meaning': '[형] 널리 보급된; 우세한.'}, {'word': 'baffle', 'meaning': '[동] 당황케 하다, 좌절시키다.'}, {'word': 'finale', 'meaning': '[명] 대단원, 피날레.'}, {'word': 'fitness', 'meaning': '[명] 적합; 타당성.'}, {'word': 'lethargy', 'meaning': '[명] 혼수상태; 무기력.'}, {'word': 'fervent', 'meaning': '[형] 타는 듯한; 열렬한.'}, {'word': 'priceless', 'meaning': '[형] 귀중한, 값을 매길 수 없는.'}, {'word': 'posture', 'meaning': '[명] 자세.'}, {'word': 'augment', 'meaning': '[동] 보강하다; 늘리다.'}, {'word': 'stool', 'meaning': '[명] (등받이 없는) 의자.'}, {'word': 'discontent', 'meaning': '[명][형] 불만; 불만의.'}, {'word': 'fabricate', 'meaning': '[동] (거짓으로) 꾸며 내다.'}, {'word': 'extract', 'meaning': '[명] 발췌; 추출물.'}, {'word': 'juggle', 'meaning': '[동] 요술을 부리다.'}, {'word': 'trifle', 'meaning': '[명] 하찮은 것.'}, {'word': 'sullen', 'meaning': '[형] 뚱한, 무뚝뚝한.'}, {'word': 'egoism', 'meaning': '[명] 이기주의.'}];
-    let current = 0;
-    let paused = false;
-    let interval = null;
-    let delayTimeout = null;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
-
-    function speak(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "en-US";
-      const voices = speechSynthesis.getVoices();
-      const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
-      if (native) utter.voice = native;
-      speechSynthesis.speak(utter);
-    }
-
-    function renderQuestion(index) {
-      const q = quiz[index];
-      document.getElementById("question").textContent = q.word || q.idiom;
-      speak(q.word || q.idiom);
-
-      const options = [q.meaning];
-      while (options.length < 4) {
-        let random = quiz[Math.floor(Math.random() * quiz.length)].meaning;
-        if (!options.includes(random)) options.push(random);
-      }
-      shuffle(options);
-
-      const choicesDiv = document.getElementById("choices");
-      choicesDiv.innerHTML = "";
-      options.forEach(opt => {
-        const div = document.createElement("div");
-        div.className = "choice";
-        div.textContent = opt;
-        if (opt === q.meaning) div.dataset.correct = "true";
-        choicesDiv.appendChild(div);
-      });
-
-      // Highlight correct after short delay
-      clearTimeout(delayTimeout);
-      delayTimeout = setTimeout(() => {
-        const correct = [...choicesDiv.children].find(el => el.dataset.correct === "true");
-        if (correct) {
-          correct.classList.add("correct");
-        }
-      }, 4000);
-
-      // Auto move after 5 seconds
-      if (interval) clearInterval(interval);
-      interval = setInterval(() => {
-        if (!paused) goNext();
-      }, 5000);
-    }
-
-    function goNext(force = false) {
-      if (current < quiz.length - 1) {
-        current++;
-        renderQuestion(current);
-      } else if (force) {
-        alert("마지막 문제입니다!");
-      }
-    }
-
-    function goBack() {
-      if (current > 0) {
-        current--;
-        renderQuestion(current);
-      }
-    }
-
-    function togglePause() {
-      paused = !paused;
-      document.getElementById("pauseBtn").textContent = paused ? "▶️ 재시작" : "⏸ 일시 정지";
-    }
-
-    document.addEventListener("click", (e) => {
-      if (!paused && e.target.id !== "pauseBtn" && !e.target.classList.contains("nav-btn")) goNext();
-    });
-
-    window.onload = function () {
-      shuffle(quiz);
-      renderQuestion(current);
+<div id="timer">5</div>
+<div id="question">문제 로딩 중...</div>
+<div class="choices" id="choices"></div>
+<script>
+const quiz = [{"단어": "advise", "뜻": "조언하다, 충고하다"}, {"단어": "relationship", "뜻": "관계"}, {"단어": "attitude", "뜻": "태도, 입장"}, {"단어": "influence", "뜻": "영향을 끼치다"}, {"단어": "volunteer", "뜻": "자원봉사자, 자원하다"}, {"단어": "require", "뜻": "요구하다"}, {"단어": "social", "뜻": "사회의, 사교적인"}, {"단어": "improve", "뜻": "향상시키다"}, {"단어": "behave", "뜻": "행동하다"}, {"단어": "terrible", "뜻": "끔찍한, 무서운"}, {"단어": "inform", "뜻": "알리다, 통지하다"}, {"단어": "amount", "뜻": "총액, 총계, 양"}, {"단어": "research", "뜻": "연구하다, 조사하다"}, {"단어": "employ", "뜻": "고용하다"}, {"단어": "provide", "뜻": "공급하다, 준비하다"}, {"단어": "individual", "뜻": "개인, 개인적인"}, {"단어": "audience", "뜻": "청중"}, {"단어": "service", "뜻": "서비스, 봉사"}, {"단어": "opportunity", "뜻": "기회"}, {"단어": "develop", "뜻": "개발하다, 발전하다"}];
+let i=0,timer=5,interval;let paused=false;
+const timerEl=document.getElementById("timer"),qEl=document.getElementById("question"),cEl=document.getElementById("choices");
+function speak(t){ let u=new SpeechSynthesisUtterance(t);u.lang="en-US";speechSynthesis.speak(u); }
+function wrongSave(w,d){ let l=JSON.parse(localStorage.getItem("wrongnote_1300")||"[]");
+if(!l.some(e=>e.단어===w)){ l.push({ 단어:w, 뜻:d }); localStorage.setItem("wrongnote_1300",JSON.stringify(l)); } }
+function render(){
+  let q=quiz[i];qEl.textContent=q.단어;speak(q.단어);let opts=[q.뜻];
+  while(opts.length<4){ let r=quiz[Math.floor(Math.random()*quiz.length)].뜻; if(!opts.includes(r)) opts.push(r); }
+  opts.sort(()=>Math.random()-.5);cEl.innerHTML="";
+  opts.forEach(o=>{ let div=document.createElement("div");
+    div.textContent=o;div.className="choice";div.onclick=()=>{
+      clearInterval(interval);
+      if(o===q.뜻){ div.classList.add("correct"); }
+      else{ div.classList.add("incorrect"); wrongSave(q.단어,q.뜻); }
+      setTimeout(next,800);
     };
-  </script>
+    cEl.append(div);
+  });
+}
+function next(){ if(i<quiz.length-1){ i++;run(); } else alert("끝!"); }
+function run(){
+  timer=5;render();timerEl.textContent=timer;timerEl.style.color="green";
+  interval=setInterval(()=>{
+    if(--timer>=0){
+      timerEl.textContent=timer;
+      timerEl.style.color=timer<=1?"red":timer<=3?"orange":"green";
+    } else {
+      clearInterval(interval);
+      [...cEl.children].forEach(el=>{ if(el.textContent===quiz[i].뜻) el.classList.add("correct"); });
+      wrongSave(quiz[i].단어,quiz[i].뜻);
+      setTimeout(next,800);
+    }
+  },1000);
+}
+run();
+</script>
 </body>
 </html>
