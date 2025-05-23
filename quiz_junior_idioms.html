@@ -3,65 +3,72 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>자하 퀴즈 - 중학숙어</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>자하 퀴즈 - 중학 숙어</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fffdf6;
+      font-family: Arial, sans-serif;
+      background: #fffdf6;
       margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      flex-direction: column;
     }
-    #container {
-      width: 100%;
-      max-width: 480px;
-      padding: 24px;
-      text-align: center;
-    }
-    .question {
-      font-size: 30px;
-      margin-bottom: 24px;
+    #question {
+      font-size: 28px;
       font-weight: bold;
-      color: #000;
+      text-align: center;
+      word-break: break-word;
+      margin-bottom: 20px;
     }
     .choices {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      width: 90%;
     }
     .choice {
       padding: 14px;
+      background: #eee;
+      border-radius: 12px;
+      text-align: center;
       font-size: 16px;
-      background-color: #eeeeee;
-      border-radius: 10px;
-      color: #111;
-      cursor: pointer;
     }
     .correct {
-      background-color: #a0d995 !important;
+      background-color: #c8f7c5 !important;
+      border: 2px solid #2ecc71;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .nav-btn {
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <div class="question" id="question">숙어 로딩 중...</div>
-    <div class="choices" id="choices"></div>
+  <div id="question">문제 로딩 중...</div>
+  <div class="choices" id="choices"></div>
+  <div class="controls">
+    <button class="nav-btn" onclick="goBack()">⬅️ 이전</button>
+    <button class="nav-btn" id="pauseBtn" onclick="togglePause()">⏸ 일시 정지</button>
+    <button class="nav-btn" onclick="goNext(true)">➡️ 다음</button>
   </div>
   <script>
-    function speakWord(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'en-US';
-      const voices = speechSynthesis.getVoices();
-      const nativeVoice = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
-      if (nativeVoice) utter.voice = nativeVoice;
-      speechSynthesis.speak(utter);
-    }
-
-    const quiz = [{'idiom': 'run around', 'meaning': '뛰어 돌아다니다'}, {'idiom': 'make out', 'meaning': '알아보다, 이해하다'}, {'idiom': 'cry out', 'meaning': '큰 소리로 외치다'}, {'idiom': 'do A a favor', 'meaning': 'A의 부탁을 들어주다, A에게 호의를 베풀다'}, {'idiom': 'put off (동사~ing)', 'meaning': '미루다, 연기하다'}, {'idiom': 'take up', 'meaning': '(공간,,시간을) 차지하다, 착수(시작)하다'}, {'idiom': 'do an experiment', 'meaning': '실험하다'}, {'idiom': 'have been 동사~ing', 'meaning': '계속 ~해오고 있는 중이다(완료 진행형)'}, {'idiom': 'as 형용사/부사 as', 'meaning': '만큼 ~한'}, {'idiom': 'agree with', 'meaning': '에(게) 동의하다, ~와 (의견이) 일치하다, ~에 맞다'}, {'idiom': 'on foot', 'meaning': '걸어서'}, {'idiom': 'thanks to', 'meaning': '덕택에, ~때문에'}, {'idiom': 'take[have] a look at', 'meaning': '보다'}, {'idiom': "do one's homework", 'meaning': '숙제를 하다'}, {'idiom': 'for some time', 'meaning': '한동안'}, {'idiom': 'be crowded with', 'meaning': '로 붐비다'}, {'idiom': 'in the distance', 'meaning': '먼 곳에, 저 멀리'}, {'idiom': 'cut in line', 'meaning': '새치기하다'}, {'idiom': 'turn out', 'meaning': '로 판명되다, (전등,,수도 등을) 끄다[잠그다]'}, {'idiom': 'fill out', 'meaning': '(서류에) 써넣다, 기입하다'}, {'idiom': 'along with', 'meaning': '와 함께, ~에 더하여'}, {'idiom': 'not as[so] 형용사/부사 as', 'meaning': '만큼 ~하지 않은'}, {'idiom': 'turn A (in)to B', 'meaning': 'A를 B로 바꾸다'}, {'idiom': 'every time', 'meaning': '할 때마다, 언제나[매번]'}, {'idiom': 'have a sore throat', 'meaning': '목이 아프다'}, {'idiom': 'look after', 'meaning': '돌보다'}, {'idiom': 'make a plan', 'meaning': '계획을 세우다'}, {'idiom': 'at night', 'meaning': '밤에'}, {'idiom': 'provide A with B', 'meaning': 'A(사람,,사물)에게 B(사물)를 공급[제공]하다'}, {'idiom': 'take', 'meaning': 'apart == (기계 등을) 분해하다'}, {'idiom': 'around the world', 'meaning': '전 세계에'}, {'idiom': 'or something', 'meaning': '이나 뭔가'}, {'idiom': 'be 동사~ing', 'meaning': '하고 있는 중이다(진행형)'}, {'idiom': 'take part in', 'meaning': '에 참가하다'}, {'idiom': 'be satisfied with', 'meaning': '에 만족하다'}, {'idiom': 'at the same time', 'meaning': '동시에'}, {'idiom': 'be busy (in) 동사~ing', 'meaning': '하느라 바쁘다'}, {'idiom': 'into pieces', 'meaning': '산산조각으로'}, {'idiom': 'a pair of', 'meaning': '(같은것 2개로 된) 한 쌍(켤레)의'}, {'idiom': 'be covered with', 'meaning': '로 덮여 있다'}, {'idiom': 'laugh at', 'meaning': '비웃다, 보고(듣고) 웃다'}, {'idiom': 'be different from', 'meaning': '와 다르다'}, {'idiom': '(much', 'meaning': ', a lot, even, far, still+) 비교급+than == ~보다 (훨씬) 더 ~한'}, {'idiom': 'be anxious for[to 동사]', 'meaning': '매우 ~하고 싶어하다, 열망하다'}, {'idiom': 'cause A to B(동사)', 'meaning': 'A가 B하게 하다'}, {'idiom': 'be rich in', 'meaning': '이 많이 있다, ~이 풍부하다'}, {'idiom': 'by chance', 'meaning': '우연히, 뜻밖에'}, {'idiom': 'make a fire', 'meaning': '불을 피우다'}, {'idiom': 'It be 성질형용사 of A to', 'meaning': 'A가 ~하는 것은 ~이다'}, {'idiom': 'day and night', 'meaning': '밤낮으로, 항상'}];
+    const quiz = [{'숙어': 'of use', '뜻': '쓸모 있는'}, {'숙어': 'be about to', '뜻': '막 ~하려고 하다'}, {'숙어': 'be good at', '뜻': '~에 능숙하다, 잘하다'}, {'숙어': 'that is (to say)', '뜻': '즉'}, {'숙어': 'turn away', '뜻': '딴 데로 돌리다, 외면하다'}, {'숙어': 'in those days', '뜻': '그 당시에는, 그 때는'}, {'숙어': 'pass out', '뜻': '기절하다, 건네주다'}, {'숙어': 'by chance', '뜻': '우연히, 뜻밖에'}, {'숙어': 'line up', '뜻': '줄을 서다'}, {'숙어': 'go around', '뜻': '~ 둘레를 돌다'}, {'숙어': 'so that', '뜻': '~하기 위하여, ~하도록(목적)'}, {'숙어': 'check out', '뜻': '(책 등을) 체크하고 빌리다, (호텔,, 슈퍼에서) 계산하고 나오다, 확인[점검]하다'}, {'숙어': 'be bound for', '뜻': '~행이다, ~로 향하다'}, {'숙어': 'keep ~ in mind', '뜻': '명심하다, 염두에 두다'}, {'숙어': 'turn on', '뜻': '(전등,TV 등을) 켜다, (수도, 가스 등을) 틀다'}, {'숙어': 'bring about', '뜻': '일으키다, 생기게 하다'}, {'숙어': 'pay for', '뜻': '~의 값을 치르다, 지불하다'}, {'숙어': 'go back (to)', '뜻': '(~로) 돌아가다'}, {'숙어': 'between A and B', '뜻': 'A와 B 사이에'}, {'숙어': 'for a moment', '뜻': '잠시 동안'}, {'숙어': 'fail to 동사', '뜻': '~하지 못하다'}, {'숙어': 'show up', '뜻': '나타나다'}, {'숙어': 'share A with B', '뜻': 'A를 B와 나누다[함께 하다]'}, {'숙어': 'stop by', '뜻': '잠시 들르다'}, {'숙어': 'on earth', '뜻': '(의문문에서) 도대체, (부정문에서) 전혀, 이 세상의'}, {'숙어': 'plan to 동사', '뜻': '~할 계획이다'}, {'숙어': 'these days', '뜻': '요즘'}, {'숙어': 'be made into', '뜻': '~가 되다'}, {'숙어': 'stare at', '뜻': '빤히 보다, 응시하다'}, {'숙어': 'in vain', '뜻': '헛되이, 보람 없이'}, {'숙어': 'be sold out', '뜻': '다 팔리다, 매진되다'}, {'숙어': 'be harmful to 명사', '뜻': '~에 해롭다'}, {'숙어': 'at first', '뜻': '처음에'}, {'숙어': 'put A into B', '뜻': 'A를 B안에 넣다, A를 B로 옮기다(번역하다)'}, {'숙어': 'make out', '뜻': '알아보다, 이해하다'}, {'숙어': 'set out', '뜻': '출발하다, 시작하다, (음식 등을) 차려놓다'}, {'숙어': '동사 + ~ing', '뜻': '~하는 것(주어. 보어 기능)'}, {'숙어': 'for instance', '뜻': '예를 들면'}, {'숙어': 'do A a favor', '뜻': 'A의 부탁을 들어주다, A에게 호의를 베풀다'}, {'숙어': 'as soon as', '뜻': '~하자마자'}, {'숙어': 'wash(do) the dishes', '뜻': '설거지하다'}, {'숙어': 'take ~ apart', '뜻': '(기계 등을) 분해하다'}, {'숙어': 'be impressed by[with]', '뜻': '~에 감동받다'}, {'숙어': 'turn out', '뜻': '~로 판명되다, (전등,,수도 등을) 끄다[잠그다]'}, {'숙어': 'It be 성질형용사 of A to', '뜻': 'A가 ~하는 것은 ~이다'}, {'숙어': 'tumble down', '뜻': '굴러 떨어지다'}, {'숙어': 'for a while', '뜻': '잠시 동안'}, {'숙어': 'get out', '뜻': '나가다'}, {'숙어': 'one after another', '뜻': '(셋 이상이) 차례로, 잇달아'}, {'숙어': 'cause A to B(동사)', '뜻': 'A가 B하게 하다'}];
+    let current = 0;
+    let paused = false;
+    let interval = null;
+    let delayTimeout = null;
 
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -70,54 +77,81 @@
       }
     }
 
-    shuffle(quiz);
-    let current = 0;
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      const voices = speechSynthesis.getVoices();
+      const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
+      if (native) utter.voice = native;
+      speechSynthesis.speak(utter);
+    }
 
-    function showQuestion() {
-      const q = quiz[current];
-      const questionDiv = document.getElementById("question");
-      const choicesDiv = document.getElementById("choices");
+    function renderQuestion(index) {
+      const q = quiz[index];
+      document.getElementById("question").textContent = q.숙어 || q.word || q.idiom;
+      speak(q.숙어 || q.word || q.idiom);
 
-      questionDiv.textContent = q.idiom;
-      speakWord(q.idiom);
-
-      const options = [q.meaning];
+      const options = [q.뜻 || q.meaning];
       while (options.length < 4) {
-        let rand = quiz[Math.floor(Math.random() * quiz.length)].meaning;
-        if (!options.includes(rand)) {
-          options.push(rand);
-        }
+        let random = quiz[Math.floor(Math.random() * quiz.length)];
+        let m = random.뜻 || random.meaning;
+        if (!options.includes(m)) options.push(m);
       }
       shuffle(options);
 
+      const choicesDiv = document.getElementById("choices");
       choicesDiv.innerHTML = "";
-      options.forEach(option => {
-        const btn = document.createElement("div");
-        btn.className = "choice";
-        btn.textContent = option;
-        if (option === q.meaning) {
-          btn.dataset.correct = "true";
-        }
-        choicesDiv.appendChild(btn);
+      options.forEach(opt => {
+        const div = document.createElement("div");
+        div.className = "choice";
+        div.textContent = opt;
+        if (opt === (q.뜻 || q.meaning)) div.dataset.correct = "true";
+        choicesDiv.appendChild(div);
       });
 
-      setTimeout(() => {
-        const correctBtn = [...document.querySelectorAll(".choice")].find(el => el.dataset.correct);
-        if (correctBtn) correctBtn.classList.add("correct");
+      clearTimeout(delayTimeout);
+      delayTimeout = setTimeout(() => {
+        const correct = [...choicesDiv.children].find(el => el.dataset.correct === "true");
+        if (correct) {
+          correct.classList.add("correct");
+        }
+      }, 4000);
 
-        setTimeout(() => {
-          current++;
-          if (current < quiz.length) {
-            showQuestion();
-          } else {
-            questionDiv.textContent = "🎉 숙어 퀴즈 완료!";
-            choicesDiv.innerHTML = "";
-          }
-        }, 1500);
+      if (interval) clearInterval(interval);
+      interval = setInterval(() => {
+        if (!paused) goNext();
       }, 5000);
     }
 
-    showQuestion();
+    function goNext(force = false) {
+      if (current < quiz.length - 1) {
+        current++;
+        renderQuestion(current);
+      } else if (force) {
+        alert("마지막 문제입니다!");
+      }
+    }
+
+    function goBack() {
+      if (current > 0) {
+        current--;
+        renderQuestion(current);
+      }
+    }
+
+    function togglePause() {
+      paused = !paused;
+      document.getElementById("pauseBtn").textContent = paused ? "▶️ 재시작" : "⏸ 일시 정지";
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!paused && e.target.id !== "pauseBtn" && !e.target.classList.contains("nav-btn")) goNext();
+    });
+
+    window.onload = function () {
+      shuffle(quiz);
+      renderQuestion(current);
+    };
   </script>
 </body>
 </html>
