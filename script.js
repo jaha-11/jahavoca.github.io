@@ -14,21 +14,12 @@ window.speechSynthesis.onvoiceschanged = () => {
   selectedVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes("Google") || v.name.includes("Microsoft")));
 };
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = 'en-US';
   if (selectedVoice) utter.voice = selectedVoice;
   speechSynthesis.speak(utter);
 }
-
 function updateTimer() {
   const el = document.getElementById("timer");
   el.innerText = timer;
