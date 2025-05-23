@@ -1,187 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2000 영단어 퀴즈</title>
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    #timer {
-      font-size: 2rem;
-      font-weight: bold;
-      color: green;
-    }
-    #question {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 1rem 0;
-      text-align: center;
-    }
-    .choices {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      max-width: 90%;
-      margin: 1rem auto;
-    }
-    .choice {
-      padding: 1rem;
-      background: #eee;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      text-align: center;
-    }
-    .correct {
-      background-color: #c8f7c5;
-      border: 2px solid #2ecc71;
-    }
-    .incorrect {
-      background-color: #f8d7da;
-      border: 2px solid #e74c3c;
-    }
-    #pauseBtn {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-    #counter {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="counter">1/500</div>
-  <button id="pauseBtn" onclick="togglePause()">⏸</button>
-  <div id="timer">5</div>
-  <div id="question">문제 로딩 중...</div>
-  <div class="choices" id="choices"></div>
-
-  <script src="data_withmaster.js"></script>
-  <script>
-    let current = 0;
-    let score = 0;
-    let timer = 5;
-    let timerInterval;
-    let paused = false;
-    let quiz = [...quizData];
-    let wrongAnswers = [];
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1)];
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    function speak(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'en-US';
-      speechSynthesis.speak(utter);
-    }
-
-    function loadQuestion() {
-      if (current >= quiz.length) {
-        document.body.innerHTML = `<h2>퀴즈 완료! 점수: ${score}/500</h2><br/><button onclick="retryWrong()">오답노트 다시 풀기</button>`;
-        localStorage.setItem("wrongAnswers", JSON.stringify(wrongAnswers));
-        return;
-      }
-      document.getElementById("counter").innerText = `${current + 1}/500`;
-      const q = quiz[current];
-      document.getElementById("question").innerText = q.word;
-      speak(q.word);
-      const options = [q.meaning];
-      while (options.length < 4) {
-        const random = quiz[Math.floor(Math.random() * quiz.length)].meaning;
-        if (!options.includes(random)) options.push(random);
-      }
-      shuffle(options);
-      const container = document.getElementById("choices");
-      container.innerHTML = "";
-      options.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.className = "choice";
-        btn.innerText = opt;
-        btn.onclick = () => checkAnswer(opt, q.meaning, btn);
-        container.appendChild(btn);
-      });
-      timer = 5;
-      updateTimer();
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        if (!paused) {
-          timer--;
-          updateTimer();
-          if (timer === 0) {
-            clearInterval(timerInterval);
-            markAnswer(null, q.meaning);
-          }
-        }
-      }, 1000);
-    }
-
-    function updateTimer() {
-      const el = document.getElementById("timer");
-      el.innerText = timer;
-      el.style.color = timer <= 1 ? "red" : timer <= 3 ? "orange" : "green";
-    }
-
-    function checkAnswer(selected, correct, btn) {
-      clearInterval(timerInterval);
-      const buttons = document.querySelectorAll(".choice");
-      buttons.forEach(b => {
-        if (b.innerText === correct) b.classList.add("correct");
-        if (b.innerText === selected && b.innerText !== correct) b.classList.add("incorrect");
-      });
-      if (selected === correct) score++;
-      else wrongAnswers.push(quiz[current]);
-      setTimeout(() => {
-        current++;
-        loadQuestion();
-      }, 1000);
-    }
-
-    function markAnswer(_, correct) {
-      const buttons = document.querySelectorAll(".choice");
-      buttons.forEach(b => {
-        if (b.innerText === correct) b.classList.add("correct");
-        else b.classList.add("incorrect");
-      });
-      wrongAnswers.push(quiz[current]);
-      setTimeout(() => {
-        current++;
-        loadQuestion();
-      }, 1000);
-    }
-
-    function togglePause() {
-      paused = !paused;
-      document.getElementById("pauseBtn").innerText = paused ? "▶️" : "⏸";
-    }
-
-    function retryWrong() {
-      const wrong = JSON.parse(localStorage.getItem("wrongAnswers") || "[]");
-      if (!wrong.length) return alert("오답이 없습니다.");
-      quiz = wrong;
-      current = 0;
-      score = 0;
-      wrongAnswers = [];
-      loadQuestion();
-    }
-
-    shuffle(quiz);
-    loadQuestion();
-  </script>
+  <div class="container">
+    <div id="counter">1/500</div>
+    <button id="pauseBtn" onclick="togglePause()">⏸</button>
+    <div id="timer">5</div>
+    <div id="question">문제 로딩 중...</div>
+    <div id="choices" class="choices"></div>
+  </div>
+  <script src="data_2000.js"></script>
+  <script src="script_2000.js"></script>
 </body>
 </html>
