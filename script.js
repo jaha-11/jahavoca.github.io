@@ -34,7 +34,6 @@ function markAnswer(_, correct) {
   const buttons = document.querySelectorAll(".choice");
   buttons.forEach(b => {
     if (b.innerText === correct) b.classList.add("correct");
-    else b.classList.add("incorrect");
   });
   wrongAnswers.push(quiz[current]);
   setTimeout(() => {
