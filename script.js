@@ -1,18 +1,24 @@
-
 let current = 0;
 let score = 0;
 let timer = 5;
 let timerInterval;
 let paused = false;
-let quiz = [...quizData];
+let quiz = [];
 let wrongAnswers = [];
 let selectedVoice = null;
 
-// Load voices for mobile compatibility
 window.speechSynthesis.onvoiceschanged = () => {
   const voices = speechSynthesis.getVoices();
   selectedVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes("Google") || v.name.includes("Microsoft")));
 };
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
@@ -20,6 +26,7 @@ function speak(text) {
   if (selectedVoice) utter.voice = selectedVoice;
   speechSynthesis.speak(utter);
 }
+
 function updateTimer() {
   const el = document.getElementById("timer");
   el.innerText = timer;
@@ -114,5 +121,5 @@ function retryWrong() {
   loadQuestion();
 }
 
-shuffle(quiz);
+quiz = shuffle(quizData).slice(0, 500);
 loadQuestion();
