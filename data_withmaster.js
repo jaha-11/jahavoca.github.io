@@ -1,125 +1,250 @@
-let current = 0;
-let score = 0;
-let timer = 5;
-let timerInterval;
-let paused = false;
-let quiz = [];
-let wrongAnswers = [];
-let selectedVoice = null;
-
-window.speechSynthesis.onvoiceschanged = () => {
-  const voices = speechSynthesis.getVoices();
-  selectedVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes("Google") || v.name.includes("Microsoft")));
-};
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-function speak(text) {
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'en-US';
-  if (selectedVoice) utter.voice = selectedVoice;
-  speechSynthesis.speak(utter);
-}
-
-function updateTimer() {
-  const el = document.getElementById("timer");
-  el.innerText = timer;
-  el.style.color = timer <= 1 ? "red" : timer <= 3 ? "orange" : "green";
-}
-
-function markAnswer(_, correct) {
-  const buttons = document.querySelectorAll(".choice");
-  buttons.forEach(b => {
-    if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
-  });
-  wrongAnswers.push(quiz[current]);
-  setTimeout(() => {
-    current++;
-    loadQuestion();
-  }, 1000);
-}
-
-function checkAnswer(selected, correct) {
-  clearInterval(timerInterval);
-  const buttons = document.querySelectorAll(".choice");
-  buttons.forEach(b => {
-    if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
-    if (b.innerText.trim() === selected.trim() && selected.trim() !== correct.trim()) b.classList.add("incorrect");
-  });
-  if (selected.trim() === correct.trim()) {
-    score++;
-  } else {
-    wrongAnswers.push(quiz[current]);
-  }
-  setTimeout(() => {
-    current++;
-    loadQuestion();
-  }, 1000);
-}
-
-function loadQuestion() {
-  if (current >= quiz.length) {
-    document.body.innerHTML = `<h2>퀴즈 완료!</h2><p>점수: ${score}/${quiz.length}</p><br/><button onclick="retryWrong()">오답노트 다시 풀기</button>`;
-    localStorage.setItem("wrongAnswers", JSON.stringify(wrongAnswers));
-    return;
-  }
-  const q = quiz[current];
-  document.getElementById("counter").innerText = `${current + 1}/${quiz.length}`;
-  document.getElementById("question").innerText = q.word;
-  speak(q.word);
-
-  const options = [q.meaning];
-  while (options.length < 4) {
-    const option = quiz[Math.floor(Math.random() * quiz.length)].meaning;
-    if (!options.includes(option)) options.push(option);
-  }
-  shuffle(options);
-
-  const choicesContainer = document.getElementById("choices");
-  choicesContainer.innerHTML = "";
-  options.forEach(opt => {
-    const btn = document.createElement("div");
-    btn.className = "choice";
-    btn.innerText = opt;
-    btn.onclick = () => checkAnswer(opt, q.meaning);
-    choicesContainer.appendChild(btn);
-  });
-
-  timer = 5;
-  updateTimer();
-  clearInterval(timerInterval);
-  timerInterval = setInterval(() => {
-    if (!paused) {
-      timer--;
-      updateTimer();
-      if (timer === 0) {
-        clearInterval(timerInterval);
-        markAnswer(null, q.meaning);
-      }
-    }
-  }, 1000);
-}
-
-function togglePause() {
-  paused = !paused;
-  document.getElementById("pauseBtn").innerText = paused ? "▶️" : "⏸";
-}
-
-function retryWrong() {
-  const wrong = JSON.parse(localStorage.getItem("wrongAnswers") || "[]");
-  if (!wrong.length) return alert("오답이 없습니다.");
-  quiz = wrong;
-  current = 0;
-  score = 0;
-  wrongAnswers = [];
-  loadQuestion();
-}
-
-quiz = shuffle(quizData_2000).slice(0, 500);
-loadQuestion();
+const quizData_2000 = [
+{"word": "provide", "mean": "공급하다, 준비하다"},
+{"word": "develop", "mean": "개발하다, 발전하다"},
+{"word": "service", "mean": "서비스, 봉사"},
+{"word": "inform", "mean": "알리다, 통지하다"},
+{"word": "relationship", "mean": "관계"},
+{"word": "improve", "mean": "향상시키다"},
+{"word": "individual", "mean": "개인, 개인적인"},
+{"word": "require", "mean": "요구하다"},
+{"word": "advise", "mean": "조언하다, 충고하다"},
+{"word": "social", "mean": "사회의, 사교적인"},
+{"word": "amount", "mean": "총액, 총계, 양"},
+{"word": "behave", "mean": "행동하다"},
+{"word": "employ", "mean": "고용하다"},
+{"word": "attitude", "mean": "태도, 입장"},
+{"word": "research", "mean": "연구하다, 조사하다"},
+{"word": "audience", "mean": "청중"},
+{"word": "volunteer", "mean": "자원봉사자, 자원하다"},
+{"word": "influence", "mean": "영향을 끼치다"},
+{"word": "terrible", "mean": "끔찍한, 무서운"},
+{"word": "opportunity", "mean": "기회"},
+{"word": "hesitate", "mean": "주저하다, 망설이다"},
+{"word": "location", "mean": "위치"},
+{"word": "restrict", "mean": "제한하다"},
+{"word": "organism", "mean": "유기체, 생명체"},
+{"word": "resolve", "mean": "해결하다, 결심하다"},
+{"word": "offer", "mean": "제공하다, 제안하다"},
+{"word": "distribute", "mean": "분배하다, 분포시키다"},
+{"word": "rainforest", "mean": "열대우림"},
+{"word": "circumstance", "mean": "환경, 상황"},
+{"word": "interpret", "mean": "해석하다"},
+{"word": "suitable", "mean": "적합한"},
+{"word": "curve", "mean": "곡선, 구부리다"},
+{"word": "annoy", "mean": "짜증나게 하다"},
+{"word": "frighten", "mean": "겁먹게 하다"},
+{"word": "estimate", "mean": "견적, 평가하다"},
+{"word": "refuse", "mean": "거절하다"},
+{"word": "adventure", "mean": "모험"},
+{"word": "entrance", "mean": "입구, 입학"},
+{"word": "persuade", "mean": "설득하다"},
+{"word": "perceive", "mean": "인지하다"},
+{"word": "recite", "mean": "암송하다"},
+{"word": "gather", "mean": "모으다"},
+{"word": "cabin", "mean": "오두막, 객실"},
+{"word": "gear", "mean": "장비, 기어"},
+{"word": "ray", "mean": "광선"},
+{"word": "release", "mean": "석방하다, 발표하다"},
+{"word": "rank", "mean": "등급, 순위"},
+{"word": "symphony", "mean": "교향곡"},
+{"word": "envy", "mean": "부러움"},
+{"word": "corporate", "mean": "법인의"},
+{"word": "alternative", "mean": "대안, 대안의"},
+{"word": "retire", "mean": "은퇴하다"},
+{"word": "appeal", "mean": "호소하다, 항의하다"},
+{"word": "identical", "mean": "동일한"},
+{"word": "investment", "mean": "투자"},
+{"word": "autograph", "mean": "서명, 서명하다"},
+{"word": "slave", "mean": "노예"},
+{"word": "harm", "mean": "해, 해치다"},
+{"word": "authority", "mean": "권위, 당국"},
+{"word": "innocence", "mean": "결백, 순진"},
+{"word": "abolish", "mean": "폐지하다"},
+{"word": "assure", "mean": "보증하다, 확실하게 하다"},
+{"word": "form", "mean": "형태, 종류 / 형성하다"},
+{"word": "gender", "mean": "성별"},
+{"word": "innovation", "mean": "혁신"},
+{"word": "opponent", "mean": "상대, 반대자"},
+{"word": "present", "mean": "현재의, 나타나다"},
+{"word": "fertile", "mean": "비옥한"},
+{"word": "emperor", "mean": "황제"},
+{"word": "dwell", "mean": "살다"},
+{"word": "chore", "mean": "허드렛일"},
+{"word": "rehearsal", "mean": "예행연습"},
+{"word": "fossil", "mean": "화석"},
+{"word": "glitter", "mean": "반짝이다"},
+{"word": "carve", "mean": "조각하다"},
+{"word": "decay", "mean": "부패하다"},
+{"word": "protein", "mean": "단백질"},
+{"word": "backward", "mean": "뒤쪽으로"},
+{"word": "translate", "mean": "번역하다"},
+{"word": "refresh", "mean": "상쾌하게 하다"},
+{"word": "tissue", "mean": "조직, 화장지"},
+{"word": "lord", "mean": "군주"},
+{"word": "substitute", "mean": "대체하다"},
+{"word": "scan", "mean": "정밀 검사하다"},
+{"word": "pottery", "mean": "도자기"},
+{"word": "layer", "mean": "층"},
+{"word": "heritage", "mean": "유산"},
+{"word": "subscribe", "mean": "구독하다"},
+{"word": "enhance", "mean": "향상시키다"},
+{"word": "imprint", "mean": "찍다, 각인시키다"},
+{"word": "prefer", "mean": "선호하다"},
+{"word": "ban", "mean": "금지하다"},
+{"word": "despair", "mean": "절망하다"},
+{"word": "alert", "mean": "경계하는"},
+{"word": "famine", "mean": "기근"},
+{"word": "pill", "mean": "알약"},
+{"word": "immune", "mean": "면역의"},
+{"word": "raw", "mean": "날것의"},
+{"word": "cope", "mean": "대처하다"},
+{"word": "bond", "mean": "유대"},
+{"word": "procedure", "mean": "절차"},
+{"word": "therapy", "mean": "치료"},
+{"word": "outcome", "mean": "결과"},
+{"word": "funeral", "mean": "장례식"},
+{"word": "diameter", "mean": "지름, 직경"},
+{"word": "anecdote", "mean": "일화, 비화"},
+{"word": "propriety", "mean": "적절성, 예의 바름"},
+{"word": "blame", "mean": "비난하다, ~의 탓으로 돌리다"},
+{"word": "earn", "mean": "얻다, 벌다"},
+{"word": "pledge", "mean": "약속, 맹세, 약속하다, 맹세하다"},
+{"word": "geology", "mean": "지질학"},
+{"word": "detect", "mean": "발견하다, 감지하다"},
+{"word": "temperate", "mean": "온화한, 절제하는"},
+{"word": "soar", "mean": "높이 치솟다"},
+{"word": "mock", "mean": "조롱하다, 가짜의"},
+{"word": "exhibit", "mean": "전시하다, 보여주다, 전시, 전시품"},
+{"word": "symptom", "mean": "증상"},
+{"word": "invent", "mean": "발명하다"},
+{"word": "awkward", "mean": "어색한, 서투른"},
+{"word": "grind", "mean": "갈다, 빻다"},
+{"word": "expose", "mean": "드러내다, 폭로하다, 노출시키다"},
+{"word": "closet", "mean": "벽장"},
+{"word": "damp", "mean": "축축한, 습기"},
+{"word": "script", "mean": "손으로 쓰기, 대본"},
+{"word": "possibility", "mean": "가능성"},
+{"word": "discuss", "mean": "토론하다"},
+{"word": "sibling", "mean": "형제자매"},
+{"word": "lay", "mean": "놓다, 낳다"},
+{"word": "flourish", "mean": "번영하다, 번창하다"},
+{"word": "discharge", "mean": "배출, 방전, 배출하다, 내보내다"},
+{"word": "undertake", "mean": "수행하다, 떠맡다"},
+{"word": "linguistic", "mean": "언어의, 언어학의"},
+{"word": "remedy", "mean": "치료, 치료하다"},
+{"word": "feed", "mean": "먹이다, 부양하다"},
+{"word": "remind", "mean": "상기시키다"},
+{"word": "pillar", "mean": "기둥, 핵심"},
+{"word": "explode", "mean": "폭발하다"},
+{"word": "illusion", "mean": "환상"},
+{"word": "submit", "mean": "제출하다, 복종하다"},
+{"word": "divine", "mean": "신의, 신성한"},
+{"word": "corrupt", "mean": "부패한, 타락시키다"},
+{"word": "revenue", "mean": "수입, 수익"},
+{"word": "swamp", "mean": "늪, 습지, 압도하다"},
+{"word": "abnormal", "mean": "비정상적인"},
+{"word": "revive", "mean": "소생시키다"},
+{"word": "consistent", "mean": "일관된"},
+{"word": "motion", "mean": "움직임, 운동"},
+{"word": "virtue", "mean": "미덕"},
+{"word": "deadline", "mean": "마감기한"},
+{"word": "equator", "mean": "적도"},
+{"word": "cognitive", "mean": "인지의"},
+{"word": "hinder", "mean": "방해하다"},
+{"word": "humble", "mean": "겸손한"},
+{"word": "bounce", "mean": "튀다, 튀어오르다"},
+{"word": "imprison", "mean": "투옥하다"},
+{"word": "enlist", "mean": "모집하다, 도움을 얻다"},
+{"word": "hygiene", "mean": "위생"},
+{"word": "recipe", "mean": "조리법"},
+{"word": "deceive", "mean": "속이다"},
+{"word": "sweep", "mean": "청소하다"},
+{"word": "profile", "mean": "옆모습, 인물 소개"},
+{"word": "enterprise", "mean": "기업, 사업"},
+{"word": "successive", "mean": "연속되는, 상속의"},
+{"word": "paradox", "mean": "역설"},
+{"word": "surpass", "mean": "능가하다"},
+{"word": "magnitude", "mean": "크기, 규모"},
+{"word": "aesthetics", "mean": "미학"},
+{"word": "earnest", "mean": "진지한"},
+{"word": "tremble", "mean": "떨다"},
+{"word": "surrender", "mean": "항복하다, 포기하다"},
+{"word": "philosophy", "mean": "철학"},
+{"word": "deplete", "mean": "고갈시키다"},
+{"word": "admire", "mean": "감탄하다"},
+{"word": "summon", "mean": "소환하다"},
+{"word": "afford", "mean": "여유가 있다"},
+{"word": "blunt", "mean": "무딘, 퉁명스러운"},
+{"word": "tense", "mean": "긴장한"},
+{"word": "stance", "mean": "입장, 태도"},
+{"word": "collaborate", "mean": "협력하다"},
+{"word": "division", "mean": "분할, 나누기"},
+{"word": "ballot", "mean": "투표, 투표하다"},
+{"word": "acquaintance", "mean": "지인, 아는 사람"},
+{"word": "amplify", "mean": "확대하다, 증폭하다"},
+{"word": "contradict", "mean": "반박하다"},
+{"word": "cast", "mean": "던지다"},
+{"word": "falsify", "mean": "위조하다"},
+{"word": "paddle", "mean": "노, 노를 젓다"},
+{"word": "steer", "mean": "조종하다"},
+{"word": "affection", "mean": "애정"},
+{"word": "bid", "mean": "입찰하다"},
+{"word": "temperament", "mean": "기질"},
+{"word": "shred", "mean": "갈기갈기 찢다"},
+{"word": "unpredictable", "mean": "예측할 수 없는"},
+{"word": "artery", "mean": "동맥"},
+{"word": "inherent", "mean": "내재된"},
+{"word": "harass", "mean": "괴롭히다"},
+{"word": "assemble", "mean": "모으다, 조립하다"},
+{"word": "spike", "mean": "못, 대못"},
+{"word": "sneak", "mean": "몰래 움직이다"},
+{"word": "sophisticated", "mean": "정교한, 세련된"},
+{"word": "enlightenment", "mean": "계몽, 깨달음"},
+{"word": "cosmetic", "mean": "화장품"},
+{"word": "aspire", "mean": "열망하다"},
+{"word": "obstruct", "mean": "방해하다"},
+{"word": "veteran", "mean": "베테랑"},
+{"word": "decode", "mean": "해독하다"},
+{"word": "mandate", "mean": "명령, 명령하다"},
+{"word": "perish", "mean": "죽다, 소멸하다"},
+{"word": "penetrate", "mean": "침투하다, 꿰뚫다"},
+{"word": "intrude", "mean": "방해하다, 침범하다"},
+{"word": "notable", "mean": "주목할 만한"},
+{"word": "grumble", "mean": "불평하다, 으르렁거리다"},
+{"word": "landfill", "mean": "쓰레기 매립지"},
+{"word": "scrutiny", "mean": "면밀한 조사"},
+{"word": "reckless", "mean": "부주의한, 무모한"},
+{"word": "synthetic", "mean": "합성의"},
+{"word": "productive", "mean": "생산적인, 다산의"},
+{"word": "outset", "mean": "착수, 시작"},
+{"word": "peril", "mean": "위험, 위기"},
+{"word": "pitfall", "mean": "함정, 위험"},
+{"word": "kidnap", "mean": "유괴하다, 납치하다"},
+{"word": "liable", "mean": "책임이 있는, ~하기 쉬운"},
+{"word": "insane", "mean": "정신 이상의, 비상식적인"},
+{"word": "rage", "mean": "격노, 분노"},
+{"word": "radius", "mean": "반지름"},
+{"word": "hybrid", "mean": "혼합물, 잡종"},
+{"word": "uncover", "mean": "폭로하다, 알아내다"},
+{"word": "limb", "mean": "사지, 팔다리"},
+{"word": "setback", "mean": "좌절, 차질"},
+{"word": "prudent", "mean": "신중한, 빈틈없는"},
+{"word": "solidify", "mean": "굳어지다, 확고히 하다"},
+{"word": "grudge", "mean": "원한, 유감"},
+{"word": "lessen", "mean": "줄이다"},
+{"word": "nullify", "mean": "무효화하다, 혼란시키다"},
+{"word": "subsidy", "mean": "보조금, 장려금"},
+{"word": "ambiguous", "mean": "애매모호한, 두 가지 뜻으로 해석 가능한"},
+{"word": "enthusiasm", "mean": "열광, 열정"},
+{"word": "bankruptcy", "mean": "파산"},
+{"word": "pollination", "mean": "수분 (식물)"},
+{"word": "prosper", "mean": "번영하다, 번창하다"},
+{"word": "phase", "mean": "단계, 양상"},
+{"word": "veterinarian", "mean": "수의사"},
+{"word": "counterattack", "mean": "반격, 역습"},
+{"word": "cumulative", "mean": "누적되는, 점증적인"},
+{"word": "infrastructure", "mean": "사회 기반 시설"},
+{"word": "wound", "mean": "부상, 부상하게 하다"},
+{"word": "discrete", "mean": "분리된, 별개의"},
+{"word": "fluctuation", "mean": "변동, 요동"}
+];
