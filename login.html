@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>로그인</title></head><body>
-<div id="loginForm"><h2>로그인</h2>
-<input type="text" id="nickname" placeholder="닉네임"><input type="password" id="password" placeholder="비밀번호">
-<button id="loginBtn">로그인</button></div>
-<script>
-document.getElementById('loginBtn').addEventListener('click', function() {
-  const n = document.getElementById('nickname').value;
-  const p = document.getElementById('password').value;
-  const u = { "핑크도준": "1107", "킹도준": "0101", "도준1004": "1004" };
-  if (u[n] && u[n] === p) {
-    const now = new Date();
-    const today = now.toISOString().split('T')[0];
-    if (n !== "도준1004") {
-      let statsKey = n + "_stats";
-      let stats = localStorage.getItem(statsKey);
-      stats = stats ? JSON.parse(stats) : { attendance: 0, lastLoginDate: "", totalCorrect: 0, totalAttempts: 0, lastLoginTime: "" };
-      if (stats.lastLoginDate !== today) stats.attendance += 1, stats.lastLoginDate = today;
-      stats.lastLoginTime = now.toLocaleString("ko-KR");
-      localStorage.setItem(statsKey, JSON.stringify(stats));
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>로그인</title>
+</head>
+<body>
+  <h2>도준 퀴즈 로그인</h2>
+  <form onsubmit="login(); return false;">
+    <input id="nickname" placeholder="닉네임 입력" required />
+    <input id="password" type="password" placeholder="비밀번호" required />
+    <button type="submit">시작하기</button>
+  </form>
+  <script>
+    const validUsers = {
+      "핑크도준": "1107",
+      "킹도준": "0101"
+    };
+    function login() {
+      const id = document.getElementById("nickname").value.trim();
+      const pw = document.getElementById("password").value.trim();
+      if (validUsers[id] === pw) {
+        localStorage.setItem("currentUser", id);
+        location.href = "quiz_withmaster.html";
+      } else {
+        alert("닉네임 또는 비밀번호가 틀렸습니다");
+      }
     }
-    localStorage.setItem('currentUser', n);
-    window.location.href = n === "도준1004" ? "admin.html" : "quiz_withmaster.html";
-  } else alert("닉네임 또는 비밀번호를 확인하세요.");
-});
-</script></body></html>
+  </script>
+</body>
+</html>
