@@ -1,1 +1,26 @@
-body{font-family:sans-serif;padding:1em;}#choices .choice{border:1px solid #ccc;padding:10px;margin:5px;cursor:pointer;}.correct{background:#c8e6c9}.incorrect{background:#ffcdd2}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8f9fa;
+  padding: 20px;
+}
+h2 {
+  text-align: center;
+  color: #0984e3;
+}
+table {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 16px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+th, td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+th {
+  background: #dfe6e9;
+}
