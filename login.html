@@ -1,24 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>로그인 - 2000 영단어 퀴즈</title>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to right, #a1c4fd, #c2e9fb); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-    .login-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); text-align: center; }
-    input { display: block; margin: 10px auto; padding: 10px; font-size: 1em; width: 200px; border-radius: 8px; border: 1px solid #ccc; }
-    button { background: #74b9ff; border: none; padding: 10px 20px; font-size: 1em; color: white; border-radius: 8px; cursor: pointer; }
-    button:hover { background: #0984e3; }
-  </style>
-</head>
-<body>
-  <div class="login-box">
-    <h2>🌟 2000 영단어 퀴즈 로그인</h2>
-    <input type="text" id="nickname" placeholder="닉네임 입력" />
-    <input type="password" id="password" placeholder="비밀번호 입력" />
-    <button onclick="login()">로그인</button>
-  </div>
-  <script src="script_userauth.js"></script>
-</body>
-</html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인</title></head><body>
+<div id="loginForm"><h2>로그인</h2>
+<input type="text" id="nickname" placeholder="닉네임"><input type="password" id="password" placeholder="비밀번호">
+<button id="loginBtn">로그인</button></div>
+<script>
+document.getElementById('loginBtn').addEventListener('click', function() {
+  const n = document.getElementById('nickname').value;
+  const p = document.getElementById('password').value;
+  const u = { "핑크도준": "1107", "킹도준": "0101", "도준1004": "1004" };
+  if (u[n] && u[n] === p) {
+    const now = new Date();
+    const today = now.toISOString().split('T')[0];
+    if (n !== "도준1004") {
+      let statsKey = n + "_stats";
+      let stats = localStorage.getItem(statsKey);
+      stats = stats ? JSON.parse(stats) : { attendance: 0, lastLoginDate: "", totalCorrect: 0, totalAttempts: 0, lastLoginTime: "" };
+      if (stats.lastLoginDate !== today) stats.attendance += 1, stats.lastLoginDate = today;
+      stats.lastLoginTime = now.toLocaleString("ko-KR");
+      localStorage.setItem(statsKey, JSON.stringify(stats));
+    }
+    localStorage.setItem('currentUser', n);
+    window.location.href = n === "도준1004" ? "admin.html" : "quiz_withmaster.html";
+  } else alert("닉네임 또는 비밀번호를 확인하세요.");
+});
+</script></body></html>

@@ -1,33 +1,13 @@
-
-function auth() {
-  const pass = document.getElementById("adminPass").value;
-  if (pass === "도준1004") {
-    document.getElementById("content").style.display = "block";
-    loadData();
-  } else {
-    alert("비밀번호가 틀렸습니다.");
-  }
-}
-
-function loadData() {
-  const dummy = [
-    { nickname: "핑크도준", date: "2024-05-29", correct: 487, attempts: 500, time: "02:41:33" },
-    { nickname: "킹도준", date: "2024-05-29", correct: 421, attempts: 500, time: "02:42:51" }
-  ];
-
-  const tbody = document.getElementById("dataBody");
-  dummy.forEach(item => {
-    const tr = document.createElement("tr");
-    const wrong = item.attempts - item.correct;
-    const row = `
-      <td>${item.nickname}</td>
-      <td>${item.date}</td>
-      <td>${item.correct} / ${item.attempts}</td>
-      <td>${wrong}</td>
-      <td>${item.attempts > 0 ? "O" : "X"}</td>
-      <td>${item.time}</td>
-    `;
-    tr.innerHTML = row;
-    tbody.appendChild(tr);
+window.addEventListener('DOMContentLoaded', () => {
+  const users = ["핑크도준", "킹도준"];
+  const tbody = document.querySelector("#adminTable tbody");
+  users.forEach(name => {
+    const stats = JSON.parse(localStorage.getItem(name + "_stats") || "{}");
+    const row = document.createElement("tr");
+    const wrong = (stats.totalAttempts || 0) - (stats.totalCorrect || 0);
+    row.innerHTML = `<td>${name}</td><td>${stats.attendance || 0}</td>
+      <td>${stats.totalCorrect || 0} / ${stats.totalAttempts || 0}</td>
+      <td>${wrong}</td><td>${stats.lastLoginTime || "-"}</td>`;
+    tbody.appendChild(row);
   });
-}
+});
