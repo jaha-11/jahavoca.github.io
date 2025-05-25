@@ -18,7 +18,22 @@ function togglePause() {
   document.getElementById("pauseBtn").textContent = isPaused ? "▶️" : "⏸";
 }
 
+function generateChoices(correctItem) {
+  const wrongChoices = quiz
+    .filter(q => q.meaning !== correctItem.meaning)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3)
+    .map(q => q.meaning);
+  return shuffle([...wrongChoices, correctItem.meaning]);
+}
+
 function showQuestion() {
+  if (current >= 500) {
+    document.getElementById("question").textContent = "🎉 퀴즈 완료!";
+    document.getElementById("choices").innerHTML = "";
+    return;
+  }
+
   if (isPaused) return setTimeout(showQuestion, 1000);
 
   const item = quiz[current % quiz.length];
@@ -27,7 +42,7 @@ function showQuestion() {
   qEl.textContent = item.word;
   cEl.innerHTML = "";
 
-  const options = shuffle([item.meaning, "무작위1", "무작위2", "무작위3"]);
+  const options = generateChoices(item);
   options.forEach(choice => {
     const btn = document.createElement("button");
     btn.textContent = choice;
