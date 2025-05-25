@@ -1,4 +1,4 @@
-const quizData = [
+const quizData_2000 = [
   {
     "word": "require",
     "meaning": "요구하다"
