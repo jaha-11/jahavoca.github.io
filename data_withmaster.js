@@ -1,2006 +1,2002 @@
-const quizData_2000 = [
-{"word": "atmosphere", "meaning": "상호 보완적인, 보충하는"},
-{"word": "complementary", "meaning": "분위기"},
-{"word": "connect with", "meaning": "사원"},
-{"word": "temple", "meaning": "~과 친해지다, ~을 이해하다"},
-{"word": "enclose", "meaning": "죽음, 파멸"},
-{"word": "doom", "meaning": "동봉하다"},
-{"word": "application", "meaning": "무덤"},
-{"word": "tomb", "meaning": "신청"},
-{"word": "commitment", "meaning": "지연, 지체"},
-{"word": "delay", "meaning": "헌신, 약속"},
-{"word": "concern", "meaning": "방, 공간"},
-{"word": "chamber", "meaning": "관심사, 중요한 것, 염려"},
-{"word": "enhance", "meaning": "귀납적 결론, 귀납법"},
-{"word": "induction", "meaning": "개선하다, 향상하다"},
-{"word": "property", "meaning": "~으로 귀결되다"},
-{"word": "be boiled down to", "meaning": "자산, 재산, 소유지"},
-{"word": "renovate", "meaning": "정당화하다"},
-{"word": "justify", "meaning": "보수하다, 개조하다"},
-{"word": "interior", "meaning": "일관성, 한결같음"},
-{"word": "uniformity", "meaning": "내부"},
-{"word": "block off", "meaning": "추정"},
-{"word": "assumption", "meaning": "~을 막다, ~을 차단하다"},
-{"word": "disruption", "meaning": "오지"},
-{"word": "backcountry", "meaning": "방해, 혼란"},
-{"word": "strive to do", "meaning": "응시하다"},
-{"word": "gaze", "meaning": "~하려고 노력하다[애쓰다]"},
-{"word": "relaxing", "meaning": "~이 알고 있는 한"},
-{"word": "to the best knowledge of", "meaning": "느긋한, 편한"},
-{"word": "extension", "meaning": "개별적 특징"},
-{"word": "signature", "meaning": "내선, 구내전화"},
-{"word": "promote", "meaning": "함정"},
-{"word": "hook", "meaning": "승진시키다"},
-{"word": "replacement", "meaning": "저작권"},
-{"word": "copyright", "meaning": "후임자, 대체물"},
-{"word": "sales representative", "meaning": "위반자"},
-{"word": "violator", "meaning": "영업 담당자"},
-{"word": "handpicked", "meaning": "묘사하다, 그리다"},
-{"word": "depict", "meaning": "엄선한"},
-{"word": "deserve", "meaning": "소송을 제기하다"},
-{"word": "sue", "meaning": "마땅히 받을 만하다"},
-{"word": "confirm", "meaning": "수렵 채집인"},
-{"word": "hunter-gatherer", "meaning": "확인하다, 승인하다"},
-{"word": "residential", "meaning": "축적하다"},
-{"word": "accumulate", "meaning": "주택의, 주거의"},
-{"word": "ongoing", "meaning": "무리"},
-{"word": "band", "meaning": "진행 중인"},
-{"word": "pandemic", "meaning": "두드러진"},
-{"word": "marked", "meaning": "전 세계적인 유행병, 범유행병"},
-{"word": "dispose of", "meaning": "불평등"},
-{"word": "inequality", "meaning": "~을 처리하다"},
-{"word": "properly", "meaning": "(동물의) 무리, 떼"},
-{"word": "herd", "meaning": "제대로, 적절히"},
-{"word": "solid", "meaning": "인류학자"},
-{"word": "anthropologist", "meaning": "고형의, 고체의"},
-{"word": "crew", "meaning": "보유 자산, 재산"},
-{"word": "holding", "meaning": "(같은 일에 종사하는) 반, 조, 승무원"},
-{"word": "secured", "meaning": "나타내다"},
-{"word": "represent", "meaning": "안전한"},
-{"word": "gallon", "meaning": "불안정한"},
-{"word": "unstable", "meaning": "갤런(액량 단위)"},
-{"word": "tub", "meaning": "목자(牧者), 가축 소유주"},
-{"word": "herder", "meaning": "(뚜껑이 없고 둥글게 생긴 큰) 통"},
-{"word": "barrel", "meaning": "전염병"},
-{"word": "epidemic", "meaning": "배럴, 원통"},
-{"word": "oversized", "meaning": "가뭄"},
-{"word": "drought", "meaning": "너무 큰, 특대의"},
-{"word": "container", "meaning": "지속하다, 유지하다"},
-{"word": "maintain", "meaning": "용기"},
-{"word": "regulation", "meaning": "흔히, 자주"},
-{"word": "frequently", "meaning": "규정"},
-{"word": "durable", "meaning": "산성화"},
-{"word": "acidification", "meaning": "튼튼한, 내구성이 있는"},
-{"word": "burst", "meaning": "아마 틀림없이"},
-{"word": "arguably", "meaning": "터지다"},
-{"word": "appreciate", "meaning": "섬세한"},
-{"word": "delicate", "meaning": "감사하다"},
-{"word": "tower", "meaning": "산성도"},
-{"word": "acidity", "meaning": "위로 높이 솟다"},
-{"word": "stillness", "meaning": "흡수하다"},
-{"word": "absorb", "meaning": "정적, 고요"},
-{"word": "tremble", "meaning": "탄산"},
-{"word": "carbonic acid", "meaning": "떨리다"},
-{"word": "surround", "meaning": "배출하다"},
-{"word": "emit", "meaning": "에워싸다, 둘러싸다"},
-{"word": "echo", "meaning": "생태계"},
-{"word": "ecosystem", "meaning": "울려 퍼지다, 메아리치다"},
-{"word": "snap around", "meaning": "널리 퍼진"},
-{"word": "prevalent", "meaning": "(고개 등이) 휙 돌아가다"},
-{"word": "play a trick", "meaning": "불충분한 공급"},
-{"word": "underprovision", "meaning": "(눈을) 속이다"},
-{"word": "ghostly", "meaning": "안정성"},
-{"word": "stability", "meaning": "유령 같은"},
-{"word": "pound", "meaning": "공공재"},
-{"word": "public good", "meaning": "세차게 고동치다, 두드리다"},
-{"word": "glow", "meaning": "과도한, 지나친"},
-{"word": "excessive", "meaning": "빛나다, 빛을 내다"},
-{"word": "basement", "meaning": "공유재"},
-{"word": "common pool resource", "meaning": "지하실, 지하"},
-{"word": "dreadful", "meaning": "흡수"},
-{"word": "absorption", "meaning": "지독한, 굉장히 무서운"},
-{"word": "creep over", "meaning": "원유 생산 정점, 피크 오일"},
-{"word": "peak oil", "meaning": "(공포 따위가) ~을 엄습하다"},
-{"word": "ball", "meaning": "지속 가능성"},
-{"word": "sustainability", "meaning": "무도회, 댄스파티"},
-{"word": "fancy", "meaning": "공정한, 정의로운"},
-{"word": "just", "meaning": "(색깔이) 화려한, 장식이 많은"},
-{"word": "carnival", "meaning": "분배"},
-{"word": "distribution", "meaning": "축제, 사육제"},
-{"word": "stuck", "meaning": "할당의"},
-{"word": "allocative", "meaning": "꼼짝 못 하는, 움직일 수 없는"},
-{"word": "long for", "meaning": "효율성"},
-{"word": "efficiency", "meaning": "~을 간절히 원하다, ~을 갈망하다"},
-{"word": "crash into", "meaning": "훼손하다"},
-{"word": "undermine", "meaning": "~과 부딪치다, ~과 충돌하다"},
-{"word": "overjoyed", "meaning": "가산적인, 부가적인"},
-{"word": "additive", "meaning": "매우 기쁜"},
-{"word": "triumphantly", "meaning": "더 좋은, 더 나은"},
-{"word": "better off", "meaning": "위풍당당하게, 의기양양하여"},
-{"word": "bow", "meaning": "자금을 제공하다"},
-{"word": "fund", "meaning": "머리를 숙이다, 절[인사]하다"},
-{"word": "porch", "meaning": "바로, 정확하게"},
-{"word": "precisely", "meaning": "현관"},
-{"word": "yawn", "meaning": "원인 제공, 공헌, 기여"},
-{"word": "contribution", "meaning": "하품하다"},
-{"word": "dew", "meaning": "관점"},
-{"word": "perspective", "meaning": "이슬"},
-{"word": "scent", "meaning": "무임승차자"},
-{"word": "free-rider", "meaning": "향기, 냄새"},
-{"word": "drip", "meaning": "기관, 제도"},
-{"word": "institution", "meaning": "방울져서 흐르다"},
-{"word": "dim", "meaning": "대안"},
-{"word": "alternative", "meaning": "흐릿한, 희미한"},
-{"word": "sparkle", "meaning": "전형적인"},
-{"word": "typical", "meaning": "반짝이다"},
-{"word": "slip away", "meaning": "자동 조종의, 별생각이 없는"},
-{"word": "auto-pilot", "meaning": "사라지다, 없어지다"},
-{"word": "exposure", "meaning": "전문직 종사자"},
-{"word": "professional", "meaning": "접함, 노출"},
-{"word": "piccoloist", "meaning": "동일한"},
-{"word": "identical", "meaning": "피콜로 연주자"},
-{"word": "run through", "meaning": "출발하다, 시작하다"},
-{"word": "set off", "meaning": "~을 (끝까지 대충) 연습하다[훑어보다]"},
-{"word": "faith", "meaning": "비교하다"},
-{"word": "compare", "meaning": "믿음"},
-{"word": "mess up", "meaning": "전략"},
-{"word": "strategy", "meaning": "~을 망치다"},
-{"word": "run-through", "meaning": "철저히 준비하다"},
-{"word": "do one’s homework", "meaning": "(끝까지 대충 하는) 연습"},
-{"word": "correct", "meaning": "검토하다"},
-{"word": "review", "meaning": "바로잡다"},
-{"word": "in succession", "meaning": "광고 전단"},
-{"word": "circular", "meaning": "연속으로"},
-{"word": "worked up", "meaning": "정리가 잘된"},
-{"word": "well-organized", "meaning": "흥분한"},
-{"word": "give in", "meaning": "맞추다"},
-{"word": "match", "meaning": "굴복하다"},
-{"word": "be a bundle of nerves", "meaning": "낮추다"},
-{"word": "lower", "meaning": "신경이 곤두서다"},
-{"word": "set oneself up for", "meaning": "~을 선택하다"},
-{"word": "opt for", "meaning": "(좋지 않은 일을) 겪을 상태가 되다"},
-{"word": "talent", "meaning": "유명 상표"},
-{"word": "name brand", "meaning": "재능, 인재"},
-{"word": "regardless of", "meaning": "움켜쥐다"},
-{"word": "grab", "meaning": "~에 상관없이"},
-{"word": "dedicated", "meaning": "전단지"},
-{"word": "flier", "meaning": "헌신적인"},
-{"word": "industrious", "meaning": "잘라 내다"},
-{"word": "clip", "meaning": "근면한"},
-{"word": "productivity", "meaning": "많은 시간이 걸리는"},
-{"word": "time-consuming", "meaning": "생산성"},
-{"word": "priority", "meaning": "보상"},
-{"word": "reward", "meaning": "우선순위"},
-{"word": "direct", "meaning": "해충"},
-{"word": "pest", "meaning": "(길을) 안내하다"},
-{"word": "linear", "meaning": "~의 토종인"},
-{"word": "native to", "meaning": "선형의, 선적인"},
-{"word": "figurative", "meaning": "기생충, 기생 동물이나 식물"},
-{"word": "parasite", "meaning": "비유적인"},
-{"word": "marginalize", "meaning": "분포 구역, 서식 범위"},
-{"word": "range", "meaning": "사회에서 소외시키다, 하찮은 기분이 들게 하다"},
-{"word": "miss out on", "meaning": "그 대신에, 그렇지 않으면"},
-{"word": "alternatively", "meaning": "~을 놓치다"},
-{"word": "neurobiological", "meaning": "수입하다"},
-{"word": "import", "meaning": "신경생물학의"},
-{"word": "standpoint", "meaning": "생물적 방제 인자"},
-{"word": "biocontrol agent", "meaning": "관점"},
-{"word": "recontextualize", "meaning": "만나다"},
-{"word": "encounter", "meaning": "새로운 맥락에 적용하다"},
-{"word": "previously", "meaning": "판단하다, 추론하다"},
-{"word": "reason", "meaning": "이전에"},
-{"word": "invisible", "meaning": "발전시키다"},
-{"word": "evolve", "meaning": "보이지 않는"},
-{"word": "engage", "meaning": "수반하다, 관련시키다"},
-{"word": "involve", "meaning": "사용하다, 고용하다, 관여시키다"},
-{"word": "mode", "meaning": "미생물"},
-{"word": "microbe", "meaning": "방식"},
-{"word": "stimulate", "meaning": "생태계"},
-{"word": "association", "meaning": "생태계의"},
-{"word": "ecological", "meaning": "연상, 연관"},
-{"word": "link", "meaning": "위험한"},
-{"word": "risky", "meaning": "연결"},
-{"word": "neural", "meaning": "급속히 퍼지는"},
-{"word": "invasive", "meaning": "신경의"},
-{"word": "node", "meaning": "유기체"},
-{"word": "organism", "meaning": "(연결망의) 교점, 접합점"},
-{"word": "engagement", "meaning": "화학적인"},
-{"word": "chemical", "meaning": "참여, 관여"},
-{"word": "reimagine", "meaning": "~을 풀어놓다"},
-{"word": "set ~ loose", "meaning": "(새롭게) 재해석하다"},
-{"word": "exercise", "meaning": "동기"},
-{"word": "motivation", "meaning": "발휘하다"},
-{"word": "output", "meaning": "~의 지배[영향]를 받다"},
-{"word": "be subject to", "meaning": "산출물, 산물"},
-{"word": "fuel", "meaning": "부정확함"},
-{"word": "inaccuracy", "meaning": "증가시키다"},
-{"word": "temporary", "meaning": "편견"},
-{"word": "prejudice", "meaning": "일시적인, 임시의"},
-{"word": "restore", "meaning": "놀랍게도, 주목할 만한 것은"},
-{"word": "remarkably", "meaning": "회복시키다, 복구하다"},
-{"word": "discipline", "meaning": "발전(하다)"},
-{"word": "progress", "meaning": "규율, 통제"},
-{"word": "inherent", "meaning": "집단적인"},
-{"word": "collective", "meaning": "내재하는, 타고난"},
-{"word": "maladaptive", "meaning": "진보하다"},
-{"word": "advance", "meaning": "적응하지 못하는"},
-{"word": "predatory", "meaning": "~에도 불구하고"},
-{"word": "despite", "meaning": "약탈하는, 탐욕스러운"},
-{"word": "capitalism", "meaning": "특성"},
-{"word": "feature", "meaning": "자본주의"},
-{"word": "monument", "meaning": "풍부하게, 많이"},
-{"word": "in abundance", "meaning": "기념탑, 기념물"},
-{"word": "triumph", "meaning": "관찰"},
-{"word": "observation", "meaning": "승리, 대성공"},
-{"word": "critical", "meaning": "단순한, 평범한"},
-{"word": "plain", "meaning": "위태로운, 위험한"},
-{"word": "thoughtless", "meaning": "생겨나다"},
-{"word": "arise", "meaning": "무분별한, 경솔한"},
-{"word": "secure", "meaning": "확신"},
-{"word": "conviction", "meaning": "묶어 놓다, 고정하다"},
-{"word": "pretender to wisdom", "meaning": "초기의, 최초의"},
-{"word": "initial", "meaning": "지혜가 있는 척하는 사람"},
-{"word": "shame", "meaning": "합성"},
-{"word": "synthesis", "meaning": "망신시키다, 창피를 주다, 모욕하다"},
-{"word": "defeat", "meaning": "대체의, 대안적인"},
-{"word": "argument", "meaning": "진화의"},
-{"word": "evolutionary", "meaning": "논쟁, 토론"},
-{"word": "Hellenic", "meaning": "열정적인"},
-{"word": "keen", "meaning": "그리스의"},
-{"word": "arena", "meaning": "어색한"},
-{"word": "awkward", "meaning": "(원형) 경기장"},
-{"word": "literally", "meaning": "견디다"},
-{"word": "endure", "meaning": "그야말로, 문자 그대로"},
-{"word": "opponent", "meaning": "상처를 주다"},
-{"word": "scar", "meaning": "상대, 반대자"},
-{"word": "descendant", "meaning": "무작위의"},
-{"word": "random", "meaning": "자손, 후예, 유래한 것"},
-{"word": "luxury", "meaning": "분명히 파악하다 03"},
-{"word": "pin down", "meaning": "명품, 사치(품)"},
-{"word": "ownership", "meaning": "연관성을 보여 주다"},
-{"word": "correlate", "meaning": "소유"},
-{"word": "countersignalling", "meaning": "지질학의, 지질의"},
-{"word": "geologic", "meaning": "반대 신호 보내기"},
-{"word": "go out of one’s way", "meaning": "맹렬히 계속되다"},
-{"word": "rage", "meaning": "굳이 뭔가를 하다"},
-{"word": "a point of honour", "meaning": "방사능의"},
-{"word": "radioactive", "meaning": "명예에 관한 문제"},
-{"word": "trainers", "meaning": "전환시키다"},
-{"word": "convert", "meaning": "운동화"},
-{"word": "tech", "meaning": "~인 것 같이, 겉보기로는"},
-{"word": "apparently", "meaning": "과학 기술"},
-{"word": "status", "meaning": "멸종된"},
-{"word": "extinct", "meaning": "지위"},
-{"word": "hoodie", "meaning": "정의"},
-{"word": "definition", "meaning": "후드 티"},
-{"word": "atypical", "meaning": "포괄하다, 포함하다"},
-{"word": "encompass", "meaning": "이례적인, 격식을 벗어난"},
-{"word": "regard", "meaning": "다양한"},
-{"word": "a range of", "meaning": "호감, 존경"},
-{"word": "assistant", "meaning": "생물학자"},
-{"word": "biologist", "meaning": "점원, 조수"},
-{"word": "high-end", "meaning": "시도"},
-{"word": "attempt", "meaning": "최고급의"},
-{"word": "rate", "meaning": "구분하다, 구별하다"},
-{"word": "distinguish", "meaning": "평가하다"},
-{"word": "fur", "meaning": "생물체, 유기체"},
-{"word": "boutique", "meaning": "자극 (pl. stimuli)"},
-{"word": "stimulus", "meaning": "부티크(멋있고 개성적인 의류나 액세 서리 따위를 취급하는 소규모 가게)"},
-{"word": "relativity", "meaning": "번식하다"},
-{"word": "reproduce", "meaning": "상대성"},
-{"word": "fundamental", "meaning": "입증되다, 입증하다"},
-{"word": "prove", "meaning": "기본적인"},
-{"word": "principle", "meaning": "불충분한, 부적당한"},
-{"word": "inadequate", "meaning": "원칙"},
-{"word": "make the point that", "meaning": "수반하다, 포함하다"},
-{"word": "apply", "meaning": "상태, 지위"},
-{"word": "so long as", "meaning": "구분, 구별"},
-{"word": "distinction", "meaning": "~하기만 하면"},
-{"word": "measure", "meaning": "냉소주의자"},
-{"word": "cynic", "meaning": "측정하다"},
-{"word": "relative to", "meaning": "호의적인, 유리한"},
-{"word": "favorable", "meaning": "~과 비교하여"},
-{"word": "analysis", "meaning": "구두의, 말로 전하는"},
-{"word": "word-of-mouth", "meaning": "분석"},
-{"word": "extraordinary", "meaning": "추천, 권고"},
-{"word": "recommendation", "meaning": "특별한"},
-{"word": "reveal", "meaning": "경쟁"},
-{"word": "competition", "meaning": "밝히다, 드러내다"},
-{"word": "disappointment", "meaning": "목적지, 행선지"},
-{"word": "destination", "meaning": "실망"},
-{"word": "perceive", "meaning": "~에 기여하다"},
-{"word": "contribute to", "meaning": "여기다, 인식하다"},
-{"word": "automation", "meaning": "경쟁 우위"},
-{"word": "competitive edge", "meaning": "자동화"},
-{"word": "appeal to", "meaning": "기준, 수준"},
-{"word": "standard", "meaning": "~에 호소하다"},
-{"word": "eager", "meaning": "결과적으로, 결국"},
-{"word": "in turn", "meaning": "열렬한, 간절히 바라는"},
-{"word": "misguided", "meaning": "결정 요인"},
-{"word": "determinant", "meaning": "잘못된, 오도된"},
-{"word": "release", "meaning": "우위, 이점"},
-{"word": "advantage", "meaning": "해방, 면제"},
-{"word": "ingredient", "meaning": "인식하다, 지각하다"},
-{"word": "diminish", "meaning": "발견하다, 확인하다"},
-{"word": "identify", "meaning": "감소시키다"},
-{"word": "present", "meaning": "외부로부터 오는"},
-{"word": "external", "meaning": "나타내다, 제시하다"},
-{"word": "survey", "meaning": "개입, 참여"},
-{"word": "consist of", "meaning": "균형 잡힌"},
-{"word": "well-rounded", "meaning": "~으로 구성되다"},
-{"word": "prescribed", "meaning": "여기다, 인식하다"},
-{"word": "field", "meaning": "주로"},
-{"word": "primarily", "meaning": "필드(특정 데이터 저장 지정 영역)"},
-{"word": "analyst", "meaning": "~을 고려하면"},
-{"word": "considering", "meaning": "분석가"},
-{"word": "restrict", "meaning": "~에 참가하다, ~에 연루되다"},
-{"word": "be involved in", "meaning": "한정하다, 제한하다"},
-{"word": "turn ~ into …", "meaning": "지배하다"},
-{"word": "dominate", "meaning": "~을 …으로 전환하다"},
-{"word": "routine", "meaning": "달래다, 진정시키다"},
-{"word": "pacify", "meaning": "정례적인 일"},
-{"word": "take over", "meaning": "불만, 불안"},
-{"word": "unrest", "meaning": "~을 떠맡다"},
-{"word": "spectacle", "meaning": "시간이 걸리는"},
-{"word": "engage in", "meaning": "기념행사, 축하 행사"},
-{"word": "celebration", "meaning": "~을 하다, ~에 참여하다"},
-{"word": "valid", "meaning": "오락"},
-{"word": "entertainment", "meaning": "타당한, 유효한"},
-{"word": "eye-opening", "meaning": "틀, 뼈대, 구조"},
-{"word": "framework", "meaning": "놀랄 만한, 훌륭한"},
-{"word": "roll one’s eyes", "meaning": "기여하다, 도움이 되다"},
-{"word": "serve", "meaning": "못마땅해하다, 눈을 굴리다"},
-{"word": "sound", "meaning": "미적인"},
-{"word": "aesthetic", "meaning": "괜찮은, 옳은"},
-{"word": "anecdote", "meaning": "이용[입수] 가능성"},
-{"word": "availability", "meaning": "일화"},
-{"word": "exaggeration", "meaning": "대중"},
-{"word": "the masses", "meaning": "과장"},
-{"word": "manipulate", "meaning": "~으로 바쁜"},
-{"word": "occupied with", "meaning": "조종하다"},
-{"word": "navigator", "meaning": "비판적인"},
-{"word": "preconceived", "meaning": "분리될 수 없는"},
-{"word": "inseparable", "meaning": "사전에 형성된"},
-{"word": "notion", "meaning": "(예를 들어) 보여 주다, 설명하다"},
-{"word": "illustrate", "meaning": "개념, 생각"},
-{"word": "curse", "meaning": "전후의, (특히) 제2차 세계 대전 이후의"},
-{"word": "postwar", "meaning": "저주"},
-{"word": "megadose", "meaning": "전시, 진열"},
-{"word": "display", "meaning": "대량 투여하다"},
-{"word": "extensive", "meaning": "조장하다, 장려하다"},
-{"word": "cup of tea", "meaning": "몰딩, 틀[주형]로 만들기"},
-{"word": "molding", "meaning": "선호하는 일, 기호[취미]에 맞는 일"},
-{"word": "abound", "meaning": "변화시키다, 바꾸다"},
-{"word": "alter", "meaning": "넘쳐 나다, 아주 많다, 풍부하다"},
-{"word": "consequence", "meaning": "대량의"},
-{"word": "mass", "meaning": "결과"},
-{"word": "erase", "meaning": "조립"},
-{"word": "assembly", "meaning": "지우다"},
-{"word": "sweep ~ under the rug", "meaning": "활발하게, 힘차게"},
-{"word": "vigorously", "meaning": "~을 숨기다, ~을 비밀로 하다"},
-{"word": "impatient", "meaning": "유통, 배분, 배포"},
-{"word": "crisis", "meaning": "방식, 형태"},
-{"word": "mindful", "meaning": "일치하는, 지속적인"},
-{"word": "consistent", "meaning": "염두에 두는"},
-{"word": "negatively", "meaning": "근본적인"},
-{"word": "affect", "meaning": "능력"},
-{"word": "capacity", "meaning": "영향을 미치다"},
-{"word": "complicated", "meaning": "진화하다, 발전하다"},
-{"word": "substantial", "meaning": "생리학자"},
-{"word": "physiologist", "meaning": "상당한"},
-{"word": "imbalance", "meaning": "두 가지 역할을 하다"},
-{"word": "do double duty", "meaning": "불균형"},
-{"word": "premise", "meaning": "치료사"},
-{"word": "therapist", "meaning": "전제"},
-{"word": "self-talk", "meaning": "유도하다"},
-{"word": "induce", "meaning": "(심리학) 자기 대화"},
-{"word": "challenge", "meaning": "완화하다"},
-{"word": "ease", "meaning": "해 볼 만한 상대[일/문제]"},
-{"word": "prompt", "meaning": "감각"},
-{"word": "sensation", "meaning": "~하게 하다, 부추기다"},
-{"word": "cooperation", "meaning": "~을 망치다"},
-{"word": "choke", "meaning": "번식의, 생식의"},
-{"word": "reproductive", "meaning": "(긴장하거나 해서) 실패하다, 망치다"},
-{"word": "thigh", "meaning": "초과하다"},
-{"word": "exceed", "meaning": "허벅지"},
-{"word": "current", "meaning": "구성 요소"},
-{"word": "building block", "meaning": "흐름, 조류"},
-{"word": "severely", "meaning": "식물, 초목"},
-{"word": "vegetation", "meaning": "심하게, 심각하게"},
-{"word": "attachment", "meaning": "조절하다, 완화하다"},
-{"word": "moderate", "meaning": "애착"},
-{"word": "toss", "meaning": "국지적인, 장소의"},
-{"word": "local", "meaning": "뒤흔들다, 내던지다"},
-{"word": "downstream", "meaning": "미기후(특정 좁은 지역의 기후)"},
-{"word": "microclimate", "meaning": "하류로, 흐름에 따라"},
-{"word": "uncontrollable", "meaning": "복사(열), 방사"},
-{"word": "radiation", "meaning": "통제할 수 없는"},
-{"word": "outcome", "meaning": "증발산(물의 증발 및 식물의 증산 작용 으로 지상의 수분이 대기 속으로 운반 되는 것)"},
-{"word": "evapo-transpiration", "meaning": "결과"},
-{"word": "hopelessly", "meaning": "흡수, 통합"},
-{"word": "sociotechnical", "meaning": "수증기"},
-{"word": "vapour", "meaning": "사회 기술적"},
-{"word": "expertise", "meaning": "포함하다, 함유하다"},
-{"word": "incorporate", "meaning": "전문 지식"},
-{"word": "disrupt", "meaning": "기여, 원인 제공"},
-{"word": "undertaking", "meaning": "눈부심, 환한 빛"},
-{"word": "glare", "meaning": "사업, 일"},
-{"word": "statistics", "meaning": "안마당"},
-{"word": "courtyard", "meaning": "통계, 통계학"},
-{"word": "existing", "meaning": "배치, 배열"},
-{"word": "arrangement", "meaning": "현존하는, 현재의"},
-{"word": "device", "meaning": "~ 전에"},
-{"word": "prior to", "meaning": "기구, 장치"},
-{"word": "integrate", "meaning": "노출"},
-{"word": "take ~ into account", "meaning": "촬영 전 카메라 앞 준비 작업"},
-{"word": "pro-filmic event", "meaning": "~을 고려하다"},
-{"word": "document", "meaning": "제도, 기관"},
-{"word": "artifact", "meaning": "반박의 여지가 없는"},
-{"word": "indisputable", "meaning": "인공물, 가공품"},
-{"word": "keep in mind", "meaning": "찾아내다"},
-{"word": "locate", "meaning": "~을 명심하다"},
-{"word": "politics", "meaning": "광학의"},
-{"word": "optical", "meaning": "(이해)관계, 정략"},
-{"word": "intend", "meaning": "~에 신빙성을 더해 주다"},
-{"word": "lend support to", "meaning": "의도하다, 생각하다"},
-{"word": "dusty", "meaning": "있는 그대로의, 사실에 충실한"},
-{"word": "literal", "meaning": "먼지 묻은, 먼지투성이의"},
-{"word": "evolving", "meaning": "객관적인"},
-{"word": "objective", "meaning": "진화하는"},
-{"word": "outdated", "meaning": "~과 관련이 있다"},
-{"word": "be tied to", "meaning": "시대에 뒤떨어진"},
-{"word": "adapt to", "meaning": "~에 부여된"},
-{"word": "attached to", "meaning": "~에 적응하다"},
-{"word": "speedometer", "meaning": "~을 중심으로 하다"},
-{"word": "turn on", "meaning": "속도계, 주행 기록계"},
-{"word": "accelerate", "meaning": "구술의, 구두의"},
-{"word": "oral", "meaning": "가속하다"},
-{"word": "keep pace with", "meaning": "전승"},
-{"word": "tradition", "meaning": "~과 보조를 맞추다"},
-{"word": "presentation", "meaning": "재연하다, 재현하다"},
-{"word": "re-enact", "meaning": "제시, 발표"},
-{"word": "matter", "meaning": "당연히, 정의상"},
-{"word": "by definition", "meaning": "중요하다, 문제가 되다"},
-{"word": "dress up", "meaning": "혼합체"},
-{"word": "hybrid", "meaning": "~을 꾸미다"},
-{"word": "end up with", "meaning": "언어의"},
-{"word": "verbal", "meaning": "결국 ~을 가지게 되다"},
-{"word": "the vast majority of", "meaning": "명확하게 표현하다"},
-{"word": "articulate", "meaning": "대부분의"},
-{"word": "simultaneously", "meaning": "분석"},
-{"word": "devote", "meaning": "겹치는, 층을 이룬"},
-{"word": "layered", "meaning": "(노력·돈·시간 따위를) 들이다, 바치다"},
-{"word": "afterthought", "meaning": "힘, 동력"},
-{"word": "dynamics", "meaning": "나중에 덧붙이는 것"},
-{"word": "essential", "meaning": "(양이) 크지 않은, 제한된"},
-{"word": "limited", "meaning": "필수적인"},
-{"word": "factor in", "meaning": "단순화, 약화, 감소"},
-{"word": "reduction", "meaning": "~을 고려하다, ~을 (계산에) 넣다"},
-{"word": "quality", "meaning": "역동성"},
-{"word": "dynamism", "meaning": "양질의"},
-{"word": "accurate", "meaning": "동시성"},
-{"word": "simultaneity", "meaning": "정확한"},
-{"word": "conceptualization", "meaning": "질서정연한"},
-{"word": "orderly", "meaning": "개념화"},
-{"word": "obesity", "meaning": "그대로 따라 하다, 복제하다"},
-{"word": "replicate", "meaning": "비만"},
-{"word": "self-control", "meaning": "지속적인, 일정한"},
-{"word": "constant", "meaning": "자제력"},
-{"word": "metaphor", "meaning": "조정, 수정"},
-{"word": "adjustment", "meaning": "비유"},
-{"word": "capture", "meaning": "바꾸다, 고치다"},
-{"word": "prediction", "meaning": "자극 (pl. stimuli)"},
-{"word": "artificially", "meaning": "숙달, 숙련"},
-{"word": "mastery", "meaning": "인위적으로"},
-{"word": "unintentionally", "meaning": "흥미진진한, 강력한"},
-{"word": "compelling", "meaning": "의도치 않게"},
-{"word": "overconsume", "meaning": "부담, 압박"},
-{"word": "pressure", "meaning": "과다 섭취하다"},
-{"word": "excessively", "meaning": "좌절, 실패"},
-{"word": "frustration", "meaning": "지나치게"},
-{"word": "societal", "meaning": "당혹, 혼란"},
-{"word": "confusion", "meaning": "사회의"},
-{"word": "response", "meaning": "~을 따라잡다"},
-{"word": "catch up to", "meaning": "대응, 반응"},
-{"word": "proportional", "meaning": "진행하다, 계속하다"},
-{"word": "proceed", "meaning": "비례하는"},
-{"word": "appropriate", "meaning": "지정하다"},
-{"word": "designate", "meaning": "적절한"},
-{"word": "expose", "meaning": "잦은, 빈번한"},
-{"word": "frequent", "meaning": "접하게 하다"},
-{"word": "explicit", "meaning": "~에 따라서 행동하다"},
-{"word": "act on", "meaning": "명백한, 분명한"},
-{"word": "preference", "meaning": "끈질기게 계속하다"},
-{"word": "persist", "meaning": "선호"},
-{"word": "bare-bones", "meaning": "결국, 마침내"},
-{"word": "eventually", "meaning": "빈약한"},
-{"word": "overlook", "meaning": "점진적인, 차츰 ~하는"},
-{"word": "gradual", "meaning": "묵살하다, 간과하다"},
-{"word": "advocate", "meaning": "사고방식"},
-{"word": "mindset", "meaning": "주창자, 옹호자"},
-{"word": "sufficiently", "meaning": "사람의 주의[마음]를 끄는"},
-{"word": "engaging", "meaning": "충분히"},
-{"word": "provocative", "meaning": "설득력 있는, 강력한"},
-{"word": "potential", "meaning": "현상"},
-{"word": "phenomenon", "meaning": "가능성이 있는, 잠재적인"},
-{"word": "attractiveness", "meaning": "~에 대해 깊게 생각하다"},
-{"word": "dwell on", "meaning": "매력, 끌어당기는 힘"},
-{"word": "self-apparent", "meaning": "충분한"},
-{"word": "sufficient", "meaning": "자명한"},
-{"word": "projection", "meaning": "~을 보류하다"},
-{"word": "hold off on", "meaning": "추정, 예상"},
-{"word": "return", "meaning": "흥미로운"},
-{"word": "thereby", "meaning": "사로잡다"},
-{"word": "alienate", "meaning": "(필요한 지식 등을 가르쳐) 준비시키다"},
-{"word": "equip", "meaning": "멀어지게 만들다"},
-{"word": "distrust", "meaning": "불균형"},
-{"word": "deal-making", "meaning": "관련된"},
-{"word": "relevant", "meaning": "거래 성립"},
-{"word": "resemble", "meaning": "강화하다 03"},
-{"word": "venture capitalist", "meaning": "뛰어나다, 능가하다"},
-{"word": "excel", "meaning": "벤처 (사업) 투자자"},
-{"word": "corporation", "meaning": "드러내 보이다"},
-{"word": "manifest", "meaning": "기업"},
-{"word": "suspicious", "meaning": "보상; 보상하다"},
-{"word": "budget", "meaning": "맹렬함, 강렬함"},
-{"word": "intensity", "meaning": "예산"},
-{"word": "profit", "meaning": "징조, 기미, 기세"},
-{"word": "note", "meaning": "이득, 이익"},
-{"word": "radical", "meaning": "부풀려진, 과장된"},
-{"word": "exaggerated", "meaning": "급진적인"},
-{"word": "ambition", "meaning": "결과"},
-{"word": "appetite", "meaning": "노력, 애씀"},
-{"word": "striving", "meaning": "욕구, 갈망"},
-{"word": "overdose", "meaning": "간과하다"},
-{"word": "explicitly", "meaning": "~하는 데 익숙하다"},
-{"word": "be accustomed to doing", "meaning": "명시적으로"},
-{"word": "implicitly", "meaning": "자극하다"},
-{"word": "measurement", "meaning": "부풀어 오른"},
-{"word": "swollen", "meaning": "평가, 측정"},
-{"word": "mute", "meaning": "긴장"},
-{"word": "tension", "meaning": "약화시키다"},
-{"word": "optimally", "meaning": "견디다"},
-{"word": "bear", "meaning": "최적으로, 최선으로"},
-{"word": "deserted[desert] island", "meaning": "방치되다, 더 나빠지다"},
-{"word": "suffer", "meaning": "무인도"},
-{"word": "genie", "meaning": "~ 때문에"},
-{"word": "on account of", "meaning": "(아라비안나이트의) 요정, 정령"},
-{"word": "rub", "meaning": "잘 자라다, 번성하다"},
-{"word": "thrive", "meaning": "문지르다"},
-{"word": "emerge", "meaning": "열망, 열심 04"},
-{"word": "eagerness", "meaning": "나타나다, 출현하다"},
-{"word": "vanish", "meaning": "의자에 먼저 앉기 놀이(음악을 들으며 한 줄로 늘어선 의자 주위를 뛰어 다니 다가 음악이 멈추면 의자를 차지하고 앉는 아이들 놀이로, 의자에 못 앉는 사람은 탈락함)"},
-{"word": "musical chairs", "meaning": "사라지다"},
-{"word": "immediately", "meaning": "적절한"},
-{"word": "activate", "meaning": "미취학 아동"},
-{"word": "preschooler", "meaning": "활성화하다, 작동하다"},
-{"word": "grant", "meaning": "좌절(감)"},
-{"word": "option", "meaning": "치우다, 없애다"},
-{"word": "remove", "meaning": "선택할 수 있는 것, 선택(권)"},
-{"word": "eliminate", "meaning": "얼마 안 되는, 제한적인"},
-{"word": "in accord with", "meaning": "추가적인"},
-{"word": "additional", "meaning": "~과 부합[일치]하여"},
-{"word": "violate", "meaning": "도덕적인, 윤리의"},
-{"word": "moral", "meaning": "거스르다, 위반하다"},
-{"word": "amused", "meaning": "지적인, 지성의"},
-{"word": "intellectual", "meaning": "재미있어하는"},
-{"word": "minor", "meaning": "가정, 추정"},
-{"word": "longevity", "meaning": "감독, 보호"},
-{"word": "guardianship", "meaning": "수명, 장수"},
-{"word": "reverse", "meaning": "미치다, 퍼지다"},
-{"word": "extend", "meaning": "역으로 돌리다, 뒤집다, 뒤엎다"},
-{"word": "life expectancy", "meaning": "검열하다"},
-{"word": "censor", "meaning": "기대 수명"},
-{"word": "symptom", "meaning": "제기하다, 일으키다"},
-{"word": "pose", "meaning": "증상"},
-{"word": "prolong", "meaning": "표현하다, 나타내다"},
-{"word": "accomplish", "meaning": "국가, 중앙 정부"},
-{"word": "state", "meaning": "이루다, 성취하다"},
-{"word": "vanity", "meaning": "강조하다"},
-{"word": "highlight", "meaning": "허황된 것, 허영심"},
-{"word": "enormous", "meaning": "칭찬할 만한"},
-{"word": "praiseworthy", "meaning": "막대한"},
-{"word": "superficial", "meaning": "검열"},
-{"word": "censorship", "meaning": "피상적인"},
-{"word": "inefficient", "meaning": "직업, 직종"},
-{"word": "profession", "meaning": "비효율적인"},
-{"word": "glimpse", "meaning": "발화, 말"},
-{"word": "utterance", "meaning": "언뜻 봄, 흘끗 봄"},
-{"word": "abstract", "meaning": "연장하다"},
-{"word": "unprecedented", "meaning": "(~에게) 전하다, 말을 하다[걸다]"},
-{"word": "address", "meaning": "전례 없는"},
-{"word": "alert", "meaning": "(특정한 용어로) 칭하다, 일컫다"},
-{"word": "term", "meaning": "주의를 환기하다, 알리다"},
-{"word": "underway", "meaning": "호응하는, 즉각 반응하는"},
-{"word": "responsive", "meaning": "진행 중의"},
-{"word": "miraculous", "meaning": "협상"},
-{"word": "negotiation", "meaning": "기적적인, 놀라운"},
-{"word": "composition", "meaning": "예견, 예측"},
-{"word": "breakthrough", "meaning": "당연히, 필연적으로"},
-{"word": "of necessity", "meaning": "획기적 발전"},
-{"word": "trigger", "meaning": "의도"},
-{"word": "intention", "meaning": "유발하다, 촉발하다"},
-{"word": "guarantee", "meaning": "해독"},
-{"word": "decoding", "meaning": "(어떤 일의 발생을) 보장하다, 약속하다"},
-{"word": "humanitarian", "meaning": "숨기다"},
-{"word": "conceal", "meaning": "인도주의자"},
-{"word": "legal", "meaning": "역설적인"},
-{"word": "paradoxical", "meaning": "법률의"},
-{"word": "collaboration", "meaning": "~에 의지하다"},
-{"word": "turn to", "meaning": "협력, 합작"},
-{"word": "norm", "meaning": "계속 진행 중인"},
-{"word": "exploration", "meaning": "목적"},
-{"word": "symbol", "meaning": "문자 그대로, 그야말로"},
-{"word": "concept", "meaning": "원리"},
-{"word": "in that ~", "meaning": "생태상의, 환경의"},
-{"word": "implication", "meaning": "~을 구성하다"},
-{"word": "make up", "meaning": "함의, 영향"},
-{"word": "inform", "meaning": "~과 일치하다, ~에 상응하다"},
-{"word": "correspond to", "meaning": "영향을 미치다"},
-{"word": "investigate", "meaning": "~을 대신하다"},
-{"word": "stand in for", "meaning": "살피다, 조사하다"},
-{"word": "modification", "meaning": "상징하다"},
-{"word": "symbolize", "meaning": "변형, 수정"},
-{"word": "boundary", "meaning": "내재된"},
-{"word": "definitely", "meaning": "조작하다, 속이다"},
-{"word": "genetic", "meaning": "실제의"},
-{"word": "actual", "meaning": "유전의"},
-{"word": "make-up", "meaning": "표현"},
-{"word": "representation", "meaning": "구조, 구성"},
-{"word": "huge", "meaning": "생산 능력, 생산성"},
-{"word": "purchase", "meaning": "효율성"},
-{"word": "section", "meaning": "최적화하다"},
-{"word": "optimize", "meaning": "부분"},
-{"word": "crop up", "meaning": "소비"},
-{"word": "consumption", "meaning": "불쑥 나타나다, 발생하다"},
-{"word": "trendy", "meaning": "최적화"},
-{"word": "optimization", "meaning": "최신 유행의"},
-{"word": "subcontracted", "meaning": "관련된"},
-{"word": "involved", "meaning": "하청 계약된"},
-{"word": "offshoring", "meaning": "현저히"},
-{"word": "catch on", "meaning": "상응하는"},
-{"word": "corresponding", "meaning": "인기를 얻다, 유행하다"},
-{"word": "remarkable", "meaning": "기존의"},
-{"word": "enviable", "meaning": "~할 수 있다, ~할 여유가 있다"},
-{"word": "afford", "meaning": "부러운, 선망의 대상이 되는"},
-{"word": "conceive", "meaning": "비율"},
-{"word": "domestically", "meaning": "구할 수 있는 것[사람]"},
-{"word": "availabilities", "meaning": "국내에서"},
-{"word": "deep learning", "meaning": "나타내다"},
-{"word": "carry out", "meaning": "의도하지 않은"},
-{"word": "unintended", "meaning": "~을 수행하다"},
-{"word": "programmatic", "meaning": "역효과"},
-{"word": "countereffect", "meaning": "프로그램에 따른, 프로그램의"},
-{"word": "implications", "meaning": "반동 효과"},
-{"word": "rebound effect", "meaning": "결과, 영향"},
-{"word": "bias", "meaning": "전환하다"},
-{"word": "neural network", "meaning": "궁극적으로"},
-{"word": "ultimately", "meaning": "신경 회로망(인간의 뇌 신경 세포와 그 결합 구조를 본떠 만든 전자 회로)"},
-{"word": "positive", "meaning": "재현하다, 재생하다"},
-{"word": "label", "meaning": "의제"},
-{"word": "agenda", "meaning": "(꼬리표를 붙여) 분류하다"},
-{"word": "define", "meaning": "가정, 전제"},
-{"word": "reflection", "meaning": "상응하는 것, 등가물"},
-{"word": "counterpart", "meaning": "생각, 반영"},
-{"word": "voice", "meaning": "~에 귀를 기울이다, ~에 유의하다"},
-{"word": "attend to", "meaning": "말로 표현하다[나타내다]"},
-{"word": "perception", "meaning": "선택"},
-{"word": "selection", "meaning": "인식, 지각"},
-{"word": "reflect", "meaning": "바로, 정확히"},
-{"word": "fresh out of school", "meaning": "방송"},
-{"word": "broadcast", "meaning": "학교를 갓 졸업한"},
-{"word": "turn around", "meaning": "진술, 언급"},
-{"word": "statement", "meaning": "호전시키다, 회복시키다"},
-{"word": "initiative", "meaning": "상당한"},
-{"word": "significant", "meaning": "진취성, 결단력, 주도권"},
-{"word": "lose-lose", "meaning": "인식"},
-{"word": "school district", "meaning": "밝혀내다"},
-{"word": "uncover", "meaning": "학구, 학군"},
-{"word": "recognize", "meaning": "막대한, 심오한"},
-{"word": "profound", "meaning": "깨닫다, 인식하다"},
-{"word": "prior", "meaning": "정책"},
-{"word": "policy", "meaning": "전의, 앞의"},
-{"word": "access", "meaning": "~의 진실[정당성]을 의심하다"},
-{"word": "take action", "meaning": "~에 의존하는"},
-{"word": "reliant on", "meaning": "행동[조치]을 취하다"},
-{"word": "confidence", "meaning": "포함하다"},
-{"word": "contain", "meaning": "자신감, 확신"},
-{"word": "hinder", "meaning": "형식을 구성하다; 형식"},
-{"word": "format", "meaning": "가로막다, 방해하다"},
-{"word": "capability", "meaning": "앞으로 나아감, 향상"},
-{"word": "inhibit", "meaning": "보여 주다"},
-{"word": "impose", "meaning": "운영하다"},
-{"word": "operate", "meaning": "부과하다, 강요하다"},
-{"word": "advanced", "meaning": "한계, 경계"},
-{"word": "intuitive", "meaning": "기능(성)"},
-{"word": "functionality", "meaning": "직관적인"},
-{"word": "diagnosis", "meaning": "공개하다, 발표하다"},
-{"word": "publish", "meaning": "진단"},
-{"word": "lawsuit", "meaning": "명시적인"},
-{"word": "procedure", "meaning": "(소송 등을) 제기하다"},
-{"word": "file", "meaning": "절차"},
-{"word": "regarding", "meaning": "~을 정확히 밝히다"},
-{"word": "side effect", "meaning": "특허(권)"},
-{"word": "patent", "meaning": "뜻하지 않은 결과, 부작용"},
-{"word": "henceforth", "meaning": "알고리즘, 연산"},
-{"word": "algorithm", "meaning": "이후, 이제부터는"},
-{"word": "tag", "meaning": "협업"},
-{"word": "formalizable", "meaning": "능력, 역량"},
-{"word": "factor", "meaning": "~을 가능하게 하다"},
-{"word": "allow for", "meaning": "요인, 요소"},
-{"word": "inclination", "meaning": "영향을 주다, 작용하다"},
-{"word": "available", "meaning": "~에 대하여 거론하다"},
-{"word": "speak to", "meaning": "이용할 수 있는, 이용 가능한"},
-{"word": "likely", "meaning": "재검토하다, 확인하다"},
-{"word": "independent", "meaning": "성격, 개성"},
-{"word": "personality", "meaning": "독자적인, 독립된"},
-{"word": "committee", "meaning": "특성"},
-{"word": "trait", "meaning": "위원회"},
-{"word": "consent", "meaning": "자금[기금]을 지원하다, 자금[기금]을 대다"},
-{"word": "federal", "meaning": "자각, 인식"},
-{"word": "awareness", "meaning": "연방의, 연방제의"},
-{"word": "publicly", "meaning": "인터페이스, 접점"},
-{"word": "interface", "meaning": "공개적으로, 공공연하게"},
-{"word": "respondent", "meaning": "~을 희생하여"},
-{"word": "at the cost of", "meaning": "응답자"},
-{"word": "occupation", "meaning": "보장하다, 확실하게 하다"},
-{"word": "ensure", "meaning": "직업, 직종"},
-{"word": "mathematical", "meaning": "윤리적인"},
-{"word": "ethical", "meaning": "수학의"},
-{"word": "chemist", "meaning": "우려, 염려"},
-{"word": "peak", "meaning": "분류하다, 구분하다"},
-{"word": "classify", "meaning": "정점에 이르다, 최고조에 이르다"},
-{"word": "surpass", "meaning": "의도치 않게, 저도 모르게"},
-{"word": "share", "meaning": "연관성, 연상"},
-{"word": "transaction", "meaning": "음료"},
-{"word": "beverage", "meaning": "거래, 매매"},
-{"word": "conversely", "meaning": "우위를 차지하다"},
-{"word": "subsequently", "meaning": "넘다, 초과하다"},
-{"word": "forest area", "meaning": "비율, 부분"},
-{"word": "proportion", "meaning": "숲 면적"},
-{"word": "hectare", "meaning": "불러일으키다, 생기게 하다"},
-{"word": "provoke", "meaning": "헥타르(땅 면적의 단위)"},
-{"word": "account for", "meaning": "강화하다"},
-{"word": "reinforce", "meaning": "(부분·비율을) 차지하다"},
-{"word": "constitute", "meaning": "상쇄하다"},
-{"word": "counteract", "meaning": "구성하다"},
-{"word": "combine", "meaning": "행동[조치]을 취하다"},
-{"word": "estimate", "meaning": "냉소적인"},
-{"word": "cynical", "meaning": "추산[추정]하다"},
-{"word": "scale", "meaning": "~에 초점을 맞추다"},
-{"word": "bring ~into focus", "meaning": "비늘"},
-{"word": "squid", "meaning": "나쁜 늑대(문제를 일으키는 사물이나 사람)"},
-{"word": "(big) bad wolf", "meaning": "오징어"},
-{"word": "octopus", "meaning": "확신[납득]시키다"},
-{"word": "convince", "meaning": "문어"},
-{"word": "fossil", "meaning": "생각, 개념"},
-{"word": "fin", "meaning": "기억하다"},
-{"word": "recall", "meaning": "지느러미"},
-{"word": "crawl", "meaning": "상대방, 적수"},
-{"word": "rotate", "meaning": "필연적으로"},
-{"word": "inevitably", "meaning": "회전하다"},
-{"word": "belly", "meaning": "낙관적인"},
-{"word": "optimistic", "meaning": "배, 복부"},
-{"word": "electrical field", "meaning": "사고방식"},
-{"word": "mind-set", "meaning": "전기장"},
-{"word": "prey", "meaning": "최소화하다"},
-{"word": "minimize", "meaning": "먹잇감"},
-{"word": "location", "meaning": "부정적인"},
-{"word": "negative", "meaning": "찾기, 위치 알아내기"},
-{"word": "reproduction", "meaning": "인식하다"},
-{"word": "live young", "meaning": "긍정적인"},
-{"word": "diameter", "meaning": "확인"},
-{"word": "confirmation", "meaning": "지름"},
-{"word": "develop", "meaning": "~에 대한 반응으로"},
-{"word": "in response to", "meaning": "(알이 새끼로) 발육하다"},
-{"word": "reproductive tract", "meaning": "~과 관련된"},
-{"word": "associated with", "meaning": "생식관"},
-{"word": "achieve", "meaning": "~인 것처럼 보이는"},
-{"word": "commit oneself to", "meaning": "(겉으로) 보기에"},
-{"word": "qualify", "meaning": "결과"},
-{"word": "tailor", "meaning": "초탈, 초연, 분리"},
-{"word": "detachment", "meaning": "재단사"},
-{"word": "involved with", "meaning": "상기시켜 주는 것"},
-{"word": "reminder", "meaning": "~에 참여하는"},
-{"word": "psychoanalytical", "meaning": "공동 창조자"},
-{"word": "cocreator", "meaning": "정신 분석의"},
-{"word": "society", "meaning": "충족되지 않은"},
-{"word": "unfulfilled", "meaning": "학회"},
-{"word": "put ~ on hold", "meaning": "(존중하여) 실행하다, 따르다"},
-{"word": "honor", "meaning": "~을 잠시 중단하다
-~을 보류하다"},
-{"word": "pioneering", "meaning": "~에서 안도감을 가지다"},
-{"word": "place one’s security in", "meaning": "선구적인"},
-{"word": "authorities", "meaning": "내포하다"},
-{"word": "imply", "meaning": "당국"},
-{"word": "emigrate", "meaning": "개념"},
-{"word": "take up", "meaning": "의식"},
-{"word": "consciousness", "meaning": "~을 맡다"},
-{"word": "professorship", "meaning": "의도하다"},
-{"word": "illustrator", "meaning": "기제, 방법"},
-{"word": "mechanism", "meaning": "삽화가"},
-{"word": "influential", "meaning": "직업과 관련된. 직업적인"},
-{"word": "occupational", "meaning": "영향력 있는"},
-{"word": "artwork", "meaning": "~과 관련되다"},
-{"word": "be associated with", "meaning": "삽화"},
-{"word": "illustration", "meaning": "장애, 방해"},
-{"word": "disturbance", "meaning": "삽화"},
-{"word": "entry", "meaning": "금지하다"},
-{"word": "ban", "meaning": "출품작, 참가 작품"},
-{"word": "medium", "meaning": "임상의"},
-{"word": "clinical", "meaning": "(제작) 재료, 도구"},
-{"word": "contestant", "meaning": "피할 수 없는, 불가피한"},
-{"word": "unavoidable", "meaning": "참가자"},
-{"word": "retain", "meaning": "보통, 전형적으로"},
-{"word": "typically", "meaning": "보유하다"},
-{"word": "publication", "meaning": "(그로써) ~하는"},
-{"word": "whereby", "meaning": "출판"},
-{"word": "vending machine", "meaning": "모의실험[훈련]하다"},
-{"word": "simulate", "meaning": "자동판매기"},
-{"word": "interactive", "meaning": "대안적인, 대체의"},
-{"word": "feed", "meaning": "회복"},
-{"word": "recovery", "meaning": "우유[밥]를 먹이다, 먹이를 주다"},
-{"word": "nurturing", "meaning": "집단적인"},
-{"word": "recommend", "meaning": "임명하다, 정하다"},
-{"word": "appoint", "meaning": "권장하다, 추천하다"},
-{"word": "outfit", "meaning": "대사, 특사"},
-{"word": "ambassador", "meaning": "옷, 복장"},
-{"word": "instruction", "meaning": "자극하다, 활발하게 하다"},
-{"word": "nap", "meaning": "~에서 비롯되다, 유래하다"},
-{"word": "derive from", "meaning": "낮잠을 자다, 잠깐 자다"},
-{"word": "rock", "meaning": "가치, 장점"},
-{"word": "merit", "meaning": "(전후좌우로) 흔들다"},
-{"word": "legitimate", "meaning": "야기하다, 제기하다"},
-{"word": "safety hazard", "meaning": "냉소적인, 부정적인"},
-{"word": "intend for", "meaning": "사회학자"},
-{"word": "sociologist", "meaning": "~을 위해 만들다"},
-{"word": "renewal", "meaning": "~에 의존하다"},
-{"word": "rely on", "meaning": "부활, 갱신"},
-{"word": "ceremony", "meaning": "행위 주체"},
-{"word": "agency", "meaning": "의식, 식"},
-{"word": "root crop", "meaning": "미묘하게"},
-{"word": "subtly", "meaning": "뿌리 작물"},
-{"word": "be in attendance", "meaning": "결과"},
-{"word": "in the face of", "meaning": "뻗다"},
-{"word": "forehead", "meaning": "행동주의, 활동주의"},
-{"word": "activism", "meaning": "이마"},
-{"word": "immigrant", "meaning": "규범"},
-{"word": "ritual", "meaning": "교차하다"},
-{"word": "intersect", "meaning": "의식(의)"},
-{"word": "priest", "meaning": "결국, 그 결과"},
-{"word": "lay", "meaning": "특성, 차원"},
-{"word": "dimension", "meaning": "평신도의"},
-{"word": "enlightenment", "meaning": "~에 달려 있다"},
-{"word": "rest with", "meaning": "깨달음"},
-{"word": "paste", "meaning": "선호"},
-{"word": "ash", "meaning": "결정하다"},
-{"word": "determine", "meaning": "재"},
-{"word": "clay", "meaning": "돈, 페니(영국의 화폐 단위)"},
-{"word": "penny", "meaning": "점토"},
-{"word": "sect", "meaning": "투표, 표"},
-{"word": "vote", "meaning": "종파, 분파"},
-{"word": "horizontal", "meaning": "~을 찬성하는, ~을 찬성하여"},
-{"word": "in favour of", "meaning": "수평의"},
-{"word": "bisect", "meaning": "거부, 거절"},
-{"word": "refusal", "meaning": "이등분하다"},
-{"word": "vertical", "meaning": "유지되다, ~을 계속하다"},
-{"word": "carry on", "meaning": "수직의"},
-{"word": "jewelry", "meaning": "수익, 이윤"},
-{"word": "powder", "meaning": "과도한"},
-{"word": "come up with", "meaning": "끌어들이다, 유도하다"},
-{"word": "attract", "meaning": "~을 떠올리다, ~을 생각해 내다"},
-{"word": "expand", "meaning": "높이 평가하다"},
-{"word": "log", "meaning": "충분히, 적당히"},
-{"word": "adequately", "meaning": "일지에 기록하다"},
-{"word": "submit", "meaning": "상품"},
-{"word": "commodity", "meaning": "제출하다"},
-{"word": "rental", "meaning": "적당한, 적절한"},
-{"word": "proper", "meaning": "대여"},
-{"word": "private", "meaning": "기꺼이 하려는 마음, 용의"},
-{"word": "readiness", "meaning": "사적인, 개인 전용의"},
-{"word": "organization", "meaning": "기꺼이 ~하다"},
-{"word": "be willing to do", "meaning": "협회, 조직"},
-{"word": "preserve", "meaning": "접속"},
-{"word": "reservation", "meaning": "부족, 결핍"},
-{"word": "scarcity", "meaning": "예약"},
-{"word": "fee", "meaning": "부족한, 드문"},
-{"word": "scarce", "meaning": "요금"},
-{"word": "in advance", "meaning": "법률(상)의, 법률에 관한"},
-{"word": "accept", "meaning": "사회화"},
-{"word": "socialization", "meaning": "받아들이다"},
-{"word": "on a first-come, first-served basis", "meaning": "의무(가 있음)"},
-{"word": "obligation", "meaning": "선착순으로"},
-{"word": "register", "meaning": "권위, 권한"},
-{"word": "authority", "meaning": "등록하다"},
-{"word": "cancellation", "meaning": "사회의"},
-{"word": "notice", "meaning": "규범, 규약"},
-{"word": "code", "meaning": "통보"},
-{"word": "no later than", "meaning": "법으로 금지하다, 불법화하다"},
-{"word": "criminalize", "meaning": "늦어도 ~까지는"},
-{"word": "immoral", "meaning": "~보다 앞서"},
-{"word": "refund", "meaning": "반드시, 필연적으로"},
-{"word": "necessarily", "meaning": "환불"},
-{"word": "geared toward", "meaning": "금지하다, 금하다"},
-{"word": "prohibit", "meaning": "~에 맞도록 구성된"},
-{"word": "remotely", "meaning": "관념적으로, 추상적으로"},
-{"word": "abstractly", "meaning": "원격으로"},
-{"word": "registration", "meaning": "규제, 규정"},
-{"word": "sign up for", "meaning": "개입하다, 끼어들다, 가로막다"},
-{"word": "intervene", "meaning": "~에 등록하다"},
-{"word": "repetition", "meaning": "그 자체로"},
-{"word": "in and of itself", "meaning": "반복"},
-{"word": "acquire", "meaning": "보상"},
-{"word": "effectively", "meaning": "노력하다, 힘쓰다"},
-{"word": "strive", "meaning": "효과적으로"},
-{"word": "relate", "meaning": "의식, 인식"},
-{"word": "comparison", "meaning": "과식하다"},
-{"word": "overeat", "meaning": "비교"},
-{"word": "microbial", "meaning": "결정하다"},
-{"word": "vertically", "meaning": "특징"},
-{"word": "newborn", "meaning": "현상"},
-{"word": "primary", "meaning": "유기체, 생물"},
-{"word": "prevention", "meaning": "다양한"},
-{"word": "diverse", "meaning": "예방"},
-{"word": "occur", "meaning": "아기, 유아"},
-{"word": "infant", "meaning": "발생하다"},
-{"word": "secondary", "meaning": "(짜서) 갖추다, 조립하다"},
-{"word": "assemble", "meaning": "2차의, 부차적인"},
-{"word": "emphasize", "meaning": "유산"},
-{"word": "legacy", "meaning": "강조하다"},
-{"word": "antibiotic", "meaning": "발견하다, 찾아내다"},
-{"word": "condition", "meaning": "멸종된"},
-{"word": "detect", "meaning": "촉구하다, 유도하다"},
-{"word": "treatment", "meaning": "보존하다"},
-{"word": "biobank", "meaning": "결과"},
-{"word": "curative", "meaning": "상하다"},
-{"word": "spoil", "meaning": "치료의"},
-{"word": "plentiful", "meaning": "포장(지)"},
-{"word": "package", "meaning": "많은"},
-{"word": "prescribe", "meaning": "나타내다"},
-{"word": "manage", "meaning": "오래가다, 지속되다"},
-{"word": "last", "meaning": "관리하다"},
-{"word": "calculate", "meaning": "상당한"},
-{"word": "remedy", "meaning": "저장 수명"},
-{"word": "shelf life", "meaning": "수습하다, 바로잡다"},
-{"word": "compensate", "meaning": "보관, 저장(소)"},
-{"word": "storage", "meaning": "보상하다"},
-{"word": "in proportion to", "meaning": "부패, 손상"},
-{"word": "spoilage", "meaning": "~에 비례하여"},
-{"word": "damages", "meaning": "너무 빠른, 성급한"},
-{"word": "premature", "meaning": "손해액"},
-{"word": "correction", "meaning": "영양(학)"},
-{"word": "nutrition", "meaning": "수정, 교정"},
-{"word": "endeavor", "meaning": "의도치 않은"},
-{"word": "adoption", "meaning": "실험실"},
-{"word": "laboratory", "meaning": "채택"},
-{"word": "penalize", "meaning": "~을 목표로 하다"},
-{"word": "be aimed at", "meaning": "불리하게 만들다, 처벌하다"},
-{"word": "hypothetical", "meaning": "가축"},
-{"word": "livestock", "meaning": "가상의"},
-{"word": "degrade", "meaning": "밀접하게, 상세히"},
-{"word": "intimately", "meaning": "타락시키다, 저하시키다"},
-{"word": "weaken", "meaning": "~과 연관되어 있다"},
-{"word": "in good faith", "meaning": "~에 관하여"},
-{"word": "architectural", "meaning": "필연적으로, 반드시"},
-{"word": "billing rate", "meaning": "~과 부딪히다, ~에 직면하다"},
-{"word": "bump up against", "meaning": "청구 요금"},
-{"word": "agreement", "meaning": "고의 아니게, 무심코"},
-{"word": "charge", "meaning": "~으로 들어가다"},
-{"word": "insert oneself to", "meaning": "(비용을) 청구하다"},
-{"word": "terms", "meaning": "나타남, 징후"},
-{"word": "manifestation", "meaning": "요금, 비용, (지불·요금 등의) 조건"},
-{"word": "checkbook", "meaning": "이상적으로, 완벽하게"},
-{"word": "ideally", "meaning": "수표책"},
-{"word": "suited to", "meaning": "(사람이) 무능한, 비효율적인"},
-{"word": "bring ~ to the table", "meaning": "해결책, 구제책"},
-{"word": "negotiator", "meaning": "(가능성·희망을) 보이다, 드러내다"},
-{"word": "hold out", "meaning": "협상가"},
-{"word": "overestimate", "meaning": "~과 관련이 있다"},
-{"word": "tremendous", "meaning": "편향, 성향"},
-{"word": "facility", "meaning": "인식, 지각"},
-{"word": "normally", "meaning": "~을 대표하여"},
-{"word": "on behalf of", "meaning": "보통의 경우, 흔히"},
-{"word": "pay attention to", "meaning": "주민, 거주자"},
-{"word": "resident", "meaning": "~에 주목하다"},
-{"word": "be conscious of", "meaning": "설치하다"},
-{"word": "install", "meaning": "~을 의식하다, ~을 알고 있다"},
-{"word": "analogy", "meaning": "임시의"},
-{"word": "prehistoric", "meaning": "조치"},
-{"word": "meteorite", "meaning": "타당성, 논리"},
-{"word": "logic", "meaning": "운석"},
-{"word": "accepted", "meaning": "이행하다, 실행하다"},
-{"word": "implement", "meaning": "일반적으로 인정된, 용인된"},
-{"word": "populate", "meaning": "해결하다"},
-{"word": "resolve", "meaning": "거주하다, 살다"},
-{"word": "manufacture", "meaning": "걷잡을 수 없이"},
-{"word": "uncontrollably", "meaning": "제작하다, 만들다"},
-{"word": "construct", "meaning": "~에 대해"},
-{"word": "realization", "meaning": "~에 응답[대응]하다"},
-{"word": "respond to", "meaning": "깨달음, 인식"},
-{"word": "in distinction to", "meaning": "최소한의"},
-{"word": "minimal", "meaning": "~과 구별하여"},
-{"word": "be equated with", "meaning": "현재의"},
-{"word": "neurological", "meaning": "추구"},
-{"word": "pursuit", "meaning": "신경학의, 신경의"},
-{"word": "transplantation", "meaning": "위치상의"},
-{"word": "positional", "meaning": "이식"},
-{"word": "tissue", "meaning": "상대적인"},
-{"word": "relative", "meaning": "조직"},
-{"word": "ranking", "meaning": "~으로 구성되다"},
-{"word": "regenerate", "meaning": "역설적으로"},
-{"word": "paradoxically", "meaning": "재생하다"},
-{"word": "relatively", "meaning": "골대"},
-{"word": "goalpost", "meaning": "비교적"},
-{"word": "sunny", "meaning": "방법, 절차, 수술"},
-{"word": "explore", "meaning": "~에 대한 공을 차지하다"},
-{"word": "take credit for", "meaning": "탐구하다"},
-{"word": "seek", "meaning": "치료법"},
-{"word": "stroke", "meaning": "~을 … 탓으로 돌리다"},
-{"word": "attribute ~ to …", "meaning": "뇌졸중"},
-{"word": "spectacular", "meaning": "중요한"},
-{"word": "circuit", "meaning": "절정"},
-{"word": "oppose", "meaning": "십중팔구, 아마도"},
-{"word": "in all probability", "meaning": "반대하다"},
-{"word": "religious", "meaning": "통계학자"},
-{"word": "statistician", "meaning": "종교적인"},
-{"word": "philosophical", "meaning": "평균"},
-{"word": "mean", "meaning": "철학적인"},
-{"word": "natural selection", "meaning": "복수, 보복"},
-{"word": "revenge", "meaning": "자연 선택"},
-{"word": "population density", "meaning": "주로, 본래"},
-{"word": "immense", "meaning": "우선순위를 결정하다"},
-{"word": "prioritize", "meaning": "엄청난, 거대한"},
-{"word": "utilize", "meaning": "진화하다"},
-{"word": "artificial", "meaning": "고형 폐기물"},
-{"word": "solid waste", "meaning": "인위적인, 인위의"},
-{"word": "civilization", "meaning": "대안, 다른 방도"},
-{"word": "by now", "meaning": "내림차순"},
-{"word": "descending order", "meaning": "이제는 이미"},
-{"word": "essentially", "meaning": "폐기물의 에너지화"},
-{"word": "waste to energy", "meaning": "기본적으로, 본질적으로"},
-{"word": "trivial", "meaning": "매립"},
-{"word": "landfilling", "meaning": "변변치 않은, 사소한"},
-{"word": "unsustainable", "meaning": "인정하다, 인식하다"},
-{"word": "crash", "meaning": "~과 관련된"},
-{"word": "soft landing", "meaning": "남용, 과도한 사용"},
-{"word": "overuse", "meaning": "연착륙"},
-{"word": "utopian", "meaning": "적절한"},
-{"word": "restriction", "meaning": "주안점, 강조"},
-{"word": "emphasis", "meaning": "제약, 제한"},
-{"word": "go along with", "meaning": "주고받기, 교환"},
-{"word": "interchange", "meaning": "~에 동조하다, 찬성하다"},
-{"word": "the Depression", "meaning": "추론하다, 암시하다"},
-{"word": "infer", "meaning": "대공황기, 세계 대공황"},
-{"word": "federal government", "meaning": "규범, 규준"},
-{"word": "explode", "meaning": "자기표현"},
-{"word": "self-presentation", "meaning": "폭발적으로 증가하다"},
-{"word": "wage and price control", "meaning": "비교적"},
-{"word": "distinctive", "meaning": "확대하다, 확장하다"},
-{"word": "formula", "meaning": "면, 양상"},
-{"word": "aspect", "meaning": "방식, 공식"},
-{"word": "technoscientific", "meaning": "납득시키다, 수긍하게 하다"},
-{"word": "prescription drug", "meaning": "오해, 착각, 환상"},
-{"word": "illusion", "meaning": "처방 약"},
-{"word": "govern", "meaning": "부각하다, 강조하다"},
-{"word": "applied", "meaning": "인공물, 인공 산물"},
-{"word": "contemporary", "meaning": "밝히다"},
-{"word": "decidedly", "meaning": "개념"},
-{"word": "theory", "meaning": "노력, 시도"},
-{"word": "motor", "meaning": "장려하다, 자극하다"},
-{"word": "category", "meaning": "기계 부품들, 기계(류)"},
-{"word": "machinery", "meaning": "범주"},
-{"word": "efficacy", "meaning": "조종하다"},
-{"word": "arouse", "meaning": "(흔히 옥외 활동에 쓰이는 간단한) 도구[기구]"},
-{"word": "considerable", "meaning": "(용도·흥미 등의) 범위, 시야"},
-{"word": "horizon", "meaning": "상당한"},
-{"word": "criticism", "meaning": "다수의"},
-{"word": "a host of", "meaning": "비판"},
-{"word": "demonstrate", "meaning": "더 높은 가치를 부여하다, 특권을 주다"},
-{"word": "privilege", "meaning": "입증하다"},
-{"word": "effectiveness", "meaning": "개혁가"},
-{"word": "reformer", "meaning": "효과"},
-{"word": "critic", "meaning": "(정치·사회 운동) 운동가, 활동가"},
-{"word": "activist", "meaning": "비판하는 사람, 비평가"},
-{"word": "controllable", "meaning": "이어지는, 차후의"},
-{"word": "subsequent", "meaning": "통제할 수 있는"},
-{"word": "variable", "meaning": "옹호자"},
-{"word": "unity", "meaning": "자금을 대다"},
-{"word": "outbreak", "meaning": "홍보하다"},
-{"word": "establish", "meaning": "개척하다, 주도하다"},
-{"word": "pioneer", "meaning": "확립하다, 수립하다"},
-{"word": "regional", "meaning": "공동 창립자"},
-{"word": "co-founder", "meaning": "지역성이 있는, 지역에 특유한, 지역적인"},
-{"word": "executive", "meaning": "위원회"},
-{"word": "separation", "meaning": "증진하다"},
-{"word": "breed", "meaning": "제안"},
-{"word": "proposal", "meaning": "낳다, 만들어 내다"},
-{"word": "dialect", "meaning": "기관, 당국, 관계자"},
-{"word": "reputation", "meaning": "경계(선)"},
-{"word": "border", "meaning": "특허(권)"},
-{"word": "a stone’s throw", "meaning": "승인하다, 부여하다"},
-{"word": "socialize", "meaning": "결정하다"},
-{"word": "globally", "meaning": "원격 교육"},
-{"word": "distance learning", "meaning": "포괄적으로, 전반적으로"},
-{"word": "bathing costume", "meaning": "수업 (시간)"},
-{"word": "session", "meaning": "수영복"},
-{"word": "first and foremost", "meaning": "관계를 맺다"},
-{"word": "unsuitable", "meaning": "교수진"},
-{"word": "faculty", "meaning": "부적절한"},
-{"word": "cognitively", "meaning": "이론적인, 학술적인"},
-{"word": "academic", "meaning": "인지적으로, 지각력 있게"},
-{"word": "take advantage of", "meaning": "쌍방향의, 상호 작용을 하는"},
-{"word": "insight", "meaning": "상담"},
-{"word": "consultation", "meaning": "통찰력, 이해"},
-{"word": "locational", "meaning": "공개 행사"},
-{"word": "showcase", "meaning": "장소의, 입지의"},
-{"word": "reference", "meaning": "등록"},
-{"word": "cancel", "meaning": "도덕적인"},
-{"word": "component", "meaning": "무료로"},
-{"word": "free of charge", "meaning": "요소, 성분"},
-{"word": "elegance", "meaning": "줄넘기"},
-{"word": "jump rope", "meaning": "우아함, 고상"},
-{"word": "festive", "meaning": "발표하다"},
-{"word": "announce", "meaning": "축제다운, 축제의"},
-{"word": "flexible", "meaning": "제출하다"},
-{"word": "uphold", "meaning": "출품작"},
-{"word": "bourgeois", "meaning": "상품권"},
-{"word": "gift certificate", "meaning": "중산층의"},
-{"word": "theoretical", "meaning": "유지하다, 가지다"},
-{"word": "centrally", "meaning": "관점"},
-{"word": "existential", "meaning": "부차적인, 이차적인"},
-{"word": "be predicated (up)on", "meaning": "취약점"},
-{"word": "vulnerability", "meaning": "~에 근거하다"},
-{"word": "transformation", "meaning": "가정"},
-{"word": "sacred", "meaning": "근본적인, 본원적인"},
-{"word": "cornerstone", "meaning": "진정성"},
-{"word": "authenticity", "meaning": "초석, 토대"},
-{"word": "be derived from", "meaning": "도전, 문제"},
-{"word": "invalidate", "meaning": "불편함, 불안"},
-{"word": "discomfort", "meaning": "틀렸음을 입증하다, 무효로 하다"},
-{"word": "dominance hierarchy", "meaning": "거래하다, 교환하다"},
-{"word": "trade", "meaning": "지배 위계, 순위제"},
-{"word": "formalized", "meaning": "설득하다"},
-{"word": "persuade", "meaning": "형식화된"},
-{"word": "codified", "meaning": "(의견 등의) 일치"},
-{"word": "coincidence", "meaning": "성문화된, 법전으로 편찬된"},
-{"word": "dissolve", "meaning": "극도로, 극히"},
-{"word": "extremely", "meaning": "소실되다, 없어지다"},
-{"word": "self-righteous", "meaning": "거래, 매매"},
-{"word": "superiority", "meaning": "억제하다"},
-{"word": "hold down", "meaning": "우월"},
-{"word": "intelligentsia", "meaning": "반대, 항의"},
-{"word": "opposition", "meaning": "지식 계급"},
-{"word": "attach", "meaning": "지식인"},
-{"word": "trace ~ to …", "meaning": "연관성"},
-{"word": "connection", "meaning": "~을 …까지 추적하여 찾아내다[밝혀 내다]"},
-{"word": "merchant", "meaning": "이해가 되다, 타당하다"},
-{"word": "make sense", "meaning": "상인"},
-{"word": "shoemaker", "meaning": "연관 짓다, 연상하다"},
-{"word": "associate", "meaning": "제화업자"},
-{"word": "worldly", "meaning": "특별한 의미가 있는, 중요한"},
-{"word": "scholarly", "meaning": "특히, 분명히"},
-{"word": "specifically", "meaning": "학문하는, 학자의"},
-{"word": "injustice", "meaning": "개인적인, 주관적인"},
-{"word": "subjective", "meaning": "부당함"},
-{"word": "interpretation", "meaning": "바로잡다"},
-{"word": "trick", "meaning": "주로"},
-{"word": "theft", "meaning": "퍼뜨리다, 배포하다"},
-{"word": "distribute", "meaning": "도둑질"},
-{"word": "ambiguity", "meaning": "규범"},
-{"word": "hold ~ in check", "meaning": "사회학"},
-{"word": "sociology", "meaning": "~을 억제하다"},
-{"word": "temper", "meaning": "(증거는 없지만 확신을 가지고) 가정하다, 추정하다"},
-{"word": "presume", "meaning": "화, 노여움"},
-{"word": "assault", "meaning": "제도, 관례"},
-{"word": "aggressively", "meaning": "객관적인"},
-{"word": "impartial", "meaning": "억제하다"},
-{"word": "continual", "meaning": "관점"},
-{"word": "a stream of", "meaning": "상식적인"},
-{"word": "common-sense", "meaning": "(연속되는) 일련의"},
-{"word": "more often than not", "meaning": "근거가 없는, 효력이 없는"},
-{"word": "invalid", "meaning": "대개, 흔히"},
-{"word": "aggression", "meaning": "모호한"},
-{"word": "ambiguous", "meaning": "공격"},
-{"word": "portray", "meaning": "만족스러운"},
-{"word": "satisfactory", "meaning": "묘사하다"},
-{"word": "employ", "meaning": "바꾸다, 변경하다"},
-{"word": "inhibition", "meaning": "~에 따라"},
-{"word": "depending upon", "meaning": "억제, 금지"},
-{"word": "take place", "meaning": "점차적인"},
-{"word": "wear down", "meaning": "가정하다"},
-{"word": "suppose", "meaning": "약화되다, 마모되다"},
-{"word": "ecologist", "meaning": "투자"},
-{"word": "investment", "meaning": "생태학자"},
-{"word": "megaherbivore", "meaning": "주식 시장"},
-{"word": "stock market", "meaning": "초대형 초식 동물"},
-{"word": "rhino (= rhinoceros)", "meaning": "끔찍하게"},
-{"word": "disastrously", "meaning": "코뿔소"},
-{"word": "hippo (= hippopotamus)", "meaning": "뛰다, 도약하다"},
-{"word": "leap", "meaning": "하마"},
-{"word": "massive", "meaning": "주의"},
-{"word": "caution", "meaning": "거대한"},
-{"word": "immune to", "meaning": "단언하다, 선언하다"},
-{"word": "declare", "meaning": "~의 영향을 받지 않는"},
-{"word": "predator", "meaning": "망설이다, 머뭇거리다"},
-{"word": "hesitate", "meaning": "포식자"},
-{"word": "vulnerable to", "meaning": "아무 가치가 없는"},
-{"word": "of no value", "meaning": "~에 취약한"},
-{"word": "slow-breeding", "meaning": "틀, 체제, 뼈대"},
-{"word": "be doomed", "meaning": "~을 상세히 설명하다"},
-{"word": "elaborate on", "meaning": "불행한 운명[결말]을 맞다"},
-{"word": "mastodon", "meaning": "합리적인"},
-{"word": "rational", "meaning": "마스토돈(코끼리 비슷한 동물)"},
-{"word": "sustain", "meaning": "일면, 차원"},
-{"word": "bag", "meaning": "대안"},
-{"word": "let up", "meaning": "가정"},
-{"word": "optimal", "meaning": "관찰"},
-{"word": "purely", "meaning": "요인"},
-{"word": "inappropriate", "meaning": "결정하다"},
-{"word": "stationary", "meaning": "위치시키다"},
-{"word": "situate", "meaning": "정지된"},
-{"word": "apart from", "meaning": "전시하다"},
-{"word": "exhibit", "meaning": "~은 제외하고"},
-{"word": "turn on one’s axis", "meaning": "차이, 변화"},
-{"word": "variation", "meaning": "자전하다, 축을 중심으로 돌다"},
-{"word": "on a daily basis", "meaning": "전시, 전시회"},
-{"word": "exhibition", "meaning": "매일"},
-{"word": "interpret", "meaning": "마련해 두다, 따로 떼어 두다"},
-{"word": "reserve", "meaning": "해석하다, 이해하다, 설명하다"},
-{"word": "in the light of", "meaning": "전형적인, 대표적인"},
-{"word": "celebrity", "meaning": "적합하지 않은, 충분하지 않은"},
-{"word": "self-esteem", "meaning": "접근 방법[수단], 접촉 기회"},
-{"word": "cover", "meaning": "상당한, 적지 않은"},
-{"word": "route", "meaning": "연애의, 로맨틱한"},
-{"word": "romantic", "meaning": "길, 방법"},
-{"word": "undeniable", "meaning": "비현실성"},
-{"word": "unreality", "meaning": "부인하기 어려운, 명백한"},
-{"word": "immaturity", "meaning": "우여곡절"},
-{"word": "twists and turns", "meaning": "미성숙, 미발달"},
-{"word": "resolution", "meaning": "보여 주다, 표현하다"},
-{"word": "project", "meaning": "해답, 결의"},
-{"word": "verbally", "meaning": "다가가기 쉬운, 접근 가능한"},
-{"word": "accessible", "meaning": "말로, 구두로"},
-{"word": "familiarity", "meaning": "그렇게 함으로써, 그것에 의하여"},
-{"word": "pro-", "meaning": "소송을 제기하다"},
-{"word": "set the stage for", "meaning": "침해, 침범"},
-{"word": "invasion", "meaning": "~을 위한 장(場)을 마련하다"},
-{"word": "commercially", "meaning": "매력 있는"},
-{"word": "entertaining", "meaning": "허락, 허가"},
-{"word": "permission", "meaning": "재미있는"},
-{"word": "tightly", "meaning": "상호적인, 상호 간의"},
-{"word": "mutual", "meaning": "간결하게, 극히 압축하여"},
-{"word": "be at home in", "meaning": "대리인, 대표자"},
-{"word": "representative", "meaning": "~에 잘 맞아떨어지다
-~에 편안하게 자리하다"},
-{"word": "sermon", "meaning": "충성심, 성실"},
-{"word": "loyalty", "meaning": "설교"},
-{"word": "monologue", "meaning": "매력이 넘치는, 화려한"},
-{"word": "glamorous", "meaning": "독백"},
-{"word": "feature story", "meaning": "생성, 발생"},
-{"word": "generation", "meaning": "특집 기사, 주요한 읽을거리"},
-{"word": "lead", "meaning": "구조화하다"},
-{"word": "structure", "meaning": "(신문 기사의) 첫머리"},
-{"word": "commercialize", "meaning": "예화"},
-{"word": "scattered", "meaning": "확실한, 분명한"},
-{"word": "obvious", "meaning": "흩어져 있는"},
-{"word": "manuscript", "meaning": "일상적인, 정기적인"},
-{"word": "insert", "meaning": "언론사"},
-{"word": "news organization", "meaning": "집어넣다, 삽입하다"},
-{"word": "embrace", "meaning": "통계 자료, 통계, 통계학"},
-{"word": "perceived", "meaning": "부재, 결핍"},
-{"word": "absence", "meaning": "인식된, 감지된, 지각된"},
-{"word": "postindustrial", "meaning": "적절한, 타당한"},
-{"word": "infrastructure", "meaning": "장벽, 한계"},
-{"word": "barrier", "meaning": "기반 시설"},
-{"word": "manipulation", "meaning": "출현, 도래"},
-{"word": "advent", "meaning": "조작"},
-{"word": "determinism", "meaning": "역설적인"},
-{"word": "displacement", "meaning": "보여 주는 실례"},
-{"word": "demonstration", "meaning": "대체, 치환, 이동"},
-{"word": "concise", "meaning": "현상"},
-{"word": "inevitable", "meaning": "구체적으로 말해"},
-{"word": "visualize", "meaning": "수직의"},
-{"word": "exploit", "meaning": "인식하다"},
-{"word": "consume", "meaning": "시간의"},
-{"word": "temporal", "meaning": "소비하다"},
-{"word": "extensively", "meaning": "인지의"},
-{"word": "cognitive", "meaning": "광범위하게"},
-{"word": "translate into", "meaning": "아마 틀림없이"},
-{"word": "revolution", "meaning": "수행, 성과"},
-{"word": "performance", "meaning": "혁명"},
-{"word": "fluid", "meaning": "용어"},
-{"word": "extra-cellular", "meaning": "수평의"},
-{"word": "blood sugar level", "meaning": "차원"},
-{"word": "liver", "meaning": "~과 관련된"},
-{"word": "provision", "meaning": "지속 가능한 관광"},
-{"word": "sustainable tourism", "meaning": "공급"},
-{"word": "convey", "meaning": "자극하다"},
-{"word": "functional", "meaning": "억제하다"},
-{"word": "adjust", "meaning": "사회의"},
-{"word": "concentration", "meaning": "의무, 임무"},
-{"word": "go about", "meaning": "유지하다"},
-{"word": "effortlessly", "meaning": "물리적인"},
-{"word": "physical", "meaning": "쉽게, 노력하지 않고"},
-{"word": "apparent", "meaning": "보존된"},
-{"word": "preserved", "meaning": "외견상의, 겉보기에는"},
-{"word": "simplicity", "meaning": "인정"},
-{"word": "acknowledgment", "meaning": "간단함, 평이함"},
-{"word": "acceptance", "meaning": "착각, 오해"},
-{"word": "vision", "meaning": "개념"},
-{"word": "ecotourism", "meaning": "복잡한"},
-{"word": "conscious mind", "meaning": "서로 바꿔서, 서로 교체해서"},
-{"word": "interchangeably", "meaning": "의식"},
-{"word": "spare", "meaning": "뉘앙스, 미묘한 차이"},
-{"word": "nuance", "meaning": "(~에게 …을) 면해 주다, 당하지 않게 하다"},
-{"word": "harvest", "meaning": "중요한"},
-{"word": "as such", "meaning": "용기, 그릇"},
-{"word": "intrinsic", "meaning": "해석, 이해"},
-{"word": "concern oneself with", "meaning": "관점, 국면, 차원"},
-{"word": "object", "meaning": "인정, 인식"},
-{"word": "recognition", "meaning": "물건, 물체"},
-{"word": "rocket science", "meaning": "바람직한"},
-{"word": "desirable", "meaning": "고도의 지능이 요구되는 일, 이해하기 어려운 것"},
-{"word": "hard cash", "meaning": "평가하다"},
-{"word": "in detail", "meaning": "진행자"},
-{"word": "host", "meaning": "자세히"},
-{"word": "revisit", "meaning": "녹화하다, 녹음하다"},
-{"word": "tape", "meaning": "다시 논의하다"},
-{"word": "subject", "meaning": "구경거리"},
-{"word": "put ~ together", "meaning": "낮추다"},
-{"word": "rating", "meaning": "~을 가리다"},
-{"word": "cover up", "meaning": "평점, 등급"},
-{"word": "perform", "meaning": "방송 중인"},
-{"word": "on the air", "meaning": "수행하다"},
-{"word": "sketch out", "meaning": "무대 뒤의"},
-{"word": "behind-the-scenes", "meaning": "~을 대략 그리다, ~을 스케치하다"},
-{"word": "striking", "meaning": "(라디오·텔레비전 연속 프로의) 한 회 방송분"},
-{"word": "episode", "meaning": "놀라운"},
-{"word": "completion", "meaning": "현상"},
-{"word": "explanatory", "meaning": "찬장"},
-{"word": "cupboard", "meaning": "설명의"},
-{"word": "disability", "meaning": "~을 (지켜보며) 기다리다"},
-{"word": "watch for", "meaning": "장애"},
-{"word": "point out", "meaning": "구성된"},
-{"word": "constructed", "meaning": "(주목하라고) ~을 지적[언급]하다"},
-{"word": "commercial television", "meaning": "사용하다"},
-{"word": "constantly", "meaning": "상표명"},
-{"word": "trade name", "meaning": "끊임없이"},
-{"word": "sequence", "meaning": "참신함, 새로움"},
-{"word": "novelty", "meaning": "(연속된) 한 장면[화면]"},
-{"word": "sensory", "meaning": "대체의, 대안의; 대안"},
-{"word": "maximize", "meaning": "전통적인, 관례를 따르는"},
-{"word": "conventional", "meaning": "극대화하다"},
-{"word": "orienting response", "meaning": "수많은"},
-{"word": "numerous", "meaning": "지향 반응(유기체가 어떤 자극에 주의 를 기울이는 일종의 각성 반응)"},
-{"word": "perceptual", "meaning": "채택하다"},
-{"word": "adopt", "meaning": "지각(력)의"},
-{"word": "shortening", "meaning": "나타내다, 암시하다"},
-{"word": "attention span", "meaning": "특히"},
-{"word": "novel", "meaning": "어쩌면"},
-{"word": "potentially", "meaning": "신기한, 새로운"},
-{"word": "give in to", "meaning": "특징"},
-{"word": "passive", "meaning": "강화하다"},
-{"word": "intensify", "meaning": "수동적인"},
-{"word": "analyze", "meaning": "성찰"},
-{"word": "evenly", "meaning": "탐조등"},
-{"word": "searchlight", "meaning": "균등하게, 고르게"},
-{"word": "put ~ aside", "meaning": "시사하는 바가 많은"},
-{"word": "suggestive", "meaning": "~을 제쳐 놓다, ~을 무시하다"},
-{"word": "narrative", "meaning": "지배하다, 지시하다"},
-{"word": "domestic", "meaning": "도구적 가치"},
-{"word": "instrumental value", "meaning": "사육되는, 길들여진"},
-{"word": "rarely", "meaning": "유발하다"},
-{"word": "observe", "meaning": "기악 편성"},
-{"word": "instrumentation", "meaning": "관찰하다"},
-{"word": "pasture", "meaning": "발성"},
-{"word": "vocalization", "meaning": "목초지, 초원"},
-{"word": "therapeutic", "meaning": "대등하다, 맞먹다; 시합"},
-{"word": "gauge", "meaning": "~에 대해 숙고하다"},
-{"word": "forgiveness", "meaning": "과시하다; 과시"},
-{"word": "aggressive", "meaning": "슬픔"},
-{"word": "grief", "meaning": "공격적인"},
-{"word": "preferred", "meaning": "의미, 중요성"},
-{"word": "significance", "meaning": "우선시되는, 선취권이 있는"},
-{"word": "settle a score", "meaning": "(어떤 감정에) 차 있는, 격앙된"},
-{"word": "charged", "meaning": "분풀이하다, 설욕하다"},
-{"word": "boredom", "meaning": "심화시키다"},
-{"word": "deepen", "meaning": "지루함"},
-{"word": "dominance", "meaning": "~의 구성 요소이다"},
-{"word": "be constitutive of", "meaning": "지배(권), 우세"},
-{"word": "dispute", "meaning": "기술자"},
-{"word": "technician", "meaning": "싸움, 논쟁"},
-{"word": "conflict", "meaning": "자격증을 소지한"},
-{"word": "licensed", "meaning": "충돌, 갈등"},
-{"word": "result in", "meaning": "임대차 (계약)"},
-{"word": "lease", "meaning": "~을 초래하다"},
-{"word": "make ends meet", "meaning": "대체(물)"},
-{"word": "get a kick", "meaning": "적응시키다, 순응시키다"},
-{"word": "admire", "meaning": "해석, 이해"},
-{"word": "stand for", "meaning": "냉정한, 엄한"},
-{"word": "heavy-handed", "meaning": "~을 나타내다, ~을 의미하다"},
-{"word": "equate", "meaning": "정말로, 완전히"},
-{"word": "absolutely", "meaning": "같은 것으로 생각하다"},
-{"word": "element", "meaning": "말함, 진술"},
-{"word": "immediate", "meaning": "성취감을 주는, 만족스러운"},
-{"word": "fulfilling", "meaning": "당면한, 즉각적인"},
-{"word": "board of directors", "meaning": "분명한, 명백한"},
-{"word": "gravity", "meaning": "협회"},
-{"word": "overcome", "meaning": "사업, 프로젝트"},
-{"word": "resistance", "meaning": "대변하다, 대표하다, 나타내다"},
-{"word": "descend", "meaning": "통일된"},
-{"word": "unified", "meaning": "내려가다"},
-{"word": "surrender", "meaning": "개최하다"},
-{"word": "annual", "meaning": "수동적, 무저항의"},
-{"word": "compliance", "meaning": "발전시키다"},
-{"word": "foster", "meaning": "순응, 수락"},
-{"word": "unevenness", "meaning": "고려"},
-{"word": "consideration", "meaning": "불균형, 고르지 않음"},
-{"word": "postpone", "meaning": "위치"},
-{"word": "dynamically", "meaning": "공지하다"},
-{"word": "potential energy", "meaning": "정확한"},
-{"word": "exact", "meaning": "위치 에너지"},
-{"word": "monitor", "meaning": "덩어리, 질량"},
-{"word": "obtain", "meaning": "기숙사"},
-{"word": "dorm (= dormitory)", "meaning": "얻다, 구하다"},
-{"word": "experimental", "meaning": "뒤집다, 휙휙 넘기다"},
-{"word": "flip", "meaning": "실험의"},
-{"word": "with regard to", "meaning": "집중한"},
-{"word": "focused", "meaning": "~과 관련하여, ~에 대해"},
-{"word": "mention", "meaning": "(의심스러운) 사람, 주요 인물"},
-{"word": "suspect", "meaning": "언급하다, 말하다"},
-{"word": "invariably", "meaning": "지식 분야, 학과목"},
-{"word": "convince oneself that", "meaning": "부문, 분야"},
-{"word": "sector", "meaning": "~이라는 것을 납득하다"},
-{"word": "navigate", "meaning": "참가자"},
-{"word": "participant", "meaning": "항해하다, 길을 찾다"},
-{"word": "sail", "meaning": "~에 자주 가다"},
-{"word": "hang out at", "meaning": "돛; 항해하다"},
-{"word": "edge", "meaning": "선원, 승무원"},
-{"word": "gather", "meaning": "의미 있는, 중요한"},
-{"word": "decent", "meaning": "~과 우연히 마주치다, ~과 충돌하다"},
-{"word": "collide with", "meaning": "제법 괜찮은, 제대로 된"},
-{"word": "spark", "meaning": "측정하다, 결정하다"},
-{"word": "tone", "meaning": "본질적인, 근본적인"},
-{"word": "assertive", "meaning": "반영"},
-{"word": "graphically", "meaning": "설명하다, 해석하다"},
-{"word": "arrogant", "meaning": "표현, 표상, 묘사"},
-{"word": "shoreline", "meaning": "문맥상으로"},
-{"word": "contextually", "meaning": "해안선"},
-{"word": "wording", "meaning": "적절한"},
-{"word": "neutral", "meaning": "대인 관계에 관련된, 개인 간의"},
-{"word": "interpersonal", "meaning": "중립적인"},
-{"word": "systematically", "meaning": "성격, 개성"},
-{"word": "tutor", "meaning": "강하게, 철저하게"},
-{"word": "intensively", "meaning": "지도 교사, 강사"},
-{"word": "be reluctant to do", "meaning": "그저, 단지"},
-{"word": "merely", "meaning": "~하기를 꺼리다[주저하다]"},
-{"word": "probability", "meaning": "의견, 발언, 기여"},
-{"word": "face-threatening", "meaning": "탈공업화(시대)의, 산업화 이후의"},
-{"word": "supportive", "meaning": "사다, 구입하다"},
-{"word": "empathic", "meaning": "실"},
-{"word": "thread", "meaning": "공감할 수 있는, 감정 이입의"},
-{"word": "ambitious", "meaning": "짜다, 엮다"},
-{"word": "weave", "meaning": "의욕적인, 야심 있는"},
-{"word": "linen", "meaning": "인위적인, 거짓된"},
-{"word": "adaptation", "meaning": "천, 직물"},
-{"word": "fabric", "meaning": "조정, 적응"},
-{"word": "one-stop shopping", "meaning": "편견, 선입견"},
-{"word": "supercharge", "meaning": "~에 영향을 미치다, ~으로 이어지다"},
-{"word": "unjust", "meaning": "인격, 성격"},
-{"word": "discrimination", "meaning": "양육하다"},
-{"word": "nurture", "meaning": "차별"},
-{"word": "acknowledge", "meaning": "확신, 확실성"},
-{"word": "certainty", "meaning": "인정하다"},
-{"word": "hostile", "meaning": "영속성, 영구성"},
-{"word": "permanence", "meaning": "적대적인"},
-{"word": "solely", "meaning": "불멸"},
-{"word": "immortality", "meaning": "오로지"},
-{"word": "to the contrary", "meaning": "제기하다"},
-{"word": "threatening", "meaning": "간절히, 몹시"},
-{"word": "badly", "meaning": "위협적인"},
-{"word": "intent", "meaning": "인류학자"},
-{"word": "subjected to", "meaning": "원시의"},
-{"word": "primitive", "meaning": "~을 겪는, ~을 당하는"},
-{"word": "prospects", "meaning": "신뢰성"},
-{"word": "reliability", "meaning": "성공 기회, 성공 가능성"},
-{"word": "predictability", "meaning": "개념"},
-{"word": "unethical", "meaning": "정확하게"},
-{"word": "millennium", "meaning": "지속적인"},
-{"word": "conduct", "meaning": "공개적으로"},
-{"word": "in decline", "meaning": "절대적인"},
-{"word": "absolute", "meaning": "쇠퇴하여, 기울어"},
-{"word": "digitization", "meaning": "빛나는, 반짝거리는"},
-{"word": "shiny", "meaning": "디지털화"},
-{"word": "shatter", "meaning": "전환하다, 개조하다"},
-{"word": "purposely", "meaning": "형태, 체재"},
-{"word": "innovation", "meaning": "휴대가 쉬운, 휴대용의"},
-{"word": "portable", "meaning": "혁신, 쇄신"},
-{"word": "distort", "meaning": "담고 있다, 포함하다"},
-{"word": "encode", "meaning": "속임수, 기만"},
-{"word": "deception", "meaning": "표현하다"},
-{"word": "cue", "meaning": "호도하다, 속이다"},
-{"word": "mislead", "meaning": "단서, 신호"},
-{"word": "dynamic", "meaning": "~이 아니라, ~과는 대조적으로"},
-{"word": "as opposed to", "meaning": "역동적인, 활발한"},
-{"word": "above chance (level)", "meaning": "슬쩍 집다[넣다], 몰래 움직이다[가져가다]"},
-{"word": "sneak", "meaning": "우연의 확률을 넘는"},
-{"word": "refine", "meaning": "(입체를) 평면화하다"},
-{"word": "flatten", "meaning": "개선하다, 다듬다"},
-{"word": "patron", "meaning": "차원, 크기"},
-{"word": "changeable", "meaning": "의도"},
-{"word": "formerly", "meaning": "감상하다"},
-{"word": "isolated", "meaning": "새매"},
-{"word": "sparrow hawk", "meaning": "고립된"},
-{"word": "reaction", "meaning": "황조롱이(맷과의 새)"},
-{"word": "kestrel", "meaning": "반응"},
-{"word": "take pains", "meaning": "지역, 영역"},
-{"word": "territory", "meaning": "공을 들이다, 애를 쓰다"},
-{"word": "concerning", "meaning": "텃새"},
-{"word": "framing", "meaning": "매우, 몹시"},
-{"word": "for the benefit of", "meaning": "(새의 부리 근처의) 깃털"},
-{"word": "mustache", "meaning": "~을 위하여"},
-{"word": "particular", "meaning": "(새·짐승의) 배, 복부"},
-{"word": "underpart", "meaning": "세심한, 꼼꼼한"},
-{"word": "lighting", "meaning": "정수리"},
-{"word": "crown", "meaning": "명암, 조명"},
-{"word": "judgment", "meaning": "초원, 목초지"},
-{"word": "prairie", "meaning": "판단"},
-{"word": "adaptability", "meaning": "요인, 차원"},
-{"word": "teleworking", "meaning": "노출"},
-{"word": "generate", "meaning": "장비"},
-{"word": "equipment", "meaning": "생성하다"},
-{"word": "approximation", "meaning": "적절한"},
-{"word": "adequate", "meaning": "비슷한[가까운] 것, 근사치"},
-{"word": "with respect to", "meaning": "방해"},
-{"word": "interruption", "meaning": "~에 관해서"},
-{"word": "motivated", "meaning": "구할 수 있는"},
-{"word": "bring together", "meaning": "친구"},
-{"word": "buddy", "meaning": "~을 합치다"},
-{"word": "blend", "meaning": "~ 전에"},
-{"word": "in-person", "meaning": "~을 설명하다"},
-{"word": "blindness", "meaning": "학생, 학습자"},
-{"word": "scholar", "meaning": "맹목"},
-{"word": "betrayal", "meaning": "지능, 지력"},
-{"word": "intellect", "meaning": "배신"},
-{"word": "poetic", "meaning": "높이다"},
-{"word": "tragedy", "meaning": "동기 부여"},
-{"word": "construction", "meaning": "창의성"},
-{"word": "creativity", "meaning": "구성"},
-{"word": "distinct", "meaning": "사전의, 이전의"},
-{"word": "previous", "meaning": "두드러지는"},
-{"word": "overall", "meaning": "~ 때문에"},
-{"word": "due to", "meaning": "전체적인"},
-{"word": "integration", "meaning": "많은"},
-{"word": "plenty of", "meaning": "통합"},
-{"word": "amend", "meaning": "개인 맞춤형의"},
-{"word": "personalized", "meaning": "수정하다"},
-{"word": "literary", "meaning": "~ 이전에"},
-{"word": "attribute", "meaning": "상황"},
-{"word": "lyrics", "meaning": "주민"},
-{"word": "practical", "meaning": "가로채다, 붙잡다"},
-{"word": "phrase", "meaning": "구현하다, 구체화하다"},
-{"word": "embody", "meaning": "구절"},
-{"word": "craft", "meaning": "극미한, 최소한의"},
-{"word": "distract", "meaning": "~에서 유래하다"},
-{"word": "instrumental music", "meaning": "현상"},
-{"word": "limit", "meaning": "교육, 훈련"},
-{"word": "pause", "meaning": "실제의, 실제로 조작해 보는"},
-{"word": "hands-on", "meaning": "잠시 끊김, 중지"},
-{"word": "poetical", "meaning": "기계학, 역학"},
-{"word": "mechanics", "meaning": "시적인, 시로 쓰인"},
-{"word": "universal", "meaning": "연소"},
-{"word": "combustion", "meaning": "보편적인"},
-{"word": "indicative of", "meaning": "반대로 말하자면, 역으로"},
-{"word": "piece", "meaning": "적용하다"},
-{"word": "approach", "meaning": "체계화하다"},
-{"word": "systematize", "meaning": "접근법, 연구법"},
-{"word": "long-standing", "meaning": "정도, 범위"},
-{"word": "extent", "meaning": "오랜"},
-{"word": "independent of", "meaning": "제대로, 적절히"},
-{"word": "social mobility", "meaning": "선교사"},
-{"word": "missionary", "meaning": "사회 이동"},
-{"word": "statistically", "meaning": "애정"},
-{"word": "affection", "meaning": "통계상으로"},
-{"word": "enquire into", "meaning": "(애정 따위의 감정을 가지고) 보다, 대하다"},
-{"word": "company", "meaning": "관련된"},
-{"word": "aspire", "meaning": "일반적인 것, 표준"},
-{"word": "the norm", "meaning": "열망하다"},
-{"word": "quantitative", "meaning": "예외"},
-{"word": "exception", "meaning": "정량적인, 양적인"},
-{"word": "relaxed", "meaning": "꺼리는, 마지못해 하는"},
-{"word": "unwilling", "meaning": "관대한, 느긋한"},
-{"word": "indispensable", "meaning": "(강렬한 감정이) 사로잡다[휩싸다]"},
-{"word": "at least", "meaning": "큰 슬픔, 비탄"},
-{"word": "as many", "meaning": "애착"},
-{"word": "intensive", "meaning": "재미, 즐거움"},
-{"word": "amusement", "meaning": "집중적인"},
-{"word": "yield", "meaning": "원시적인, 원시의"},
-{"word": "account", "meaning": "드러내다, 밝히다"},
-{"word": "challenging", "meaning": "반려(자), 동반자"},
-{"word": "companion", "meaning": "어려운, 도전적인"},
-{"word": "destructive", "meaning": "비교적"},
-{"word": "mission", "meaning": "여론 조사가"},
-{"word": "pollster", "meaning": "임무, 아주 힘든 과제"},
-{"word": "summit", "meaning": "예측하다"},
-{"word": "predict", "meaning": "정상에 이르다"},
-{"word": "commit", "meaning": "막상 닥쳐 보니, 정작은"},
-{"word": "in the event", "meaning": "전념하다, 헌신하다"},
-{"word": "directory", "meaning": "결국, 궁극적으로"},
-{"word": "misrepresent", "meaning": "편향된"},
-{"word": "biased", "meaning": "왜곡하다, 잘못 전하다"},
-{"word": "cheat", "meaning": "부유층"},
-{"word": "the better-off", "meaning": "속임수를 쓰다"},
-{"word": "fine", "meaning": "구성하다"},
-{"word": "unauthorized", "meaning": "표상(表象)"},
-{"word": "bring on", "meaning": "분석"},
-{"word": "overload", "meaning": "인식"},
-{"word": "unique", "meaning": "~을 야기하다, ~을 초래하다"},
-{"word": "finely", "meaning": "이력"},
-{"word": "history", "meaning": "정교하게, 아름답게"},
-{"word": "spot", "meaning": "틀림없이 ~하게 하다"},
-{"word": "mechanical", "meaning": "영향을 끼치다"},
-{"word": "color", "meaning": "수작업의"},
-{"word": "overwhelming", "meaning": "같은"},
-{"word": "choice", "meaning": "법률과 관련된, 법적인"},
-{"word": "context", "meaning": "공예품"},
-{"word": "rare", "meaning": "목격자, 증인"},
-{"word": "eyewitness", "meaning": "희귀한"},
-{"word": "informal", "meaning": "감추다, 숨기다"},
-{"word": "humble", "meaning": "시간, 수업 시간"},
-{"word": "period", "meaning": "보잘것없는"},
-{"word": "ordinary", "meaning": "인위적인"},
-{"word": "fall out of favor", "meaning": "똑딱거리는"},
-{"word": "ticking", "meaning": "총애를 잃다"},
-{"word": "transparent", "meaning": "중단시키다, 방해하다"},
-{"word": "interrupt", "meaning": "투명한"},
-{"word": "spatial", "meaning": "내구력이 있는"},
-{"word": "bronze", "meaning": "제한하다"},
-{"word": "constrain", "meaning": "청동"},
-{"word": "aesthetics", "meaning": "기르다"},
-{"word": "contextual", "meaning": "중요하다, 중대한 관계가 있다"},
-{"word": "stroll", "meaning": "상식적인, 상식의"},
-{"word": "dump", "meaning": "(~이라는 용어로) 부르다"},
-{"word": "monotonous", "meaning": "여론 조사의"},
-{"word": "opinion-polling", "meaning": "단조로운"},
-{"word": "evaporate", "meaning": "신뢰할 수 없는"},
-{"word": "unreliable", "meaning": "사라지다, 증발하다"},
-{"word": "conscious", "meaning": "견디다, 참다"},
-{"word": "retailer", "meaning": "까다로운, 곤란한"},
-{"word": "tricky", "meaning": "소매상점"},
-{"word": "enclosed", "meaning": "부족한"},
-{"word": "mimic", "meaning": "비싼, 돈이 많이 드는, 비경제적인"},
-{"word": "expensive", "meaning": "흡사하다, ~처럼 보이다"},
-{"word": "modest", "meaning": "매체"},
-{"word": "meet with resistance", "meaning": "대체 연료"},
-{"word": "alternative fuel", "meaning": "저항에 부딪히다"},
-{"word": "experiment with", "meaning": "운영용의, 운영상의"},
-{"word": "operational", "meaning": "~을 실험하다"},
-{"word": "emergency vehicle", "meaning": "인위적인"},
-{"word": "accommodate", "meaning": "농기계"},
-{"word": "agricultural machinery", "meaning": "수용하다"},
-{"word": "commercial", "meaning": "항공기"},
-{"word": "aircraft", "meaning": "상업 광고; 상업적인"},
-{"word": "unsatisfactory", "meaning": "정유 산업"},
-{"word": "petroleum refining industry", "meaning": "만족스럽지 못한"},
-{"word": "content oneself with", "meaning": "추출하다"},
-{"word": "extract", "meaning": "~에 만족하다"},
-{"word": "mainstream", "meaning": "원유"},
-{"word": "crude oil", "meaning": "주류의"},
-{"word": "organic chemical", "meaning": "~을 선택하다"},
-{"word": "comprise", "meaning": "규모, 크기"},
-{"word": "revenue", "meaning": "변환하다"},
-{"word": "transform", "meaning": "수입, 수익"},
-{"word": "time-out", "meaning": "~을 대체하다"},
-{"word": "substitute for", "meaning": "작전 타임"},
-{"word": "structured", "meaning": "비상시에"},
-{"word": "on an emergency basis", "meaning": "구조적으로 정해진"},
-{"word": "stoppage", "meaning": "선택적 지출"},
-{"word": "discretionary expenditure", "meaning": "(스포츠 경기의) 중단"},
-{"word": "respond", "meaning": "일반적으로, 보통"},
-{"word": "nonessential", "meaning": "수확하다, 거둬들이다"},
-{"word": "inherit", "meaning": "일차적인, 주된"},
-{"word": "prime", "meaning": "물려받다, 상속받다"},
-{"word": "involved in", "meaning": "후보자, 지원자"},
-{"word": "candidate", "meaning": "~에 관련된"},
-{"word": "conserve", "meaning": "제거, 삭제"},
-{"word": "elimination", "meaning": "보존하다"},
-{"word": "discretionary income", "meaning": "현상"},
-{"word": "unbiased", "meaning": "무의식적으로, 자동적으로"},
-{"word": "automatically", "meaning": "편견 없는"},
-{"word": "without a second thought", "meaning": "자각, 인식"},
-{"word": "desperately", "meaning": "진화의"},
-{"word": "comparative", "meaning": "투수"},
-{"word": "pitcher", "meaning": "비교의, 비교를 통한"},
-{"word": "physiology", "meaning": "구간, 부문"},
-{"word": "pain receptor", "meaning": "진화하다"},
-{"word": "be inclined to do", "meaning": "동일한"},
-{"word": "detection", "meaning": "저장"},
-{"word": "side-by-side", "meaning": "~에 대해 숙고하다"},
-{"word": "puzzle over", "meaning": "나란히, 함께"},
-{"word": "avoidance", "meaning": "추상적인"},
-{"word": "can’t help but do", "meaning": "잠재적으로"},
-{"word": "draw on", "meaning": "~의 정확한 위치를 찾아내다"},
-{"word": "auditory", "meaning": "구체적인"},
-{"word": "concrete", "meaning": "청각의"},
-{"word": "conceive of ~ as …", "meaning": "지각, 인식"},
-{"word": "audition", "meaning": "장치"},
-{"word": "sensory receptor", "meaning": "플로피 디스크(외부 기억용의 플라스틱제 자기 디스크)"},
-{"word": "floppy disk", "meaning": "감각 수용기"},
-{"word": "bulky", "meaning": "통합하다"},
-{"word": "localization", "meaning": "호환 기종, 복제품"},
-{"word": "clone", "meaning": "위치 찾기"},
-{"word": "gene", "meaning": "정교하게, 세심하게"},
-{"word": "tuned", "meaning": "행선지, (여행의) 목적지"},
-{"word": "timing", "meaning": "북극(을 포함하는 주변 지역)"},
-{"word": "the Arctic", "meaning": "시기, 시기 선택"},
-{"word": "minute", "meaning": "현상"},
-{"word": "literature", "meaning": "강도"},
-{"word": "forcefully", "meaning": "장벽, 장애물"},
-{"word": "purchasing power", "meaning": "인식"},
-{"word": "presumably", "meaning": "사라지다"},
-{"word": "willingness", "meaning": "해빙"},
-{"word": "sea ice", "meaning": "기꺼이 하기, 기꺼이 하는 마음"},
-{"word": "renewed", "meaning": "미루다, 연기하다"},
-{"word": "function", "meaning": "보도하다, 다루다"},
-{"word": "interest rate", "meaning": "묘사하다"},
-{"word": "reasoning", "meaning": "구상하다, 구성하다"},
-{"word": "biologically", "meaning": "특히"},
-{"word": "not least", "meaning": "생물학적으로"},
-{"word": "be meant to do", "meaning": "자연이 그대로 보존된 지역, 황야, 황무지"},
-{"word": "wilderness", "meaning": "~하기로 되어 있다
-~하지 않으면 안 되다"},
-{"word": "pack", "meaning": "물류 창고"},
-{"word": "distribution warehouse", "meaning": "무리"},
-{"word": "take ~ for granted", "meaning": "비교해 보면"},
-{"word": "in comparison", "meaning": "~을 당연한 것으로 여기다"},
-{"word": "mobility", "meaning": "부품, 구성 요소"},
-{"word": "extended family", "meaning": "표준화된, 규격화된"},
-{"word": "standardized", "meaning": "확대 가족"},
-{"word": "replace", "meaning": "규칙화된, 관례화된"},
-{"word": "routinized", "meaning": "대체하다"},
-{"word": "infinite", "meaning": "~을 열망하다"},
-{"word": "affiliation", "meaning": "경도, 견고함"},
-{"word": "firmness", "meaning": "관계, 제휴"},
-{"word": "fantasy", "meaning": "방향"},
-{"word": "orientation", "meaning": "공상의 세계"},
-{"word": "non-rectangular", "meaning": "장치"},
-{"word": "grasp", "meaning": "극복하다"},
-{"word": "isolation", "meaning": "조건, 필요 규정"},
-{"word": "if", "meaning": "고립"},
-{"word": "efficiently", "meaning": "활력을 불어넣다, 자극하다"},
-{"word": "adapt", "meaning": "~의 위치를 옮기다"},
-{"word": "reposition", "meaning": "적응하다"},
-{"word": "commuting spouses", "meaning": "이야기꾼, 만담가"},
-{"word": "storyteller", "meaning": "주말부부"},
-{"word": "public sphere", "meaning": "현재의"},
-{"word": "anxiety", "meaning": "배포, 분배"},
-{"word": "content", "meaning": "정확히"},
-{"word": "instant", "meaning": "관련된, 연루된"},
-{"word": "abuse", "meaning": "열의가 있는, 열심인"},
-{"word": "enthusiastic", "meaning": "학대"},
-{"word": "neglect", "meaning": "읽고 쓸 줄 아는, 다룰 수 있는"},
-{"word": "literate", "meaning": "방임"},
-{"word": "bullying", "meaning": "확실하게 하다, 보장하다"},
-{"word": "tackle", "meaning": "주다, 부여하다"},
-{"word": "administer", "meaning": "(일이나 문제 따위와) 씨름하다"},
-{"word": "depression", "meaning": "해석하다, 설명하다"},
-{"word": "naturalist", "meaning": "사제, 성직자"},
-{"word": "financial", "meaning": "속성, 특성"},
-{"word": "editorial", "meaning": "생물체, 생물"},
-{"word": "convinced", "meaning": "직접적인, 당면한"},
-{"word": "vitalist", "meaning": "적응하다"},
-{"word": "nevertheless", "meaning": "~을 늘리다"},
-{"word": "add to", "meaning": "그럼에도 불구하고"},
-{"word": "possibility", "meaning": "인지하다, 감지하다"},
-{"word": "scope", "meaning": "위탁 돌봄"},
-{"word": "foster care", "meaning": "범위, 능력"},
-{"word": "glacier", "meaning": "다시 생각해 보다"},
-{"word": "have second thoughts", "meaning": "빙하"},
-{"word": "tide", "meaning": "하기로 했던 일을 하지 않기로 하다"},
-{"word": "back off", "meaning": "조류, 조수"},
-{"word": "common sense", "meaning": "명확하게 하다"},
-{"word": "clarify", "meaning": "상식, 양식"},
-{"word": "inspection", "meaning": "비참한, 괴로운"},
-{"word": "miserable", "meaning": "검증, 점검, 검토"},
-{"word": "hesitation", "meaning": "확립하다, 규명하다"},
-{"word": "rationalize", "meaning": "~으로 이루어지다"},
-{"word": "no more than", "meaning": "약물 (치료)"},
-{"word": "medication", "meaning": "단지 ~에 지나지 않는, ~일 뿐인"},
-{"word": "mere", "meaning": "임시의"},
-{"word": "be meant for", "meaning": "받을 만하다, 가치가 있다"},
-{"word": "interconnected", "meaning": "아주 사이가 좋다"},
-{"word": "get along famously", "meaning": "서로 연결된"},
-{"word": "interdependent", "meaning": "표준의"},
-{"word": "wellbeing", "meaning": "임대 계약서"},
-{"word": "rental agreement", "meaning": "안녕"},
-{"word": "community", "meaning": "보증금"},
-{"word": "security deposit", "meaning": "공동체, 군집"},
-{"word": "biosphere", "meaning": "~ 현재"},
-{"word": "as of ~", "meaning": "생물권"},
-{"word": "interlinked", "meaning": "(합의·계약 등의) 조건"},
-{"word": "exemplify", "meaning": "수표"},
-{"word": "check", "meaning": "~의 좋은 예가 되다"},
-{"word": "thriving", "meaning": "치료사"},
-{"word": "autoimmune", "meaning": "추천하다"},
-{"word": "disorder", "meaning": "침묵"},
-{"word": "silence", "meaning": "질환, 장애"},
-{"word": "out of control", "meaning": "있는 그대로의"},
-{"word": "raw", "meaning": "통제할 수 없는"},
-{"word": "speak up", "meaning": "필수적인, 중요한"},
-{"word": "deny", "meaning": "~을 떨쳐 버리다, ~을 놓아주다"},
-{"word": "let go of", "meaning": "부정하다, 부인하다"},
-{"word": "truthfulness", "meaning": "~ 대신에"},
-{"word": "on one’s behalf", "meaning": "진실성"},
-{"word": "cynically", "meaning": "불가피한, 필연적인"},
-{"word": "accomplishment", "meaning": "파멸을 초래하는, 파괴적인"},
-{"word": "disastrous", "meaning": "성취, 성과, 업적"},
-{"word": "infinitely", "meaning": "냉소적인 사람"},
-{"word": "deliberately", "meaning": "영향을 주다"},
-{"word": "impact", "meaning": "일부러"},
-{"word": "deceive", "meaning": "불충분한"},
-{"word": "insufficient", "meaning": "속이다"},
-{"word": "twist", "meaning": "윤리적인"},
-{"word": "convenience", "meaning": "영향, 관련성"},
-{"word": "virtue", "meaning": "확률"},
-{"word": "rest upon", "meaning": "탁월하게"},
-{"word": "outstandingly", "meaning": "~에 달려 있다, ~에 의존하다"},
-{"word": "instinctive", "meaning": "지니다, 소유하다"},
-{"word": "possess", "meaning": "본능적인"},
-{"word": "have to do with", "meaning": "순수함"},
-{"word": "innocence", "meaning": "~과 관련이 있다"},
-{"word": "seemingly", "meaning": "진행되다"},
-{"word": "naive", "meaning": "비교적"},
-{"word": "transfer", "meaning": "비친 모습"},
-{"word": "reduced", "meaning": "최고의"},
-{"word": "ultimate", "meaning": "줄어든, 축소된"},
-{"word": "input", "meaning": "엄청난"},
-{"word": "language interference", "meaning": "결과"},
-{"word": "rhyming word", "meaning": "유연한"},
-{"word": "acquisition", "meaning": "모호함"},
-{"word": "efficient", "meaning": "지형, 지리"},
-{"word": "geography", "meaning": "효율적인"},
-{"word": "nutrient", "meaning": "멈추다, 문을 닫다"},
-{"word": "shut down", "meaning": "영양소, 영양분"},
-{"word": "wait out", "meaning": "군집(한 지역에서 밀접한 관계를 맺으 며 생활하는 여러 종들의 집단)"},
-{"word": "mood", "meaning": "생산력, 생산성"},
-{"word": "meltdown", "meaning": "생물체, 유기체"},
-{"word": "shelter", "meaning": "조직"},
-{"word": "colony", "meaning": "주기적으로, 간헐적으로"},
-{"word": "periodically", "meaning": "군락"},
-{"word": "~ at large", "meaning": "울음을 터뜨리다"},
-{"word": "burst into tears", "meaning": "~ 전체, 전체 ~"},
-{"word": "stick to", "meaning": "확대하다, 확장하다"},
-{"word": "enjoyable", "meaning": "숨기다, 감추다"},
-{"word": "identity", "meaning": "반드시, 필연적으로"},
-{"word": "deindividuation", "meaning": "미국 남북 전쟁(1861~1865년)"},
-{"word": "the Civil War", "meaning": "몰개성화, 탈개인화"},
-{"word": "coin", "meaning": "없어서는 안 될, 필수적인"},
-{"word": "vital", "meaning": "(새로운 낱말·어구를) 만들다"},
-{"word": "individuate", "meaning": "영양, 음식물"},
-{"word": "nourishment", "meaning": "개별화하다"},
-{"word": "isolate", "meaning": "양, 부피"},
-{"word": "bulk", "meaning": "구분하다, 분리하다"},
-{"word": "constraint", "meaning": "비상(사태)"},
-{"word": "emergency", "meaning": "통제, 제한"},
-{"word": "be accountable for", "meaning": "대체하다, 대신하다"},
-{"word": "substitute", "meaning": "~에 대해 책임이 있다"},
-{"word": "liberate", "meaning": "함량, 내용물"},
-{"word": "dimly", "meaning": "지탱하다, 살아가게 하다"},
-{"word": "control condition", "meaning": "…에서 ~을 얻다[끌어내다]"},
-{"word": "derive ~ from …", "meaning": "통제 조건"},
-{"word": "keep ~ to oneself", "meaning": "섭취"},
-{"word": "deficiency", "meaning": "방지하다, 싸우다"},
-{"word": "combat", "meaning": "결핍"},
-{"word": "accuracy", "meaning": "~의 값을 구하다, 평가하다"},
-{"word": "evaluate", "meaning": "정확성"},
-{"word": "colleague", "meaning": "식별하다, 확인하다"},
-{"word": "worrisome", "meaning": "잦은, 주기적인"},
-{"word": "regular", "meaning": "걱정스러운"},
-{"word": "downgrade", "meaning": "물리학자"},
-{"word": "physicist", "meaning": "낮게 평가하다"},
-{"word": "irregularity", "meaning": "보여 주다"},
-{"word": "progression", "meaning": "약화시키다"},
-{"word": "contradict", "meaning": "수정"},
-{"word": "revision", "meaning": "배치되다, 모순되다"},
-{"word": "rigidity", "meaning": "대체하다"},
-{"word": "subtle", "meaning": "유지하다"},
-{"word": "pore", "meaning": "정확한"},
-{"word": "expansion", "meaning": "현상"},
-{"word": "contraction", "meaning": "충돌하다"},
-{"word": "clash", "meaning": "수축"},
-{"word": "guard cell", "meaning": "~을 가지고 있는"},
-{"word": "in possession of", "meaning": "공변세포(孔邊細胞, 식물의 기공을 이 루고 있는 두 개의 세포)"},
-{"word": "photosynthesis", "meaning": "확연히, 확실히"},
-{"word": "obviously", "meaning": "광합성"},
-{"word": "introverted", "meaning": "억제하다"},
-{"word": "fascination", "meaning": "양적인"},
-{"word": "numeric", "meaning": "박사 학위"},
-{"word": "doctorate", "meaning": "수치의"},
-{"word": "relevant to", "meaning": "확신하는"},
-{"word": "process", "meaning": "수립하다, 확립하다"},
-{"word": "science communication", "meaning": "영적인, 정신의"},
-{"word": "spiritual", "meaning": "과학 커뮤니케이션(과학 지식을 사회 에 전달하는 일)"},
-{"word": "stock", "meaning": "시골 (지역)"},
-{"word": "rural area", "meaning": "주식"},
-{"word": "sociable", "meaning": "비전문가인, 전문 지식이 없는"},
-{"word": "intermediate", "meaning": "추정하다, 생각하다"},
-{"word": "recipient", "meaning": "출발하다"},
-{"word": "head out", "meaning": "수신자"},
-{"word": "literacy", "meaning": "음료"},
-{"word": "numeracy", "meaning": "산길, 오솔길"},
-{"word": "trail", "meaning": "산술 능력"},
-{"word": "numerate", "meaning": "여러 전문 분야에 걸친"},
-{"word": "multidisciplinary", "meaning": "산술 능력이 있는, 계산 능력이 있는"},
-{"word": "portrayal", "meaning": "방법론"},
-{"word": "methodology", "meaning": "기술, 묘사"},
-{"word": "overvalue", "meaning": "선별적인"},
-{"word": "selective", "meaning": "지나치게 가치를 두다"},
-{"word": "exaggerate", "meaning": "신청(서)"},
-{"word": "inference", "meaning": "수료[이수] 증명서"},
-{"word": "certificate", "meaning": "추론"},
-{"word": "heuristic", "meaning": "수업료"},
-{"word": "tuition", "meaning": "경험적 방법, (알고리즘에 기초하지 않 은) 어림짐작"},
-{"word": "cultivate", "meaning": "편향된"},
-{"word": "theatrical", "meaning": "생명체, 존재"},
-{"word": "being", "meaning": "연극의, 극적인"},
-{"word": "abruptly", "meaning": "~을 의식하다, ~에 유의하다"},
-{"word": "be mindful of", "meaning": "갑자기"},
-{"word": "transition", "meaning": "소위[이른바] ~이라는"},
-{"word": "supposed", "meaning": "전환, 변화"},
-{"word": "suffering", "meaning": "~이 아니라, ~과 대조적으로"},
-{"word": "the same is true of", "meaning": "국영의"},
-{"word": "state-owned", "meaning": "~에서도 마찬가지다"},
-{"word": "strive for", "meaning": "매우, 극도로"},
-{"word": "exhale", "meaning": "금리"},
-{"word": "intimate", "meaning": "불안하게[두렵게] 만들다"},
-{"word": "alarm", "meaning": "절친한 친구"},
-{"word": "taboo", "meaning": "~을 고려해 볼 때"},
-{"word": "given", "meaning": "금기 사항; 금기시하다"},
-{"word": "recess", "meaning": "수입(품)"},
-{"word": "fundamentally", "meaning": "파산시키다"},
-{"word": "bankrupt", "meaning": "완전히"},
-{"word": "informality", "meaning": "압력을 가하다"},
-{"word": "abandon", "meaning": "명백한, 명쾌한"},
-{"word": "exacting", "meaning": "효과적으로, 사실상"},
-{"word": "passage", "meaning": "부유한, 번창한"},
-{"word": "prosperous", "meaning": "구절"},
-{"word": "to and fro", "meaning": "일반적 통념"},
-{"word": "conventional wisdom", "meaning": "이리저리"},
-{"word": "cast", "meaning": "(선수가 관중에게 보이는) 
-경기력, 기량[솜씨]의 발휘"},
-{"word": "painfully", "meaning": "자기 효능감"},
-{"word": "self-efficacy", "meaning": "아주 힘들게"},
-{"word": "be apt to do", "meaning": "단지 ~에 지나지 않는"},
-{"word": "persistence", "meaning": "내려오다"},
-{"word": "reject", "meaning": "결정 요인"},
-{"word": "self-conscious", "meaning": "예측하다"},
-{"word": "criterion", "meaning": "구성 요소"},
-{"word": "automatic", "meaning": "강조하다"},
-{"word": "coordinated", "meaning": "설명"},
-{"word": "absurdity", "meaning": "선호(도)"},
-{"word": "focus group", "meaning": "밝혀내다"},
-{"word": "opinion poll", "meaning": "중독"},
-{"word": "addiction", "meaning": "여론 조사"},
-{"word": "aspiration", "meaning": "원칙"},
-{"word": "be equipped to do", "meaning": "임원, 중역"},
-{"word": "temptation", "meaning": "최소한"},
-{"word": "at a minimum", "meaning": "유혹"},
-{"word": "impartiality", "meaning": "장애(물)"},
-{"word": "self-interest", "meaning": "~을 지배하는 힘이 있다"},
-{"word": "have a hold on", "meaning": "사리사욕"},
-{"word": "counterfactually", "meaning": "준거, 참조"},
-{"word": "by and large", "meaning": "습관적으로"},
-{"word": "habitually", "meaning": "대체로"},
-{"word": "home appliance", "meaning": "결심"},
-{"word": "at the same time", "meaning": "변모시키다, 변화시키다"},
-{"word": "resort to", "meaning": "(사업의 규모 등을) 축소하다[줄이다]"},
-{"word": "run down", "meaning": "~에 의지하다"},
-{"word": "tame", "meaning": "빚을 진"},
-{"word": "in debt", "meaning": "길들이다"},
-{"word": "passable", "meaning": "나타내다"},
-{"word": "operation", "meaning": "냉장고"},
-{"word": "fridge", "meaning": "조작, 작동"},
-{"word": "take command of", "meaning": "결함, 결점"},
-{"word": "fault", "meaning": "~을 지휘하다"},
-{"word": "smash up", "meaning": "처참한, 참담한"}
+const quizData = [
+  {
+    "word": "require",
+    "meaning": "요구하다"
+  },
+  {
+    "word": "cabin",
+    "meaning": "오두막, 객실"
+  },
+  {
+    "word": "cabin",
+    "meaning": "오두막, 객실"
+  },
+  {
+    "word": "mandate",
+    "meaning": "명령, 명령하다"
+  },
+  {
+    "word": "innovation",
+    "meaning": "혁신"
+  },
+  {
+    "word": "ban",
+    "meaning": "금지하다"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "slave",
+    "meaning": "노예"
+  },
+  {
+    "word": "dwell",
+    "meaning": "살다"
+  },
+  {
+    "word": "curve",
+    "meaning": "곡선, 구부리다"
+  },
+  {
+    "word": "advise",
+    "meaning": "조언하다, 충고하다"
+  },
+  {
+    "word": "exhibit",
+    "meaning": "전시하다, 보여주다, 전시, 전시품"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "refuse",
+    "meaning": "거절하다"
+  },
+  {
+    "word": "swamp",
+    "meaning": "늪, 습지, 압도하다"
+  },
+  {
+    "word": "deadline",
+    "meaning": "마감기한"
+  },
+  {
+    "word": "revive",
+    "meaning": "소생시키다"
+  },
+  {
+    "word": "subscribe",
+    "meaning": "구독하다"
+  },
+  {
+    "word": "humble",
+    "meaning": "겸손한"
+  },
+  {
+    "word": "invent",
+    "meaning": "발명하다"
+  },
+  {
+    "word": "sibling",
+    "meaning": "형제자매"
+  },
+  {
+    "word": "profile",
+    "meaning": "옆모습, 인물 소개"
+  },
+  {
+    "word": "form",
+    "meaning": "형태, 종류 / 형성하다"
+  },
+  {
+    "word": "organism",
+    "meaning": "유기체, 생명체"
+  },
+  {
+    "word": "audience",
+    "meaning": "청중"
+  },
+  {
+    "word": "hesitate",
+    "meaning": "주저하다, 망설이다"
+  },
+  {
+    "word": "influence",
+    "meaning": "영향을 끼치다"
+  },
+  {
+    "word": "bid",
+    "meaning": "입찰하다"
+  },
+  {
+    "word": "sneak",
+    "meaning": "몰래 움직이다"
+  },
+  {
+    "word": "fossil",
+    "meaning": "화석"
+  },
+  {
+    "word": "revenue",
+    "meaning": "수입, 수익"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "innocence",
+    "meaning": "결백, 순진"
+  },
+  {
+    "word": "artery",
+    "meaning": "동맥"
+  },
+  {
+    "word": "remedy",
+    "meaning": "치료, 치료하다"
+  },
+  {
+    "word": "identical",
+    "meaning": "동일한"
+  },
+  {
+    "word": "opponent",
+    "meaning": "상대, 반대자"
+  },
+  {
+    "word": "aesthetics",
+    "meaning": "미학"
+  },
+  {
+    "word": "motion",
+    "meaning": "움직임, 운동"
+  },
+  {
+    "word": "glitter",
+    "meaning": "반짝이다"
+  },
+  {
+    "word": "famine",
+    "meaning": "기근"
+  },
+  {
+    "word": "harass",
+    "meaning": "괴롭히다"
+  },
+  {
+    "word": "swamp",
+    "meaning": "늪, 습지, 압도하다"
+  },
+  {
+    "word": "carve",
+    "meaning": "조각하다"
+  },
+  {
+    "word": "aspire",
+    "meaning": "열망하다"
+  },
+  {
+    "word": "layer",
+    "meaning": "층"
+  },
+  {
+    "word": "envy",
+    "meaning": "부러움"
+  },
+  {
+    "word": "steer",
+    "meaning": "조종하다"
+  },
+  {
+    "word": "envy",
+    "meaning": "부러움"
+  },
+  {
+    "word": "fossil",
+    "meaning": "화석"
+  },
+  {
+    "word": "uncover",
+    "meaning": "폭로하다, 알아내다"
+  },
+  {
+    "word": "employ",
+    "meaning": "고용하다"
+  },
+  {
+    "word": "invent",
+    "meaning": "발명하다"
+  },
+  {
+    "word": "fertile",
+    "meaning": "비옥한"
+  },
+  {
+    "word": "revive",
+    "meaning": "소생시키다"
+  },
+  {
+    "word": "earn",
+    "meaning": "얻다, 벌다"
+  },
+  {
+    "word": "volunteer",
+    "meaning": "자원봉사자, 자원하다"
+  },
+  {
+    "word": "mock",
+    "meaning": "조롱하다, 가짜의"
+  },
+  {
+    "word": "hygiene",
+    "meaning": "위생"
+  },
+  {
+    "word": "phase",
+    "meaning": "단계, 양상"
+  },
+  {
+    "word": "organism",
+    "meaning": "유기체, 생명체"
+  },
+  {
+    "word": "awkward",
+    "meaning": "어색한, 서투른"
+  },
+  {
+    "word": "revive",
+    "meaning": "소생시키다"
+  },
+  {
+    "word": "authority",
+    "meaning": "권위, 당국"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "provide",
+    "meaning": "공급하다, 준비하다"
+  },
+  {
+    "word": "deplete",
+    "meaning": "고갈시키다"
+  },
+  {
+    "word": "improve",
+    "meaning": "향상시키다"
+  },
+  {
+    "word": "therapy",
+    "meaning": "치료"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "offer",
+    "meaning": "제공하다, 제안하다"
+  },
+  {
+    "word": "social",
+    "meaning": "사회의, 사교적인"
+  },
+  {
+    "word": "volunteer",
+    "meaning": "자원봉사자, 자원하다"
+  },
+  {
+    "word": "influence",
+    "meaning": "영향을 끼치다"
+  },
+  {
+    "word": "surpass",
+    "meaning": "능가하다"
+  },
+  {
+    "word": "refuse",
+    "meaning": "거절하다"
+  },
+  {
+    "word": "aspire",
+    "meaning": "열망하다"
+  },
+  {
+    "word": "symphony",
+    "meaning": "교향곡"
+  },
+  {
+    "word": "discharge",
+    "meaning": "배출, 방전, 배출하다, 내보내다"
+  },
+  {
+    "word": "exhibit",
+    "meaning": "전시하다, 보여주다, 전시, 전시품"
+  },
+  {
+    "word": "decode",
+    "meaning": "해독하다"
+  },
+  {
+    "word": "submit",
+    "meaning": "제출하다, 복종하다"
+  },
+  {
+    "word": "temperament",
+    "meaning": "기질"
+  },
+  {
+    "word": "symphony",
+    "meaning": "교향곡"
+  },
+  {
+    "word": "hinder",
+    "meaning": "방해하다"
+  },
+  {
+    "word": "individual",
+    "meaning": "개인, 개인적인"
+  },
+  {
+    "word": "affection",
+    "meaning": "애정"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "gear",
+    "meaning": "장비, 기어"
+  },
+  {
+    "word": "rehearsal",
+    "meaning": "예행연습"
+  },
+  {
+    "word": "inform",
+    "meaning": "알리다, 통지하다"
+  },
+  {
+    "word": "discuss",
+    "meaning": "토론하다"
+  },
+  {
+    "word": "closet",
+    "meaning": "벽장"
+  },
+  {
+    "word": "shred",
+    "meaning": "갈기갈기 찢다"
+  },
+  {
+    "word": "summon",
+    "meaning": "소환하다"
+  },
+  {
+    "word": "social",
+    "meaning": "사회의, 사교적인"
+  },
+  {
+    "word": "offer",
+    "meaning": "제공하다, 제안하다"
+  },
+  {
+    "word": "bid",
+    "meaning": "입찰하다"
+  },
+  {
+    "word": "geology",
+    "meaning": "지질학"
+  },
+  {
+    "word": "require",
+    "meaning": "요구하다"
+  },
+  {
+    "word": "appeal",
+    "meaning": "호소하다, 항의하다"
+  },
+  {
+    "word": "awkward",
+    "meaning": "어색한, 서투른"
+  },
+  {
+    "word": "alert",
+    "meaning": "경계하는"
+  },
+  {
+    "word": "bond",
+    "meaning": "유대"
+  },
+  {
+    "word": "ray",
+    "meaning": "광선"
+  },
+  {
+    "word": "awkward",
+    "meaning": "어색한, 서투른"
+  },
+  {
+    "word": "innovation",
+    "meaning": "혁신"
+  },
+  {
+    "word": "innocence",
+    "meaning": "결백, 순진"
+  },
+  {
+    "word": "despair",
+    "meaning": "절망하다"
+  },
+  {
+    "word": "hygiene",
+    "meaning": "위생"
+  },
+  {
+    "word": "dwell",
+    "meaning": "살다"
+  },
+  {
+    "word": "lay",
+    "meaning": "놓다, 낳다"
+  },
+  {
+    "word": "sneak",
+    "meaning": "몰래 움직이다"
+  },
+  {
+    "word": "terrible",
+    "meaning": "끔찍한, 무서운"
+  },
+  {
+    "word": "location",
+    "meaning": "위치"
+  },
+  {
+    "word": "pillar",
+    "meaning": "기둥, 핵심"
+  },
+  {
+    "word": "discuss",
+    "meaning": "토론하다"
+  },
+  {
+    "word": "recite",
+    "meaning": "암송하다"
+  },
+  {
+    "word": "closet",
+    "meaning": "벽장"
+  },
+  {
+    "word": "adventure",
+    "meaning": "모험"
+  },
+  {
+    "word": "acquaintance",
+    "meaning": "지인, 아는 사람"
+  },
+  {
+    "word": "contradict",
+    "meaning": "반박하다"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "rainforest",
+    "meaning": "열대우림"
+  },
+  {
+    "word": "pillar",
+    "meaning": "기둥, 핵심"
+  },
+  {
+    "word": "outcome",
+    "meaning": "결과"
+  },
+  {
+    "word": "adventure",
+    "meaning": "모험"
+  },
+  {
+    "word": "temperate",
+    "meaning": "온화한, 절제하는"
+  },
+  {
+    "word": "pollination",
+    "meaning": "수분 (식물)"
+  },
+  {
+    "word": "social",
+    "meaning": "사회의, 사교적인"
+  },
+  {
+    "word": "aesthetics",
+    "meaning": "미학"
+  },
+  {
+    "word": "pill",
+    "meaning": "알약"
+  },
+  {
+    "word": "enterprise",
+    "meaning": "기업, 사업"
+  },
+  {
+    "word": "sibling",
+    "meaning": "형제자매"
+  },
+  {
+    "word": "scan",
+    "meaning": "정밀 검사하다"
+  },
+  {
+    "word": "gear",
+    "meaning": "장비, 기어"
+  },
+  {
+    "word": "rainforest",
+    "meaning": "열대우림"
+  },
+  {
+    "word": "unpredictable",
+    "meaning": "예측할 수 없는"
+  },
+  {
+    "word": "adventure",
+    "meaning": "모험"
+  },
+  {
+    "word": "carve",
+    "meaning": "조각하다"
+  },
+  {
+    "word": "relationship",
+    "meaning": "관계"
+  },
+  {
+    "word": "opportunity",
+    "meaning": "기회"
+  },
+  {
+    "word": "lord",
+    "meaning": "군주"
+  },
+  {
+    "word": "veterinarian",
+    "meaning": "수의사"
+  },
+  {
+    "word": "ballot",
+    "meaning": "투표, 투표하다"
+  },
+  {
+    "word": "inform",
+    "meaning": "알리다, 통지하다"
+  },
+  {
+    "word": "terrible",
+    "meaning": "끔찍한, 무서운"
+  },
+  {
+    "word": "inform",
+    "meaning": "알리다, 통지하다"
+  },
+  {
+    "word": "hinder",
+    "meaning": "방해하다"
+  },
+  {
+    "word": "translate",
+    "meaning": "번역하다"
+  },
+  {
+    "word": "assure",
+    "meaning": "보증하다, 확실하게 하다"
+  },
+  {
+    "word": "ray",
+    "meaning": "광선"
+  },
+  {
+    "word": "envy",
+    "meaning": "부러움"
+  },
+  {
+    "word": "audience",
+    "meaning": "청중"
+  },
+  {
+    "word": "pill",
+    "meaning": "알약"
+  },
+  {
+    "word": "cosmetic",
+    "meaning": "화장품"
+  },
+  {
+    "word": "fossil",
+    "meaning": "화석"
+  },
+  {
+    "word": "enhance",
+    "meaning": "향상시키다"
+  },
+  {
+    "word": "affection",
+    "meaning": "애정"
+  },
+  {
+    "word": "division",
+    "meaning": "분할, 나누기"
+  },
+  {
+    "word": "blame",
+    "meaning": "비난하다, ~의 탓으로 돌리다"
+  },
+  {
+    "word": "remedy",
+    "meaning": "치료, 치료하다"
+  },
+  {
+    "word": "ray",
+    "meaning": "광선"
+  },
+  {
+    "word": "investment",
+    "meaning": "투자"
+  },
+  {
+    "word": "corporate",
+    "meaning": "법인의"
+  },
+  {
+    "word": "script",
+    "meaning": "손으로 쓰기, 대본"
+  },
+  {
+    "word": "curve",
+    "meaning": "곡선, 구부리다"
+  },
+  {
+    "word": "audience",
+    "meaning": "청중"
+  },
+  {
+    "word": "autograph",
+    "meaning": "서명, 서명하다"
+  },
+  {
+    "word": "affection",
+    "meaning": "애정"
+  },
+  {
+    "word": "refuse",
+    "meaning": "거절하다"
+  },
+  {
+    "word": "release",
+    "meaning": "석방하다, 발표하다"
+  },
+  {
+    "word": "contradict",
+    "meaning": "반박하다"
+  },
+  {
+    "word": "service",
+    "meaning": "서비스, 봉사"
+  },
+  {
+    "word": "investment",
+    "meaning": "투자"
+  },
+  {
+    "word": "relationship",
+    "meaning": "관계"
+  },
+  {
+    "word": "form",
+    "meaning": "형태, 종류 / 형성하다"
+  },
+  {
+    "word": "remedy",
+    "meaning": "치료, 치료하다"
+  },
+  {
+    "word": "attitude",
+    "meaning": "태도, 입장"
+  },
+  {
+    "word": "successive",
+    "meaning": "연속되는, 상속의"
+  },
+  {
+    "word": "temperate",
+    "meaning": "온화한, 절제하는"
+  },
+  {
+    "word": "hesitate",
+    "meaning": "주저하다, 망설이다"
+  },
+  {
+    "word": "refresh",
+    "meaning": "상쾌하게 하다"
+  },
+  {
+    "word": "deplete",
+    "meaning": "고갈시키다"
+  },
+  {
+    "word": "contradict",
+    "meaning": "반박하다"
+  },
+  {
+    "word": "ballot",
+    "meaning": "투표, 투표하다"
+  },
+  {
+    "word": "employ",
+    "meaning": "고용하다"
+  },
+  {
+    "word": "form",
+    "meaning": "형태, 종류 / 형성하다"
+  },
+  {
+    "word": "inform",
+    "meaning": "알리다, 통지하다"
+  },
+  {
+    "word": "cosmetic",
+    "meaning": "화장품"
+  },
+  {
+    "word": "relationship",
+    "meaning": "관계"
+  },
+  {
+    "word": "diameter",
+    "meaning": "지름, 직경"
+  },
+  {
+    "word": "inform",
+    "meaning": "알리다, 통지하다"
+  },
+  {
+    "word": "improve",
+    "meaning": "향상시키다"
+  },
+  {
+    "word": "substitute",
+    "meaning": "대체하다"
+  },
+  {
+    "word": "suitable",
+    "meaning": "적합한"
+  },
+  {
+    "word": "release",
+    "meaning": "석방하다, 발표하다"
+  },
+  {
+    "word": "social",
+    "meaning": "사회의, 사교적인"
+  },
+  {
+    "word": "tremble",
+    "meaning": "떨다"
+  },
+  {
+    "word": "rehearsal",
+    "meaning": "예행연습"
+  },
+  {
+    "word": "distribute",
+    "meaning": "분배하다, 분포시키다"
+  },
+  {
+    "word": "pottery",
+    "meaning": "도자기"
+  },
+  {
+    "word": "research",
+    "meaning": "연구하다, 조사하다"
+  },
+  {
+    "word": "damp",
+    "meaning": "축축한, 습기"
+  },
+  {
+    "word": "hinder",
+    "meaning": "방해하다"
+  },
+  {
+    "word": "ballot",
+    "meaning": "투표, 투표하다"
+  },
+  {
+    "word": "attitude",
+    "meaning": "태도, 입장"
+  },
+  {
+    "word": "enlightenment",
+    "meaning": "계몽, 깨달음"
+  },
+  {
+    "word": "stance",
+    "meaning": "입장, 태도"
+  },
+  {
+    "word": "acquaintance",
+    "meaning": "지인, 아는 사람"
+  },
+  {
+    "word": "research",
+    "meaning": "연구하다, 조사하다"
+  },
+  {
+    "word": "fertile",
+    "meaning": "비옥한"
+  },
+  {
+    "word": "scrutiny",
+    "meaning": "면밀한 조사"
+  },
+  {
+    "word": "refuse",
+    "meaning": "거절하다"
+  },
+  {
+    "word": "terrible",
+    "meaning": "끔찍한, 무서운"
+  },
+  {
+    "word": "opportunity",
+    "meaning": "기회"
+  },
+  {
+    "word": "veteran",
+    "meaning": "베테랑"
+  },
+  {
+    "word": "service",
+    "meaning": "서비스, 봉사"
+  },
+  {
+    "word": "attitude",
+    "meaning": "태도, 입장"
+  },
+  {
+    "word": "bond",
+    "meaning": "유대"
+  },
+  {
+    "word": "cast",
+    "meaning": "던지다"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "social",
+    "meaning": "사회의, 사교적인"
+  },
+  {
+    "word": "service",
+    "meaning": "서비스, 봉사"
+  },
+  {
+    "word": "decode",
+    "meaning": "해독하다"
+  },
+  {
+    "word": "frighten",
+    "meaning": "겁먹게 하다"
+  },
+  {
+    "word": "carve",
+    "meaning": "조각하다"
+  },
+  {
+    "word": "recipe",
+    "meaning": "조리법"
+  },
+  {
+    "word": "decay",
+    "meaning": "부패하다"
+  },
+  {
+    "word": "lay",
+    "meaning": "놓다, 낳다"
+  },
+  {
+    "word": "revenue",
+    "meaning": "수입, 수익"
+  },
+  {
+    "word": "innocence",
+    "meaning": "결백, 순진"
+  },
+  {
+    "word": "remind",
+    "meaning": "상기시키다"
+  },
+  {
+    "word": "pill",
+    "meaning": "알약"
+  },
+  {
+    "word": "cognitive",
+    "meaning": "인지의"
+  },
+  {
+    "word": "improve",
+    "meaning": "향상시키다"
+  },
+  {
+    "word": "enlightenment",
+    "meaning": "계몽, 깨달음"
+  },
+  {
+    "word": "retire",
+    "meaning": "은퇴하다"
+  },
+  {
+    "word": "invent",
+    "meaning": "발명하다"
+  },
+  {
+    "word": "hesitate",
+    "meaning": "주저하다, 망설이다"
+  },
+  {
+    "word": "submit",
+    "meaning": "제출하다, 복종하다"
+  },
+  {
+    "word": "provide",
+    "meaning": "공급하다, 준비하다"
+  },
+  {
+    "word": "volunteer",
+    "meaning": "자원봉사자, 자원하다"
+  },
+  {
+    "word": "aesthetics",
+    "meaning": "미학"
+  },
+  {
+    "word": "collaborate",
+    "meaning": "협력하다"
+  },
+  {
+    "word": "opportunity",
+    "meaning": "기회"
+  },
+  {
+    "word": "appeal",
+    "meaning": "호소하다, 항의하다"
+  },
+  {
+    "word": "persuade",
+    "meaning": "설득하다"
+  },
+  {
+    "word": "detect",
+    "meaning": "발견하다, 감지하다"
+  },
+  {
+    "word": "recite",
+    "meaning": "암송하다"
+  },
+  {
+    "word": "dwell",
+    "meaning": "살다"
+  },
+  {
+    "word": "tense",
+    "meaning": "긴장한"
+  },
+  {
+    "word": "amplify",
+    "meaning": "확대하다, 증폭하다"
+  },
+  {
+    "word": "remind",
+    "meaning": "상기시키다"
+  },
+  {
+    "word": "tense",
+    "meaning": "긴장한"
+  },
+  {
+    "word": "adventure",
+    "meaning": "모험"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "geology",
+    "meaning": "지질학"
+  },
+  {
+    "word": "restrict",
+    "meaning": "제한하다"
+  },
+  {
+    "word": "location",
+    "meaning": "위치"
+  },
+  {
+    "word": "location",
+    "meaning": "위치"
+  },
+  {
+    "word": "innocence",
+    "meaning": "결백, 순진"
+  },
+  {
+    "word": "deceive",
+    "meaning": "속이다"
+  },
+  {
+    "word": "feed",
+    "meaning": "먹이다, 부양하다"
+  },
+  {
+    "word": "cognitive",
+    "meaning": "인지의"
+  },
+  {
+    "word": "rainforest",
+    "meaning": "열대우림"
+  },
+  {
+    "word": "hygiene",
+    "meaning": "위생"
+  },
+  {
+    "word": "relationship",
+    "meaning": "관계"
+  },
+  {
+    "word": "cognitive",
+    "meaning": "인지의"
+  },
+  {
+    "word": "advise",
+    "meaning": "조언하다, 충고하다"
+  },
+  {
+    "word": "cosmetic",
+    "meaning": "화장품"
+  },
+  {
+    "word": "earn",
+    "meaning": "얻다, 벌다"
+  },
+  {
+    "word": "afford",
+    "meaning": "여유가 있다"
+  },
+  {
+    "word": "procedure",
+    "meaning": "절차"
+  },
+  {
+    "word": "symphony",
+    "meaning": "교향곡"
+  },
+  {
+    "word": "remind",
+    "meaning": "상기시키다"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "cognitive",
+    "meaning": "인지의"
+  },
+  {
+    "word": "revenue",
+    "meaning": "수입, 수익"
+  },
+  {
+    "word": "bid",
+    "meaning": "입찰하다"
+  },
+  {
+    "word": "immune",
+    "meaning": "면역의"
+  },
+  {
+    "word": "improve",
+    "meaning": "향상시키다"
+  },
+  {
+    "word": "grind",
+    "meaning": "갈다, 빻다"
+  },
+  {
+    "word": "sophisticated",
+    "meaning": "정교한, 세련된"
+  },
+  {
+    "word": "affection",
+    "meaning": "애정"
+  },
+  {
+    "word": "closet",
+    "meaning": "벽장"
+  },
+  {
+    "word": "awkward",
+    "meaning": "어색한, 서투른"
+  },
+  {
+    "word": "acquaintance",
+    "meaning": "지인, 아는 사람"
+  },
+  {
+    "word": "collaborate",
+    "meaning": "협력하다"
+  },
+  {
+    "word": "soar",
+    "meaning": "높이 치솟다"
+  },
+  {
+    "word": "fertile",
+    "meaning": "비옥한"
+  },
+  {
+    "word": "obstruct",
+    "meaning": "방해하다"
+  },
+  {
+    "word": "sophisticated",
+    "meaning": "정교한, 세련된"
+  },
+  {
+    "word": "earnest",
+    "meaning": "진지한"
+  },
+  {
+    "word": "inform",
+    "meaning": "알리다, 통지하다"
+  },
+  {
+    "word": "persuade",
+    "meaning": "설득하다"
+  },
+  {
+    "word": "ambiguous",
+    "meaning": "애매모호한, 두 가지 뜻으로 해석 가능한"
+  },
+  {
+    "word": "heritage",
+    "meaning": "유산"
+  },
+  {
+    "word": "submit",
+    "meaning": "제출하다, 복종하다"
+  },
+  {
+    "word": "refresh",
+    "meaning": "상쾌하게 하다"
+  },
+  {
+    "word": "blunt",
+    "meaning": "무딘, 퉁명스러운"
+  },
+  {
+    "word": "paradox",
+    "meaning": "역설"
+  },
+  {
+    "word": "research",
+    "meaning": "연구하다, 조사하다"
+  },
+  {
+    "word": "authority",
+    "meaning": "권위, 당국"
+  },
+  {
+    "word": "cast",
+    "meaning": "던지다"
+  },
+  {
+    "word": "steer",
+    "meaning": "조종하다"
+  },
+  {
+    "word": "inherent",
+    "meaning": "내재된"
+  },
+  {
+    "word": "individual",
+    "meaning": "개인, 개인적인"
+  },
+  {
+    "word": "rank",
+    "meaning": "등급, 순위"
+  },
+  {
+    "word": "require",
+    "meaning": "요구하다"
+  },
+  {
+    "word": "linguistic",
+    "meaning": "언어의, 언어학의"
+  },
+  {
+    "word": "damp",
+    "meaning": "축축한, 습기"
+  },
+  {
+    "word": "ray",
+    "meaning": "광선"
+  },
+  {
+    "word": "layer",
+    "meaning": "층"
+  },
+  {
+    "word": "diameter",
+    "meaning": "지름, 직경"
+  },
+  {
+    "word": "release",
+    "meaning": "석방하다, 발표하다"
+  },
+  {
+    "word": "retire",
+    "meaning": "은퇴하다"
+  },
+  {
+    "word": "limb",
+    "meaning": "사지, 팔다리"
+  },
+  {
+    "word": "employ",
+    "meaning": "고용하다"
+  },
+  {
+    "word": "illusion",
+    "meaning": "환상"
+  },
+  {
+    "word": "afford",
+    "meaning": "여유가 있다"
+  },
+  {
+    "word": "cosmetic",
+    "meaning": "화장품"
+  },
+  {
+    "word": "exhibit",
+    "meaning": "전시하다, 보여주다, 전시, 전시품"
+  },
+  {
+    "word": "successive",
+    "meaning": "연속되는, 상속의"
+  },
+  {
+    "word": "steer",
+    "meaning": "조종하다"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "identical",
+    "meaning": "동일한"
+  },
+  {
+    "word": "frighten",
+    "meaning": "겁먹게 하다"
+  },
+  {
+    "word": "persuade",
+    "meaning": "설득하다"
+  },
+  {
+    "word": "cabin",
+    "meaning": "오두막, 객실"
+  },
+  {
+    "word": "fertile",
+    "meaning": "비옥한"
+  },
+  {
+    "word": "develop",
+    "meaning": "개발하다, 발전하다"
+  },
+  {
+    "word": "funeral",
+    "meaning": "장례식"
+  },
+  {
+    "word": "provide",
+    "meaning": "공급하다, 준비하다"
+  },
+  {
+    "word": "despair",
+    "meaning": "절망하다"
+  },
+  {
+    "word": "symphony",
+    "meaning": "교향곡"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "emperor",
+    "meaning": "황제"
+  },
+  {
+    "word": "authority",
+    "meaning": "권위, 당국"
+  },
+  {
+    "word": "therapy",
+    "meaning": "치료"
+  },
+  {
+    "word": "equator",
+    "meaning": "적도"
+  },
+  {
+    "word": "summon",
+    "meaning": "소환하다"
+  },
+  {
+    "word": "authority",
+    "meaning": "권위, 당국"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "retire",
+    "meaning": "은퇴하다"
+  },
+  {
+    "word": "opportunity",
+    "meaning": "기회"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "surrender",
+    "meaning": "항복하다, 포기하다"
+  },
+  {
+    "word": "rainforest",
+    "meaning": "열대우림"
+  },
+  {
+    "word": "adventure",
+    "meaning": "모험"
+  },
+  {
+    "word": "employ",
+    "meaning": "고용하다"
+  },
+  {
+    "word": "earn",
+    "meaning": "얻다, 벌다"
+  },
+  {
+    "word": "suitable",
+    "meaning": "적합한"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "abnormal",
+    "meaning": "비정상적인"
+  },
+  {
+    "word": "ban",
+    "meaning": "금지하다"
+  },
+  {
+    "word": "bond",
+    "meaning": "유대"
+  },
+  {
+    "word": "ray",
+    "meaning": "광선"
+  },
+  {
+    "word": "harm",
+    "meaning": "해, 해치다"
+  },
+  {
+    "word": "corporate",
+    "meaning": "법인의"
+  },
+  {
+    "word": "rainforest",
+    "meaning": "열대우림"
+  },
+  {
+    "word": "pledge",
+    "meaning": "약속, 맹세, 약속하다, 맹세하다"
+  },
+  {
+    "word": "radius",
+    "meaning": "반지름"
+  },
+  {
+    "word": "fertile",
+    "meaning": "비옥한"
+  },
+  {
+    "word": "lord",
+    "meaning": "군주"
+  },
+  {
+    "word": "employ",
+    "meaning": "고용하다"
+  },
+  {
+    "word": "aesthetics",
+    "meaning": "미학"
+  },
+  {
+    "word": "suitable",
+    "meaning": "적합한"
+  },
+  {
+    "word": "investment",
+    "meaning": "투자"
+  },
+  {
+    "word": "restrict",
+    "meaning": "제한하다"
+  },
+  {
+    "word": "annoy",
+    "meaning": "짜증나게 하다"
+  },
+  {
+    "word": "develop",
+    "meaning": "개발하다, 발전하다"
+  },
+  {
+    "word": "temperament",
+    "meaning": "기질"
+  },
+  {
+    "word": "consistent",
+    "meaning": "일관된"
+  },
+  {
+    "word": "blunt",
+    "meaning": "무딘, 퉁명스러운"
+  },
+  {
+    "word": "opportunity",
+    "meaning": "기회"
+  },
+  {
+    "word": "stance",
+    "meaning": "입장, 태도"
+  },
+  {
+    "word": "alternative",
+    "meaning": "대안, 대안의"
+  },
+  {
+    "word": "translate",
+    "meaning": "번역하다"
+  },
+  {
+    "word": "entrance",
+    "meaning": "입구, 입학"
+  },
+  {
+    "word": "profile",
+    "meaning": "옆모습, 인물 소개"
+  },
+  {
+    "word": "behave",
+    "meaning": "행동하다"
+  },
+  {
+    "word": "relationship",
+    "meaning": "관계"
+  },
+  {
+    "word": "geology",
+    "meaning": "지질학"
+  },
+  {
+    "word": "relationship",
+    "meaning": "관계"
+  },
+  {
+    "word": "innovation",
+    "meaning": "혁신"
+  },
+  {
+    "word": "lord",
+    "meaning": "군주"
+  },
+  {
+    "word": "deceive",
+    "meaning": "속이다"
+  },
+  {
+    "word": "frighten",
+    "meaning": "겁먹게 하다"
+  },
+  {
+    "word": "present",
+    "meaning": "현재의, 나타나다"
+  },
+  {
+    "word": "famine",
+    "meaning": "기근"
+  },
+  {
+    "word": "interpret",
+    "meaning": "해석하다"
+  },
+  {
+    "word": "tissue",
+    "meaning": "조직, 화장지"
+  },
+  {
+    "word": "soar",
+    "meaning": "높이 치솟다"
+  },
+  {
+    "word": "script",
+    "meaning": "손으로 쓰기, 대본"
+  },
+  {
+    "word": "artery",
+    "meaning": "동맥"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "motion",
+    "meaning": "움직임, 운동"
+  },
+  {
+    "word": "detect",
+    "meaning": "발견하다, 감지하다"
+  },
+  {
+    "word": "distribute",
+    "meaning": "분배하다, 분포시키다"
+  },
+  {
+    "word": "autograph",
+    "meaning": "서명, 서명하다"
+  },
+  {
+    "word": "gather",
+    "meaning": "모으다"
+  },
+  {
+    "word": "corporate",
+    "meaning": "법인의"
+  },
+  {
+    "word": "suitable",
+    "meaning": "적합한"
+  },
+  {
+    "word": "investment",
+    "meaning": "투자"
+  },
+  {
+    "word": "sneak",
+    "meaning": "몰래 움직이다"
+  },
+  {
+    "word": "script",
+    "meaning": "손으로 쓰기, 대본"
+  },
+  {
+    "word": "circumstance",
+    "meaning": "환경, 상황"
+  },
+  {
+    "word": "chore",
+    "meaning": "허드렛일"
+  },
+  {
+    "word": "hygiene",
+    "meaning": "위생"
+  },
+  {
+    "word": "ballot",
+    "meaning": "투표, 투표하다"
+  },
+  {
+    "word": "harm",
+    "meaning": "해, 해치다"
+  },
+  {
+    "word": "propriety",
+    "meaning": "적절성, 예의 바름"
+  },
+  {
+    "word": "adventure",
+    "meaning": "모험"
+  },
+  {
+    "word": "service",
+    "meaning": "서비스, 봉사"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "employ",
+    "meaning": "고용하다"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "funeral",
+    "meaning": "장례식"
+  },
+  {
+    "word": "provide",
+    "meaning": "공급하다, 준비하다"
+  },
+  {
+    "word": "acquaintance",
+    "meaning": "지인, 아는 사람"
+  },
+  {
+    "word": "division",
+    "meaning": "분할, 나누기"
+  },
+  {
+    "word": "ballot",
+    "meaning": "투표, 투표하다"
+  },
+  {
+    "word": "exhibit",
+    "meaning": "전시하다, 보여주다, 전시, 전시품"
+  },
+  {
+    "word": "acquaintance",
+    "meaning": "지인, 아는 사람"
+  },
+  {
+    "word": "successive",
+    "meaning": "연속되는, 상속의"
+  },
+  {
+    "word": "corrupt",
+    "meaning": "부패한, 타락시키다"
+  },
+  {
+    "word": "therapy",
+    "meaning": "치료"
+  },
+  {
+    "word": "cabin",
+    "meaning": "오두막, 객실"
+  },
+  {
+    "word": "curve",
+    "meaning": "곡선, 구부리다"
+  },
+  {
+    "word": "immune",
+    "meaning": "면역의"
+  },
+  {
+    "word": "alternative",
+    "meaning": "대안, 대안의"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "undertake",
+    "meaning": "수행하다, 떠맡다"
+  },
+  {
+    "word": "perceive",
+    "meaning": "인지하다"
+  },
+  {
+    "word": "audience",
+    "meaning": "청중"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "cosmetic",
+    "meaning": "화장품"
+  },
+  {
+    "word": "authority",
+    "meaning": "권위, 당국"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "research",
+    "meaning": "연구하다, 조사하다"
+  },
+  {
+    "word": "linguistic",
+    "meaning": "언어의, 언어학의"
+  },
+  {
+    "word": "artery",
+    "meaning": "동맥"
+  },
+  {
+    "word": "subscribe",
+    "meaning": "구독하다"
+  },
+  {
+    "word": "spike",
+    "meaning": "못, 대못"
+  },
+  {
+    "word": "layer",
+    "meaning": "층"
+  },
+  {
+    "word": "scan",
+    "meaning": "정밀 검사하다"
+  },
+  {
+    "word": "cognitive",
+    "meaning": "인지의"
+  },
+  {
+    "word": "terrible",
+    "meaning": "끔찍한, 무서운"
+  },
+  {
+    "word": "audience",
+    "meaning": "청중"
+  },
+  {
+    "word": "improve",
+    "meaning": "향상시키다"
+  },
+  {
+    "word": "gender",
+    "meaning": "성별"
+  },
+  {
+    "word": "appeal",
+    "meaning": "호소하다, 항의하다"
+  },
+  {
+    "word": "pottery",
+    "meaning": "도자기"
+  },
+  {
+    "word": "refresh",
+    "meaning": "상쾌하게 하다"
+  },
+  {
+    "word": "blunt",
+    "meaning": "무딘, 퉁명스러운"
+  },
+  {
+    "word": "closet",
+    "meaning": "벽장"
+  },
+  {
+    "word": "assure",
+    "meaning": "보증하다, 확실하게 하다"
+  },
+  {
+    "word": "form",
+    "meaning": "형태, 종류 / 형성하다"
+  },
+  {
+    "word": "outcome",
+    "meaning": "결과"
+  },
+  {
+    "word": "entrance",
+    "meaning": "입구, 입학"
+  },
+  {
+    "word": "opportunity",
+    "meaning": "기회"
+  },
+  {
+    "word": "discharge",
+    "meaning": "배출, 방전, 배출하다, 내보내다"
+  },
+  {
+    "word": "deplete",
+    "meaning": "고갈시키다"
+  },
+  {
+    "word": "subsidy",
+    "meaning": "보조금, 장려금"
+  },
+  {
+    "word": "estimate",
+    "meaning": "견적, 평가하다"
+  },
+  {
+    "word": "intrude",
+    "meaning": "방해하다, 침범하다"
+  },
+  {
+    "word": "annoy",
+    "meaning": "짜증나게 하다"
+  },
+  {
+    "word": "curve",
+    "meaning": "곡선, 구부리다"
+  },
+  {
+    "word": "diameter",
+    "meaning": "지름, 직경"
+  },
+  {
+    "word": "innocence",
+    "meaning": "결백, 순진"
+  },
+  {
+    "word": "grind",
+    "meaning": "갈다, 빻다"
+  },
+  {
+    "word": "swamp",
+    "meaning": "늪, 습지, 압도하다"
+  },
+  {
+    "word": "distribute",
+    "meaning": "분배하다, 분포시키다"
+  },
+  {
+    "word": "cope",
+    "meaning": "대처하다"
+  },
+  {
+    "word": "amount",
+    "meaning": "총액, 총계, 양"
+  },
+  {
+    "word": "volunteer",
+    "meaning": "자원봉사자, 자원하다"
+  },
+  {
+    "word": "lord",
+    "meaning": "군주"
+  },
+  {
+    "word": "soar",
+    "meaning": "높이 치솟다"
+  },
+  {
+    "word": "blame",
+    "meaning": "비난하다, ~의 탓으로 돌리다"
+  },
+  {
+    "word": "notable",
+    "meaning": "주목할 만한"
+  },
+  {
+    "word": "recite",
+    "meaning": "암송하다"
+  },
+  {
+    "word": "inform",
+    "meaning": "알리다, 통지하다"
+  },
+  {
+    "word": "provide",
+    "meaning": "공급하다, 준비하다"
+  },
+  {
+    "word": "research",
+    "meaning": "연구하다, 조사하다"
+  },
+  {
+    "word": "motion",
+    "meaning": "움직임, 운동"
+  },
+  {
+    "word": "attitude",
+    "meaning": "태도, 입장"
+  },
+  {
+    "word": "develop",
+    "meaning": "개발하다, 발전하다"
+  },
+  {
+    "word": "backward",
+    "meaning": "뒤쪽으로"
+  },
+  {
+    "word": "deadline",
+    "meaning": "마감기한"
+  },
+  {
+    "word": "raw",
+    "meaning": "날것의"
+  },
+  {
+    "word": "require",
+    "meaning": "요구하다"
+  },
+  {
+    "word": "remedy",
+    "meaning": "치료, 치료하다"
+  },
+  {
+    "word": "setback",
+    "meaning": "좌절, 차질"
+  },
+  {
+    "word": "successive",
+    "meaning": "연속되는, 상속의"
+  },
+  {
+    "word": "summon",
+    "meaning": "소환하다"
+  },
+  {
+    "word": "harm",
+    "meaning": "해, 해치다"
+  },
+  {
+    "word": "appeal",
+    "meaning": "호소하다, 항의하다"
+  },
+  {
+    "word": "pledge",
+    "meaning": "약속, 맹세, 약속하다, 맹세하다"
+  }
 ];
