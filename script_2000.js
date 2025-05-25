@@ -74,9 +74,9 @@ function loadQuestion() {
   document.getElementById("question").innerText = q.word;
   speak(q.word);
 
-  const options = [q.mean];
+  const options = [q.meaning];
   while (options.length < 4) {
-    const option = quiz[Math.floor(Math.random() * quiz.length)].mean;
+    const option = quiz[Math.floor(Math.random() * quiz.length)].meaning;
     if (!options.includes(option)) options.push(option);
   }
   shuffle(options);
@@ -87,7 +87,7 @@ function loadQuestion() {
     const btn = document.createElement("div");
     btn.className = "choice";
     btn.innerText = opt;
-    btn.onclick = () => checkAnswer(opt, q.mean);
+    btn.onclick = () => checkAnswer(opt, q.meaning);
     choicesContainer.appendChild(btn);
   });
 
@@ -100,7 +100,7 @@ function loadQuestion() {
       updateTimer();
       if (timer === 0) {
         clearInterval(timerInterval);
-        markAnswer(null, q.mean);
+        markAnswer(null, q.meaning);
       }
     }
   }, 1000);
