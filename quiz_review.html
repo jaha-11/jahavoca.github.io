@@ -2,46 +2,108 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>오답노트 복습</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: sans-serif;
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 20px;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .choices {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+      gap: 10px;
+      margin-top: 20px;
     }
-    h1 {
-      margin-bottom: 1rem;
-    }
-    #counter, #question-number, #question {
-      margin: 0.5rem;
-      font-size: 1.2rem;
-    }
-    #choices {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    #choices button {
-      margin: 0.25rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
+    .choice {
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
       cursor: pointer;
+      background: #f9f9f9;
+    }
+    .choice.correct {
+      background-color: #c8f7c5;
+      border-color: #27ae60;
+    }
+    .choice.wrong {
+      background-color: #f7c5c5;
+      border-color: #e74c3c;
     }
   </style>
 </head>
 <body>
-  <h1>📕 오답노트 복습</h1>
-  <div id="counter"></div>
-  <div id="question-number"></div>
-  <div id="question"></div>
-  <div id="choices"></div>
-  <script src="script_review.js"></script>
+  <div class="container">
+    <h2>오답 복습 퀴즈</h2>
+    <div id="question">문제 불러오는 중...</div>
+    <div class="choices" id="choices"></div>
+    <div style="margin-top:20px;">
+      <button onclick="nextQuestion()">👉 다음 문제</button>
+    </div>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
+    let current = 0;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    shuffle(data);
+
+    function showQuestion() {
+      if (data.length === 0) {
+        document.getElementById("question").innerText = "저장된 오답이 없습니다.";
+        document.getElementById("choices").innerHTML = "";
+        return;
+      }
+
+      const item = data[current];
+      const choices = [...item.choices];
+      shuffle(choices);
+
+      document.getElementById("question").innerText = `단어: ${item.word}`;
+      const choicesDiv = document.getElementById("choices");
+      choicesDiv.innerHTML = "";
+
+      choices.forEach(choice => {
+        const btn = document.createElement("div");
+        btn.className = "choice";
+        btn.innerText = choice;
+        btn.onclick = () => {
+          if (choice === item.meaning) {
+            btn.classList.add("correct");
+          } else {
+            btn.classList.add("wrong");
+            [...choicesDiv.children].forEach(el => {
+              if (el.innerText === item.meaning) {
+                el.classList.add("correct");
+              }
+            });
+          }
+          setTimeout(nextQuestion, 5000); // 5초 후 자동 진행
+        };
+        choicesDiv.appendChild(btn);
+      });
+    }
+
+    function nextQuestion() {
+      current = (current + 1) % data.length;
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
 </body>
 </html>
