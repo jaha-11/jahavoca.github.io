@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>오답 복습 퀴즈</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      position: relative;
+    }
+    #counter {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    #pauseBtn {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+      font-size: 18px;
+    }
+    #timer {
+      font-size: 28px;
+      margin-bottom: 20px;
+      
+    }
+    #question {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    #choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px; margin-top: 10px; margin-bottom: 10px;
+      margin-top: 20px;
+      justify-items: center;
+    }
+    .choice {
+    margin: 10px 20px;
+
+      background-color: #f0f0f0;
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: 2px solid #ccc;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+    .choice.correct {
+      background-color: #d4f4d2;
+      border-color: #2ecc71;
+    }
+    .choice.wrong {
+      background-color: #f4cccc;
+      border-color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="counter">1/0</div>
+    <button id="pauseBtn" onclick="togglePause()">⏸</button>
+    <div id="timer">5</div>
+    <div id="question">문제 로딩 중...</div>
+    <div id="choices"></div>
+  </div>
+
+  <script>
+    let rawData = JSON.parse(localStorage.getItem("wrongWords_2000")) || [];
+    let data = [];
+    let allMeanings = rawData.map(item => item.meaning);
+    let current = 0;
+    let isPaused = false;
+    let timer = 5;
+    let interval;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    rawData.forEach(item => {
+      let wrongs = allMeanings.filter(m => m !== item.meaning);
+      shuffle(wrongs);
+      let choices = [item.meaning, ...wrongs.slice(0, 3)];
+      shuffle(choices);
+      data.push({ word: item.word, meaning: item.meaning, choices });
+    });
+
+    shuffle(data);
+
+    function startTimer() {
+      timer = 5;
+      
+      document.getElementById("timer").innerText = timer;
+      if (timer >= 4) {
+        document.getElementById("timer").style.color = "green";
+      } else if (timer >= 2) {
+        document.getElementById("timer").style.color = "orange";
+      } else {
+        document.getElementById("timer").style.color = "red";
+      }
+    
+      interval = setInterval(() => {
+        if (!isPaused) {
+          timer--;
+          
+      document.getElementById("timer").innerText = timer;
+      if (timer >= 4) {
+        document.getElementById("timer").style.color = "green";
+      } else if (timer >= 2) {
+        document.getElementById("timer").style.color = "orange";
+      } else {
+        document.getElementById("timer").style.color = "red";
+      }
+    
+          if (timer <= 0) {
+            clearInterval(interval);
+            nextQuestion();
+          }
+        }
+      }, 1000);
+    }
+
+    function togglePause() {
+      isPaused = !isPaused;
+      document.getElementById("pauseBtn").innerText = isPaused ? "▶️" : "⏸";
+    }
+
+    function showQuestion() {
+      if (data.length === 0) {
+        document.getElementById("question").innerText = "오답이 없습니다.";
+        document.getElementById("choices").innerHTML = "";
+        document.getElementById("timer").style.display = "none";
+        return;
+      }
+
+      const item = data[current];
+      document.getElementById("counter").innerText = `${current + 1}/${data.length}`;
+      document.getElementById("question").innerText = item.word;
+
+      const choicesDiv = document.getElementById("choices");
+      choicesDiv.innerHTML = "";
+
+      item.choices.forEach(choice => {
+        const btn = document.createElement("div");
+        btn.className = "choice";
+        btn.innerText = choice;
+        btn.onclick = () => {
+          clearInterval(interval);
+          if (choice === item.meaning) {
+            btn.classList.add("correct");
+          } else {
+            btn.classList.add("wrong");
+            [...choicesDiv.children].forEach(el => {
+              if (el.innerText === item.meaning) {
+                el.classList.add("correct");
+              }
+            });
+          }
+          setTimeout(nextQuestion, 1000);
+        };
+        choicesDiv.appendChild(btn);
+      });
+
+      startTimer();
+    }
+
+    function nextQuestion() {
+      current = (current + 1) % data.length;
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
