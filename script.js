@@ -1,11 +1,12 @@
 
 function saveWrongAnswer(word, meaning, choices) {
-  const stored = localStorage.getItem("wrongWords");
+  const stored = localStorage.getItem("wrongWords_1300");
   let wrongWords = stored ? JSON.parse(stored) : [];
   const exists = wrongWords.some(item => item.word === word);
   if (!exists) {
     wrongWords.push({ word, meaning, choices });
-    localStorage.setItem("wrongWords", JSON.stringify(wrongWords));
+    localStorage.setItem("wrongWords_1300", JSON.stringify(wrongWords));
+    console.log("📝 오답 저장됨:", word, meaning);
   }
 }
 
