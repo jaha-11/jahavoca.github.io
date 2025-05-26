@@ -25,14 +25,14 @@
     }
     #counter {
       position: absolute;
-      top: 10px;
+      top: 30px;
       right: 20px;
       font-weight: bold;
       font-size: 18px;
     }
     #pauseBtn {
       position: absolute;
-      top: 10px;
+      top: 30px;
       left: 20px;
       font-size: 18px;
     }
@@ -82,7 +82,9 @@
   </div>
 
   <script>
-    const data = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
+    let rawData = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
+    let data = [];
+    let allMeanings = rawData.map(item => item.meaning);
     let current = 0;
     let isPaused = false;
     let timer = 5;
@@ -94,6 +96,16 @@
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
+
+    rawData.forEach(item => {
+      let wrongs = allMeanings.filter(m => m !== item.meaning);
+      shuffle(wrongs);
+      let choices = [item.meaning, ...wrongs.slice(0, 3)];
+      shuffle(choices);
+      data.push({ word: item.word, meaning: item.meaning, choices });
+    });
+
+    shuffle(data);
 
     function startTimer() {
       timer = 5;
@@ -115,8 +127,6 @@
       document.getElementById("pauseBtn").innerText = isPaused ? "▶️" : "⏸";
     }
 
-    shuffle(data);
-
     function showQuestion() {
       if (data.length === 0) {
         document.getElementById("question").innerText = "오답이 없습니다.";
@@ -126,16 +136,13 @@
       }
 
       const item = data[current];
-      const choices = [...item.choices];
-      shuffle(choices);
-
       document.getElementById("counter").innerText = `${current + 1}/${data.length}`;
       document.getElementById("question").innerText = item.word;
 
       const choicesDiv = document.getElementById("choices");
       choicesDiv.innerHTML = "";
 
-      choices.forEach(choice => {
+      item.choices.forEach(choice => {
         const btn = document.createElement("div");
         btn.className = "choice";
         btn.innerText = choice;
