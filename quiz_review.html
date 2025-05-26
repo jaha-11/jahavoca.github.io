@@ -4,32 +4,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>오답노트 복습</title>
+  <title>오답 복습 퀴즈</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: sans-serif;
       background-color: #f0f8ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     .container {
+      text-align: center;
       background: white;
       padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 90%;
+      position: relative;
     }
-    .choices {
+    #counter {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    #pauseBtn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 18px;
+    }
+    #question {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    #choices {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 20px;
+      margin-bottom: 20px;
     }
     .choice {
       padding: 10px;
@@ -48,23 +67,25 @@
       border-color: #e74c3c;
     }
     #timer {
-      font-size: 24px;
-      margin-top: 10px;
+      font-size: 20px;
       color: #555;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>오답 복습 퀴즈</h2>
+    <div id="counter">1/0</div>
+    <button id="pauseBtn" onclick="togglePause()">⏸</button>
     <div id="question">문제 로딩 중...</div>
-    <div class="choices" id="choices"></div>
+    <div id="choices"></div>
     <div id="timer">⏳ 5</div>
   </div>
 
   <script>
     const data = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
     let current = 0;
+    let score = 0;
+    let isPaused = false;
     let timer = 5;
     let interval;
 
@@ -79,22 +100,30 @@
       timer = 5;
       document.getElementById("timer").innerText = `⏳ ${timer}`;
       interval = setInterval(() => {
-        timer--;
-        document.getElementById("timer").innerText = `⏳ ${timer}`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          nextQuestion();
+        if (!isPaused) {
+          timer--;
+          document.getElementById("timer").innerText = `⏳ ${timer}`;
+          if (timer <= 0) {
+            clearInterval(interval);
+            nextQuestion();
+          }
         }
       }, 1000);
+    }
+
+    function togglePause() {
+      isPaused = !isPaused;
+      document.getElementById("pauseBtn").innerText = isPaused ? "▶️" : "⏸";
     }
 
     shuffle(data);
 
     function showQuestion() {
       if (data.length === 0) {
-        document.getElementById("question").innerText = "저장된 오답이 없습니다.";
+        document.getElementById("question").innerText = "오답이 없습니다.";
         document.getElementById("choices").innerHTML = "";
         document.getElementById("timer").style.display = "none";
+        document.getElementById("pauseBtn").style.display = "none";
         return;
       }
 
@@ -102,7 +131,9 @@
       const choices = [...item.choices];
       shuffle(choices);
 
-      document.getElementById("question").innerText = `단어: ${item.word}`;
+      document.getElementById("counter").innerText = `${current + 1}/${data.length}`;
+      document.getElementById("question").innerText = item.word;
+
       const choicesDiv = document.getElementById("choices");
       choicesDiv.innerHTML = "";
 
