@@ -52,6 +52,7 @@ function markAnswer(_, correct) {
     if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
   });
   wrongAnswers.push(quiz[current]);
+    saveWrongAnswer(quiz[current].word, quiz[current].meaning, [quiz[current].meaning]);
   setTimeout(() => {
     current++;
     loadQuestion();
@@ -69,6 +70,7 @@ function checkAnswer(selected, correct) {
     score++;
   } else {
     wrongAnswers.push(quiz[current]);
+    saveWrongAnswer(quiz[current].word, quiz[current].meaning, [quiz[current].meaning]);
   }
   setTimeout(() => {
     current++;
