@@ -1,72 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>1300 영단어 퀴즈</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>1300 영단어 퀴즈</h1>
-  <div id="counter"></div>
-  <div id="question-number"></div>
-  <div id="question"></div>
-  <div id="choices"></div>
-  <script>
-    const questions = [
-      { word: "abandon", meaning: "버리다", choices: ["버리다", "잡다", "가지다", "기다리다"] },
-      { word: "benevolent", meaning: "자비로운", choices: ["강력한", "자비로운", "교활한", "냉정한"] },
-      { word: "candid", meaning: "솔직한", choices: ["솔직한", "감추는", "예의바른", "무례한"] }
-    ];
-    let index = 0;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
-
-    function saveWrongAnswer(word, meaning, choices) {
-      const stored = localStorage.getItem("wrongWords");
-      let wrongWords = stored ? JSON.parse(stored) : [];
-      const exists = wrongWords.some(item => item.word === word);
-      if (!exists) {
-        wrongWords.push({ word, meaning, choices });
-        localStorage.setItem("wrongWords", JSON.stringify(wrongWords));
-      }
-    }
-
-    function showQuestion() {
-      if (index >= questions.length) index = 0;
-      const current = questions[index++];
-      document.getElementById("question-number").innerText = index + " / " + questions.length;
-      document.getElementById("question").innerText = current.word;
-      const shuffledChoices = [...current.choices];
-      shuffle(shuffledChoices);
-      const container = document.getElementById("choices");
-      container.innerHTML = '';
-      shuffledChoices.forEach(choice => {
-        const btn = document.createElement("button");
-        btn.innerText = choice;
-        btn.onclick = () => {
-          if (choice === current.meaning) {
-            btn.style.backgroundColor = "lightgreen";
-          } else {
-            btn.style.backgroundColor = "salmon";
-            saveWrongAnswer(current.word, current.meaning, current.choices);
-          }
-          setTimeout(showQuestion, 1000);
-        };
-        container.appendChild(btn);
-      });
-    }
-
-    window.onload = () => {
-      shuffle(questions);
-      showQuestion();
-    };
-  </script>
+  <div class="container">
+    <div id="counter">1/500</div>
+    <button id="pauseBtn" onclick="togglePause()">⏸</button>
+    <div id="timer">5</div>
+    <div id="question">문제 로딩 중...</div>
+    <div id="choices" class="choices"></div>
+  </div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
