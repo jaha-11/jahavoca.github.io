@@ -1,20 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>1300 영단어 퀴즈</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오답노트 복습</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    #counter, #question-number, #question {
+      margin: 0.5rem;
+      font-size: 1.2rem;
+    }
+    #choices {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #choices button {
+      margin: 0.25rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div id="counter">1/500</div>
-    <button id="pauseBtn" onclick="togglePause()">⏸</button>
-    <div id="timer">5</div>
-    <div id="question">문제 로딩 중...</div>
-    <div id="choices" class="choices"></div>
-  </div>
-  <script src="data.js"></script>
-  <script src="script.js"></script>
+  <h1>📕 오답노트 복습</h1>
+  <div id="counter"></div>
+  <div id="question-number"></div>
+  <div id="question"></div>
+  <div id="choices"></div>
+  <script src="script_review.js"></script>
 </body>
 </html>
