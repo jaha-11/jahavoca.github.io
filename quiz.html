@@ -1,14 +1,5 @@
-<!DOCTY
-function saveWrongAnswer(word, meaning, choices) {
-  const stored = localStorage.getItem("wrongWords");
-  let wrongWords = stored ? JSON.parse(stored) : [];
-  const exists = wrongWords.some(item => item.word === word);
-  if (!exists) {
-    wrongWords.push({ word, meaning, choices });
-    localStorage.setItem("wrongWords", JSON.stringify(wrongWords));
-  }
-}
-PE html>
+
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -24,6 +15,21 @@ PE html>
     <div id="question">문제 로딩 중...</div>
     <div id="choices" class="choices"></div>
   </div>
+
+  <!-- 오답 저장 함수는 올바르게 <script> 안에 삽입 -->
+  <script>
+    function saveWrongAnswer(word, meaning, choices) {
+      const stored = localStorage.getItem("wrongWords_1300");
+      let wrongWords = stored ? JSON.parse(stored) : [];
+      const exists = wrongWords.some(item => item.word === word);
+      if (!exists) {
+        wrongWords.push({ word, meaning, choices });
+        localStorage.setItem("wrongWords_1300", JSON.stringify(wrongWords));
+        console.log("📝 오답 저장됨:", word, meaning);
+      }
+    }
+  </script>
+
   <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
