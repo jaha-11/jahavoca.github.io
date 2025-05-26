@@ -1,3 +1,15 @@
+
+function saveWrongAnswer(word, meaning, choices) {
+  const stored = localStorage.getItem("wrongWords");
+  let wrongWords = stored ? JSON.parse(stored) : [];
+  const exists = wrongWords.some(item => item.word === word);
+  if (!exists) {
+    wrongWords.push({ word, meaning, choices });
+    localStorage.setItem("wrongWords", JSON.stringify(wrongWords));
+  }
+}
+
+
 let current = 0;
 let score = 0;
 let timer = 5;
