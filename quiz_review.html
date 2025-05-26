@@ -39,7 +39,7 @@
     #timer {
       font-size: 28px;
       margin-bottom: 20px;
-      color: red;
+      
     }
     #question {
       font-size: 32px;
@@ -54,6 +54,8 @@
       justify-items: center;
     }
     .choice {
+    margin: 10px 20px;
+
       background-color: #f0f0f0;
       padding: 16px 24px;
       border-radius: 12px;
@@ -83,7 +85,7 @@
   </div>
 
   <script>
-    let rawData = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
+    let rawData = JSON.parse(localStorage.getItem("wrongWords_2000")) || [];
     let data = [];
     let allMeanings = rawData.map(item => item.meaning);
     let current = 0;
@@ -110,11 +112,29 @@
 
     function startTimer() {
       timer = 5;
+      
       document.getElementById("timer").innerText = timer;
+      if (timer >= 4) {
+        document.getElementById("timer").style.color = "green";
+      } else if (timer >= 2) {
+        document.getElementById("timer").style.color = "orange";
+      } else {
+        document.getElementById("timer").style.color = "red";
+      }
+    
       interval = setInterval(() => {
         if (!isPaused) {
           timer--;
-          document.getElementById("timer").innerText = timer;
+          
+      document.getElementById("timer").innerText = timer;
+      if (timer >= 4) {
+        document.getElementById("timer").style.color = "green";
+      } else if (timer >= 2) {
+        document.getElementById("timer").style.color = "orange";
+      } else {
+        document.getElementById("timer").style.color = "red";
+      }
+    
           if (timer <= 0) {
             clearInterval(interval);
             nextQuestion();
