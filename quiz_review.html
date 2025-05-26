@@ -7,27 +7,37 @@
   <title>오답노트 복습</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
     .container {
-      max-width: 600px;
-      margin: 100px auto;
-      padding: 20px;
-      border-radius: 12px;
       background: white;
+      padding: 30px;
+      border-radius: 20px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
       text-align: center;
     }
     .choices {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 20px;
     }
     .choice {
       padding: 10px;
+      background-color: #f0f0f0;
       border: 2px solid #ccc;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      background: #f9f9f9;
+      transition: 0.3s;
     }
     .choice.correct {
       background-color: #c8f7c5;
@@ -37,21 +47,26 @@
       background-color: #f7c5c5;
       border-color: #e74c3c;
     }
+    #timer {
+      font-size: 24px;
+      margin-top: 10px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>오답 복습 퀴즈</h2>
-    <div id="question">문제 불러오는 중...</div>
+    <div id="question">문제 로딩 중...</div>
     <div class="choices" id="choices"></div>
-    <div style="margin-top:20px;">
-      <button onclick="nextQuestion()">👉 다음 문제</button>
-    </div>
+    <div id="timer">⏳ 5</div>
   </div>
 
   <script>
     const data = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
     let current = 0;
+    let timer = 5;
+    let interval;
 
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -60,12 +75,26 @@
       }
     }
 
+    function startTimer() {
+      timer = 5;
+      document.getElementById("timer").innerText = `⏳ ${timer}`;
+      interval = setInterval(() => {
+        timer--;
+        document.getElementById("timer").innerText = `⏳ ${timer}`;
+        if (timer <= 0) {
+          clearInterval(interval);
+          nextQuestion();
+        }
+      }, 1000);
+    }
+
     shuffle(data);
 
     function showQuestion() {
       if (data.length === 0) {
         document.getElementById("question").innerText = "저장된 오답이 없습니다.";
         document.getElementById("choices").innerHTML = "";
+        document.getElementById("timer").style.display = "none";
         return;
       }
 
@@ -82,6 +111,7 @@
         btn.className = "choice";
         btn.innerText = choice;
         btn.onclick = () => {
+          clearInterval(interval);
           if (choice === item.meaning) {
             btn.classList.add("correct");
           } else {
@@ -92,10 +122,12 @@
               }
             });
           }
-          setTimeout(nextQuestion, 5000); // 5초 후 자동 진행
+          setTimeout(nextQuestion, 1000);
         };
         choicesDiv.appendChild(btn);
       });
+
+      startTimer();
     }
 
     function nextQuestion() {
