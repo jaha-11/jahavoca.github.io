@@ -4,7 +4,7 @@ let current = 0, timer, count = 5;
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(Math.random() * (i + 1)); // <-- 여기 오류 수정됨
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
