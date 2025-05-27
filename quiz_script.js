@@ -1,6 +1,11 @@
 
-const questions = JSON.parse(localStorage.getItem('wrongAnswers1300') || '[]');
+const questions = [
+  { word: "apple", choices: ["사과", "바나나", "의자", "하늘"], answer: "사과" },
+  { word: "book", choices: ["책", "연필", "사탕", "바다"], answer: "책" },
+  { word: "computer", choices: ["자동차", "컴퓨터", "전화기", "고양이"], answer: "컴퓨터" }
+];
 let current = 0, timer, count = 5;
+const wrongAnswers = [];
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -8,10 +13,6 @@ function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-}
-
-function updateCounter() {
-  document.getElementById('counter').innerText = `문제 ${current + 1}/${questions.length}`;
 }
 
 function updateTimerDisplay() {
@@ -22,10 +23,10 @@ function updateTimerDisplay() {
 
 function nextQuestion() {
   if (current >= questions.length) {
-    alert('복습 완료!');
+    localStorage.setItem('wrongAnswers1300', JSON.stringify(wrongAnswers));
+    alert('퀴즈 완료!');
     return;
   }
-  updateCounter();
   const q = questions[current];
   document.getElementById('question').innerText = q.word;
   const choicesEl = document.getElementById('choices');
@@ -35,8 +36,12 @@ function nextQuestion() {
     btn.className = 'choice';
     btn.innerText = choice;
     btn.onclick = () => {
-      if (choice === q.answer) btn.style.borderColor = 'green';
-      else btn.style.borderColor = 'red';
+      if (choice === q.answer) {
+        btn.style.borderColor = 'green';
+      } else {
+        btn.style.borderColor = 'red';
+        wrongAnswers.push(q);
+      }
       setTimeout(() => {
         current++;
         count = 5;
@@ -59,10 +64,4 @@ function nextQuestion() {
   }, 1000);
 }
 
-window.onload = () => {
-  if (!questions.length) {
-    document.getElementById('question').innerText = '저장된 오답이 없습니다.';
-    return;
-  }
-  nextQuestion();
-};
+window.onload = () => nextQuestion();
