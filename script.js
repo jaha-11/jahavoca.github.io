@@ -34,12 +34,16 @@ function updateTimer() {
   el.style.color = timer <= 1 ? "red" : timer <= 3 ? "orange" : "green";
 }
 
-function markAnswer(_, correct) {
+function markAnswer(_, correct, choicesList) {
   const buttons = document.querySelectorAll(".choice");
   buttons.forEach(b => {
     if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
   });
-  wrongAnswers.push(quiz[current]);
+  wrongAnswers.push({
+    word: quiz[current].word,
+    choices: choicesList,
+    answer: correct
+  });
   localStorage.setItem("wrongAnswers1300", JSON.stringify(wrongAnswers));
   setTimeout(() => {
     current++;
@@ -47,7 +51,7 @@ function markAnswer(_, correct) {
   }, 1000);
 }
 
-function checkAnswer(selected, correct) {
+function checkAnswer(selected, correct, choicesList) {
   clearInterval(timerInterval);
   const buttons = document.querySelectorAll(".choice");
   buttons.forEach(b => {
@@ -58,7 +62,11 @@ function checkAnswer(selected, correct) {
   if (selected.trim() === correct.trim()) {
     score++;
   } else {
-    wrongAnswers.push(quiz[current]);
+    wrongAnswers.push({
+      word: quiz[current].word,
+      choices: choicesList,
+      answer: correct
+    });
     localStorage.setItem("wrongAnswers1300", JSON.stringify(wrongAnswers));
   }
 
@@ -83,15 +91,15 @@ function loadQuestion() {
     const option = quiz[Math.floor(Math.random() * quiz.length)].meaning;
     if (!options.includes(option)) options.push(option);
   }
-  shuffle(options);
+  const shuffled = shuffle(options);
 
   const choicesContainer = document.getElementById("choices");
   choicesContainer.innerHTML = "";
-  options.forEach(opt => {
+  shuffled.forEach(opt => {
     const btn = document.createElement("div");
     btn.className = "choice";
     btn.innerText = opt;
-    btn.onclick = () => checkAnswer(opt, q.meaning);
+    btn.onclick = () => checkAnswer(opt, q.meaning, shuffled);
     choicesContainer.appendChild(btn);
   });
 
@@ -104,7 +112,7 @@ function loadQuestion() {
       updateTimer();
       if (timer === 0) {
         clearInterval(timerInterval);
-        markAnswer(null, q.meaning);
+        markAnswer(null, q.meaning, shuffled);
       }
     }
   }, 1000);
