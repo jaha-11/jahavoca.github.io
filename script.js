@@ -57,10 +57,10 @@ function nextQuestion() {
     div.className = "choice";
     div.innerText = choice;
     div.onclick = () => {
-      if (choice === correctAnswer) {
-        div.style.borderColor = "green";
-      } else {
-        div.style.borderColor = "red";
+      const isCorrect = choice === correctAnswer;
+      div.classList.add(isCorrect ? "correct" : "incorrect");
+
+      if (!isCorrect) {
         wrongAnswers.push({
           word: currentItem.word,
           choices: choices,
