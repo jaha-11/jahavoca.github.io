@@ -1,8 +1,13 @@
 
-const questions = JSON.parse(localStorage.getItem('wrongAnswers1300') || '[]');
-let current = 0, timer, count = 5;
+let quiz = JSON.parse(localStorage.getItem("wrongAnswers1300") || "[]");
+let current = 0;
+let score = 0;
+let isPaused = false;
+let timer;
+let count = 5;
 
 function shuffle(array) {
+  if (!array || array.length === 0) return [];
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -10,59 +15,79 @@ function shuffle(array) {
   return array;
 }
 
+function togglePause() {
+  isPaused = !isPaused;
+  document.getElementById("pauseBtn").innerText = isPaused ? "▶" : "⏸";
+}
+
 function updateCounter() {
-  document.getElementById('counter').innerText = `문제 ${current + 1}/${questions.length}`;
+  document.getElementById("counter").innerText = `문제 ${current + 1}/${quiz.length}`;
 }
 
 function updateTimerDisplay() {
-  const timerEl = document.getElementById('timer');
+  const timerEl = document.getElementById("timer");
   timerEl.innerText = count;
-  timerEl.style.color = count <= 2 ? 'red' : count <= 4 ? 'orange' : 'green';
+  timerEl.style.color = count <= 2 ? 'red' : count <= 4 ? 'orange' : 'black';
 }
 
 function nextQuestion() {
-  if (current >= questions.length) {
-    alert('복습 완료!');
+  if (!quiz || quiz.length === 0) {
+    document.getElementById("question").innerText = "저장된 오답이 없습니다.";
     return;
   }
+
+  if (current >= quiz.length) {
+    alert("복습 완료!");
+    current = 0;
+    score = 0;
+    return;
+  }
+
   updateCounter();
-  const q = questions[current];
-  document.getElementById('question').innerText = q.word;
-  const choicesEl = document.getElementById('choices');
-  choicesEl.innerHTML = '';
-  shuffle(q.choices).forEach(choice => {
-    const btn = document.createElement('div');
-    btn.className = 'choice';
-    btn.innerText = choice;
-    btn.onclick = () => {
-      if (choice === q.answer) btn.style.borderColor = 'green';
-      else btn.style.borderColor = 'red';
+  const currentItem = quiz[current];
+  const correctAnswer = currentItem.answer;
+  const choices = shuffle(currentItem.choices);
+
+  document.getElementById("question").innerText = currentItem.word;
+  const choicesContainer = document.getElementById("choices");
+  choicesContainer.innerHTML = "";
+
+  choices.forEach(choice => {
+    const div = document.createElement("div");
+    div.className = "choice";
+    div.innerText = choice;
+    div.onclick = () => {
+      if (choice === correctAnswer) {
+        div.classList.add("correct");
+      } else {
+        div.classList.add("incorrect");
+      }
+
       setTimeout(() => {
         current++;
         count = 5;
         nextQuestion();
       }, 1000);
     };
-    choicesEl.appendChild(btn);
+    choicesContainer.appendChild(div);
   });
+
   count = 5;
   updateTimerDisplay();
   clearInterval(timer);
   timer = setInterval(() => {
-    count--;
-    updateTimerDisplay();
-    if (count <= 0) {
-      clearInterval(timer);
-      current++;
-      setTimeout(nextQuestion, 1000);
+    if (!isPaused) {
+      count--;
+      updateTimerDisplay();
+      if (count <= 0) {
+        clearInterval(timer);
+        current++;
+        nextQuestion();
+      }
     }
   }, 1000);
 }
 
 window.onload = () => {
-  if (!questions.length) {
-    document.getElementById('question').innerText = '저장된 오답이 없습니다.';
-    return;
-  }
   nextQuestion();
 };
