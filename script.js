@@ -40,6 +40,7 @@ function markAnswer(_, correct) {
     if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
   });
   wrongAnswers.push(quiz[current]);
+  localStorage.setItem("wrongAnswers1300", JSON.stringify(wrongAnswers));
   setTimeout(() => {
     current++;
     loadQuestion();
@@ -58,9 +59,9 @@ function checkAnswer(selected, correct) {
     score++;
   } else {
     wrongAnswers.push(quiz[current]);
+    localStorage.setItem("wrongAnswers1300", JSON.stringify(wrongAnswers));
   }
 
-  // 🔥 정답/오답 상관없이 다음 문제로 진행
   setTimeout(() => {
     current++;
     loadQuestion();
@@ -70,7 +71,6 @@ function checkAnswer(selected, correct) {
 function loadQuestion() {
   if (current >= quiz.length) {
     document.body.innerHTML = `<h2>퀴즈 완료!</h2><p>점수: ${score}/${quiz.length}</p><br/><button onclick="retryWrong()">오답노트 다시 풀기</button>`;
-    localStorage.setItem("wrongAnswers1300", JSON.stringify(wrongAnswers));
     return;
   }
   const q = quiz[current];
