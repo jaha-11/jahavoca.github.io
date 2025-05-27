@@ -1,69 +1,68 @@
 
-const stored = localStorage.getItem("wrongWords_1300");
-const wrongWords = stored ? JSON.parse(stored) : [];
-let current = 0;
-let score = 0;
-let paused = false;
-let timerInterval;
+const questions = JSON.parse(localStorage.getItem('wrongAnswers1300') || '[]');
+let current = 0, timer, count = 5;
 
-function showQuestion() {
-  if (current >= wrongWords.length) {
-    document.querySelector(".container").innerHTML = "<h2>복습 완료!</h2>";
-    return;
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)];
+    [array[i], array[j]] = [array[j], array[i]];
   }
-
-  const { word, meaning, choices } = wrongWords[current];
-  document.getElementById("question").textContent = word;
-  document.getElementById("counter").textContent = (current + 1) + "/" + wrongWords.length;
-
-  const choicesDiv = document.getElementById("choices");
-  choicesDiv.innerHTML = "";
-  choices.forEach(choice => {
-    const btn = document.createElement("button");
-    btn.textContent = choice;
-    btn.onclick = () => {
-      clearInterval(timerInterval);
-      if (choice === meaning) {
-        btn.style.backgroundColor = "lightgreen";
-      } else {
-        btn.style.backgroundColor = "salmon";
-        const correct = Array.from(choicesDiv.children).find(b => b.textContent === meaning);
-        if (correct) correct.style.backgroundColor = "lightgreen";
-      }
-      setTimeout(() => {
-        current++;
-        showQuestion();
-      }, 1000);
-    };
-    choicesDiv.appendChild(btn);
-  });
-
-  startTimer();
+  return array;
 }
 
-function startTimer() {
-  let time = 5;
-  const timer = document.getElementById("timer");
-  timer.textContent = time;
-  timer.style.color = "green";
-  clearInterval(timerInterval);
-  timerInterval = setInterval(() => {
-    if (paused) return;
-    time--;
-    timer.textContent = time;
-    if (time === 3) timer.style.color = "orange";
-    if (time === 1) timer.style.color = "red";
-    if (time <= 0) {
-      clearInterval(timerInterval);
+function updateCounter() {
+  document.getElementById('counter').innerText = `문제 ${current + 1}/${questions.length}`;
+}
+
+function updateTimerDisplay() {
+  const timerEl = document.getElementById('timer');
+  timerEl.innerText = count;
+  timerEl.style.color = count <= 2 ? 'red' : count <= 4 ? 'orange' : 'green';
+}
+
+function nextQuestion() {
+  if (current >= questions.length) {
+    alert('복습 완료!');
+    return;
+  }
+  updateCounter();
+  const q = questions[current];
+  document.getElementById('question').innerText = q.word;
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  shuffle(q.choices).forEach(choice => {
+    const btn = document.createElement('div');
+    btn.className = 'choice';
+    btn.innerText = choice;
+    btn.onclick = () => {
+      if (choice === q.answer) btn.style.borderColor = 'green';
+      else btn.style.borderColor = 'red';
+      setTimeout(() => {
+        current++;
+        count = 5;
+        nextQuestion();
+      }, 1000);
+    };
+    choicesEl.appendChild(btn);
+  });
+  count = 5;
+  updateTimerDisplay();
+  clearInterval(timer);
+  timer = setInterval(() => {
+    count--;
+    updateTimerDisplay();
+    if (count <= 0) {
+      clearInterval(timer);
       current++;
-      showQuestion();
+      setTimeout(nextQuestion, 1000);
     }
   }, 1000);
 }
 
-function togglePause() {
-  paused = !paused;
-  document.getElementById("pauseBtn").textContent = paused ? "▶" : "⏸";
-}
-
-showQuestion();
+window.onload = () => {
+  if (!questions.length) {
+    document.getElementById('question').innerText = '저장된 오답이 없습니다.';
+    return;
+  }
+  nextQuestion();
+};
