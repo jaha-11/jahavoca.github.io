@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,13 +8,11 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <div id="counter">1/500</div>
-    <button id="pauseBtn" onclick="togglePause()">⏸</button>
-    <div id="timer">5</div>
-    <div id="question">문제 로딩 중...</div>
-    <div id="choices" class="choices"></div>
-  </div>
+  <div id="counter">문제 0/0</div>
+  <div id="timer">5</div>
+  <div id="question">문제 로딩 중...</div>
+  <div id="choices"></div>
+  <button id="pauseBtn" onclick="togglePause()">⏸</button>
   <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
