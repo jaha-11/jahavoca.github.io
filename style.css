@@ -37,18 +37,19 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px 16px;
-  max-width: 90vw;
+  width: 90vw;
+  max-width: 500px;
   margin-bottom: 20px;
 }
 
 .choice {
   font-size: 16px;
-  padding: 10px 18px;
+  padding: 10px 14px;
   background-color: #f0f0f0;
   border-radius: 10px;
   border: 2px solid #ccc;
   cursor: pointer;
-  min-width: 140px;
+  width: 45%;  /* 두 줄 정렬을 위한 상대적 크기 */
   box-sizing: border-box;
   word-break: keep-all;
 }
@@ -70,5 +71,5 @@ body {
   background-color: #ddd;
   border: none;
   cursor: pointer;
-  margin-top: 16px; /* 더 위로 올림 */
+  margin-top: 16px;
 }
