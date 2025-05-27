@@ -3,11 +3,11 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* 수직 중앙 정렬 */
-  align-items: center;      /* 수평 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   margin: 0;
-  padding: 30px 20px;
+  padding: 20px;
   background-color: #fefefe;
   text-align: center;
 }
@@ -15,40 +15,42 @@ body {
 #counter {
   position: absolute;
   top: 20px;
-  right: 30px;
+  right: 20px;
   font-size: 14px;
 }
 
 #timer {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 #question {
-  font-size: 42px;
+  font-size: 38px;
   font-weight: bold;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+  word-break: break-word;
 }
 
 #choices {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px 40px;
-  max-width: 700px;
-  margin-bottom: 30px;
+  gap: 12px 16px;
+  max-width: 90vw;
+  margin-bottom: 20px;
 }
 
 .choice {
-  font-size: 18px;
-  padding: 12px 24px;
+  font-size: 16px;
+  padding: 10px 18px;
   background-color: #f0f0f0;
   border-radius: 10px;
   border: 2px solid #ccc;
   cursor: pointer;
-  min-width: 220px;
+  min-width: 140px;
   box-sizing: border-box;
+  word-break: keep-all;
 }
 
 .correct {
@@ -62,11 +64,11 @@ body {
 }
 
 #pauseBtn {
-  font-size: 18px;
-  padding: 8px 16px;
+  font-size: 16px;
+  padding: 8px 14px;
   border-radius: 8px;
   background-color: #ddd;
   border: none;
   cursor: pointer;
-  margin-top: 30px;
+  margin-top: 16px; /* 더 위로 올림 */
 }
