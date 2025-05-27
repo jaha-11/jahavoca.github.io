@@ -3,9 +3,9 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
+  justify-content: center;  /* 수직 중앙 정렬 */
+  align-items: center;      /* 수평 중앙 정렬 */
+  height: 100vh;
   margin: 0;
   padding: 30px 20px;
   background-color: #fefefe;
@@ -28,8 +28,7 @@ body {
 #question {
   font-size: 42px;
   font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 60px; /* 문제 ↔ 보기 간격 */
+  margin-bottom: 60px;
 }
 
 #choices {
