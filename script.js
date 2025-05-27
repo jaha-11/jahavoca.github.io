@@ -1,16 +1,3 @@
-
-function saveWrongAnswer(word, meaning, choices) {
-  const stored = localStorage.getItem("wrongWords_1300");
-  let wrongWords = stored ? JSON.parse(stored) : [];
-  const exists = wrongWords.some(item => item.word === word);
-  if (!exists) {
-    wrongWords.push({ word, meaning, choices });
-    localStorage.setItem("wrongWords_1300", JSON.stringify(wrongWords));
-    console.log("📝 오답 저장됨:", word, meaning);
-  }
-}
-
-
 let current = 0;
 let score = 0;
 let timer = 5;
@@ -52,7 +39,6 @@ function markAnswer(_, correct) {
     if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
   });
   wrongAnswers.push(quiz[current]);
-    saveWrongAnswer(quiz[current].word, quiz[current].meaning, [quiz[current].meaning]);
   setTimeout(() => {
     current++;
     loadQuestion();
@@ -70,7 +56,6 @@ function checkAnswer(selected, correct) {
     score++;
   } else {
     wrongAnswers.push(quiz[current]);
-    saveWrongAnswer(quiz[current].word, quiz[current].meaning, [quiz[current].meaning]);
   }
   setTimeout(() => {
     current++;

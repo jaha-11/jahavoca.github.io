@@ -1,22 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>1300 퀴즈</title>
-  <style>
-    body { font-family: Arial; text-align: center; }
-    .question { font-size: 24px; margin: 20px; }
-    .choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px; }
-    .choice { padding: 15px 25px; border: 2px solid #ccc; border-radius: 10px; cursor: pointer; min-width: 200px; }
-    .choice:hover { background-color: #f0f0f0; }
-    #timer { font-size: 28px; margin-top: 20px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>1300 영단어 퀴즈</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="question" id="question">문제 로딩 중...</div>
-  <div class="choices" id="choices"></div>
-  <div id="timer">5</div>
-  <script src="quiz_script.js"></script>
+  <div class="container">
+    <div id="counter">1/500</div>
+    <button id="pauseBtn" onclick="togglePause()">⏸</button>
+    <div id="timer">5</div>
+    <div id="question">문제 로딩 중...</div>
+    <div id="choices" class="choices"></div>
+  </div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
