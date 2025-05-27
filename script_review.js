@@ -1,46 +1,69 @@
 
-const stored = localStorage.getItem("wrongWords");
-let words = stored ? JSON.parse(stored) : [];
-let index = 0, score = 0;
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
+const stored = localStorage.getItem("wrongWords_1300");
+const wrongWords = stored ? JSON.parse(stored) : [];
+let current = 0;
+let score = 0;
+let paused = false;
+let timerInterval;
 
 function showQuestion() {
-  if (words.length === 0) {
-    document.getElementById("question").innerText = "오답이 없습니다.";
+  if (current >= wrongWords.length) {
+    document.querySelector(".container").innerHTML = "<h2>복습 완료!</h2>";
     return;
   }
-  if (index >= words.length) index = 0;
-  shuffle(words);
-  const current = words[index++];
-  document.getElementById("question-number").innerText = `${index} / ${words.length}`;
-  document.getElementById("question").innerText = current.word;
-  const choices = [...current.choices];
-  shuffle(choices);
-  const container = document.getElementById("choices");
-  container.innerHTML = '';
+
+  const { word, meaning, choices } = wrongWords[current];
+  document.getElementById("question").textContent = word;
+  document.getElementById("counter").textContent = (current + 1) + "/" + wrongWords.length;
+
+  const choicesDiv = document.getElementById("choices");
+  choicesDiv.innerHTML = "";
   choices.forEach(choice => {
     const btn = document.createElement("button");
-    btn.innerText = choice;
+    btn.textContent = choice;
     btn.onclick = () => {
-      if (choice === current.meaning) {
-        score++;
+      clearInterval(timerInterval);
+      if (choice === meaning) {
         btn.style.backgroundColor = "lightgreen";
       } else {
         btn.style.backgroundColor = "salmon";
+        const correct = Array.from(choicesDiv.children).find(b => b.textContent === meaning);
+        if (correct) correct.style.backgroundColor = "lightgreen";
       }
-      setTimeout(showQuestion, 1000);
+      setTimeout(() => {
+        current++;
+        showQuestion();
+      }, 1000);
     };
-    container.appendChild(btn);
+    choicesDiv.appendChild(btn);
   });
+
+  startTimer();
 }
 
-window.onload = () => {
-  shuffle(words);
-  showQuestion();
-};
+function startTimer() {
+  let time = 5;
+  const timer = document.getElementById("timer");
+  timer.textContent = time;
+  timer.style.color = "green";
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (paused) return;
+    time--;
+    timer.textContent = time;
+    if (time === 3) timer.style.color = "orange";
+    if (time === 1) timer.style.color = "red";
+    if (time <= 0) {
+      clearInterval(timerInterval);
+      current++;
+      showQuestion();
+    }
+  }, 1000);
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "▶" : "⏸";
+}
+
+showQuestion();

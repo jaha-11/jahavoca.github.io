@@ -4,68 +4,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>오답노트 복습</title>
+  <title>오답 복습 퀴즈</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      margin: 0;
       font-family: sans-serif;
-      background-color: #f0f8ff;
+      background-color: #f9f9f9;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
     }
     .container {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      max-width: 500px;
-      width: 100%;
       text-align: center;
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      position: relative;
     }
-    .choices {
-      row-gap: 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 20px;
+    #counter {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      font-weight: bold;
+      font-size: 18px;
     }
-    .choice {
-      padding: 10px;
-      background-color: #f0f0f0;
-      border: 2px solid #ccc;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .choice.correct {
-      background-color: #c8f7c5;
-      border-color: #27ae60;
-    }
-    .choice.wrong {
-      background-color: #f7c5c5;
-      border-color: #e74c3c;
+    #pauseBtn {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+      font-size: 18px;
     }
     #timer {
-      font-size: 24px;
-      margin-top: 10px;
-      color: #555;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: red;
+    }
+    #question {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    #choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 20px;
+      justify-items: center;
+    }
+    .choice {
+      background-color: #f0f0f0;
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: 2px solid #ccc;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+    .choice.correct {
+      background-color: #d4f4d2;
+      border-color: #2ecc71;
+    }
+    .choice.wrong {
+      background-color: #f4cccc;
+      border-color: #e74c3c;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>오답 복습 퀴즈</h2>
+    <div id="counter">1/0</div>
+    <button id="pauseBtn" onclick="togglePause()">⏸</button>
+    <div id="timer">5</div>
     <div id="question">문제 로딩 중...</div>
-    <div class="choices" id="choices"></div>
-    <div id="timer">⏳ 5</div>
+    <div id="choices"></div>
   </div>
 
   <script>
-    const data = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
+    let rawData = JSON.parse(localStorage.getItem("wrongWords_1300")) || [];
+    let data = [];
+    let allMeanings = rawData.map(item => item.meaning);
     let current = 0;
+    let isPaused = false;
     let timer = 5;
     let interval;
 
@@ -76,54 +98,52 @@
       }
     }
 
+    rawData.forEach(item => {
+      let wrongs = allMeanings.filter(m => m !== item.meaning);
+      shuffle(wrongs);
+      let choices = [item.meaning, ...wrongs.slice(0, 3)];
+      shuffle(choices);
+      data.push({ word: item.word, meaning: item.meaning, choices });
+    });
+
+    shuffle(data);
+
     function startTimer() {
       timer = 5;
-      const timerEl = document.getElementById("timer");
-if (timer > 3) {
-  timerEl.style.color = "green";
-} else if (timer > 1) {
-  timerEl.style.color = "orange";
-} else {
-  timerEl.style.color = "red";
-}
-timerEl.innerText = `⏳ ${timer}`;
+      document.getElementById("timer").innerText = timer;
       interval = setInterval(() => {
-        timer--;
-        const timerEl = document.getElementById("timer");
-if (timer > 3) {
-  timerEl.style.color = "green";
-} else if (timer > 1) {
-  timerEl.style.color = "orange";
-} else {
-  timerEl.style.color = "red";
-}
-timerEl.innerText = `⏳ ${timer}`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          nextQuestion();
+        if (!isPaused) {
+          timer--;
+          document.getElementById("timer").innerText = timer;
+          if (timer <= 0) {
+            clearInterval(interval);
+            nextQuestion();
+          }
         }
       }, 1000);
     }
 
-    shuffle(data);
+    function togglePause() {
+      isPaused = !isPaused;
+      document.getElementById("pauseBtn").innerText = isPaused ? "▶️" : "⏸";
+    }
 
     function showQuestion() {
       if (data.length === 0) {
-        document.getElementById("question").innerText = "저장된 오답이 없습니다.";
+        document.getElementById("question").innerText = "오답이 없습니다.";
         document.getElementById("choices").innerHTML = "";
         document.getElementById("timer").style.display = "none";
         return;
       }
 
       const item = data[current];
-      const choices = [...item.choices];
-      shuffle(choices);
+      document.getElementById("counter").innerText = `${current + 1}/${data.length}`;
+      document.getElementById("question").innerText = item.word;
 
-      document.getElementById("question").innerText = `단어: ${item.word}`;
       const choicesDiv = document.getElementById("choices");
       choicesDiv.innerHTML = "";
 
-      choices.forEach(choice => {
+      item.choices.forEach(choice => {
         const btn = document.createElement("div");
         btn.className = "choice";
         btn.innerText = choice;
