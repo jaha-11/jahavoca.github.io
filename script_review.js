@@ -56,11 +56,15 @@ function nextQuestion() {
     div.className = "choice";
     div.innerText = choice;
     div.onclick = () => {
-      if (choice === correctAnswer) {
-        div.classList.add("correct");
-      } else {
-        div.classList.add("incorrect");
-      }
+      const allChoices = document.querySelectorAll(".choice");
+      allChoices.forEach(btn => {
+        if (btn.innerText === correctAnswer) {
+          btn.classList.add("correct");
+        } else if (btn.innerText === choice) {
+          btn.classList.add("incorrect");
+        }
+        btn.onclick = null;
+      });
 
       clearInterval(timer);
       setTimeout(() => {
