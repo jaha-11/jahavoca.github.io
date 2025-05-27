@@ -53,13 +53,14 @@ function nextQuestion() {
   choicesContainer.innerHTML = "";
 
   choices.forEach(choice => {
-    const button = document.createElement("button");
-    button.innerText = choice;
-    button.onclick = () => {
+    const div = document.createElement("div");
+    div.className = "choice";
+    div.innerText = choice;
+    div.onclick = () => {
       if (choice === correctAnswer) {
-        button.style.backgroundColor = "lightgreen";
+        div.style.borderColor = "green";
       } else {
-        button.style.backgroundColor = "lightcoral";
+        div.style.borderColor = "red";
         wrongAnswers.push({
           word: currentItem.word,
           choices: choices,
@@ -74,7 +75,7 @@ function nextQuestion() {
         nextQuestion();
       }, 1000);
     };
-    choicesContainer.appendChild(button);
+    choicesContainer.appendChild(div);
   });
 
   count = 5;
@@ -86,6 +87,7 @@ function nextQuestion() {
       updateTimerDisplay();
       if (count <= 0) {
         clearInterval(timer);
+        // 시간 초과도 오답으로 처리
         wrongAnswers.push({
           word: currentItem.word,
           choices: choices,
