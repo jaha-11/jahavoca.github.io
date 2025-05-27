@@ -53,11 +53,14 @@ function checkAnswer(selected, correct) {
     if (b.innerText.trim() === correct.trim()) b.classList.add("correct");
     if (b.innerText.trim() === selected.trim() && selected.trim() !== correct.trim()) b.classList.add("incorrect");
   });
+
   if (selected.trim() === correct.trim()) {
     score++;
   } else {
     wrongAnswers.push(quiz[current]);
   }
+
+  // 🔥 정답/오답 상관없이 다음 문제로 진행
   setTimeout(() => {
     current++;
     loadQuestion();
