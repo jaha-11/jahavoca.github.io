@@ -49,7 +49,7 @@ body {
   border-radius: 10px;
   border: 2px solid #ccc;
   cursor: pointer;
-  width: 45%;  /* 두 줄 정렬을 위한 상대적 크기 */
+  width: 45%;
   box-sizing: border-box;
   word-break: keep-all;
 }
@@ -72,4 +72,11 @@ body {
   border: none;
   cursor: pointer;
   margin-top: 16px;
+}
+
+/* ✅ 모바일 전용 조정 */
+@media screen and (max-width: 600px) {
+  .choice {
+    width: 48%;
+  }
 }
