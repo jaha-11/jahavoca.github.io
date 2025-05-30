@@ -22,20 +22,12 @@ function shuffle(array) {
 
 function speak(text) {
   
-  const utter = new SpeechSynthesisUtterance(text);
-  
-  // 목소리 목록 불러오기
-  const voices = window.speechSynthesis.getVoices();
-  
-  // 미국 원어민 목소리 중 하나 선택 (예: 'Samantha' or 'Daniel')
-  utter.voice = voices.find(voice => voice.lang === 'en-US' && voice.name.includes('Samantha'));
-  
-  // 대체 설정
-  utter.lang = 'en-US';
-  utter.rate = 1;
-  utter.pitch = 1;
-  
-  speechSynthesis.speak(utter);
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      const voices = speechSynthesis.getVoices();
+      const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
+      if (native) utter.voice = native;
+      speechSynthesis.speak(utter);
 
 }
 
