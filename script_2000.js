@@ -27,7 +27,7 @@ function speak(text) {
       const voices = speechSynthesis.getVoices();
       const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
       if (native) utter.voice = native;
-      speechSynthesis.speak(utter);
+     // speechSynthesis.speak(utter);
 
 }
 
