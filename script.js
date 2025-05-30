@@ -21,6 +21,11 @@ function shuffle(array) {
   return array;
 }
 
+let voicesLoaded = false;
+speechSynthesis.onvoiceschanged = () => {
+  voicesLoaded = true;
+};
+
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
   
