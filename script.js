@@ -21,10 +21,7 @@ function shuffle(array) {
   return array;
 }
 
-let voicesLoaded = false;
-speechSynthesis.onvoiceschanged = () => {
-  voicesLoaded = true;
-};
+
 
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
@@ -40,13 +37,9 @@ function speak(text) {
   utter.rate = 1;
   utter.pitch = 1;
   
-   if (!voicesLoaded) {
-    speechSynthesis.onvoiceschanged = () => {
-      speechSynthesis.speak(utter);
-    };
-  } else {
-    speechSynthesis.speak(utter);
-  }
+
+  speechSynthesis.speak(utter);
+  
 }
 
 function updateTimer() {
