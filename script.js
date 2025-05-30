@@ -35,7 +35,13 @@ function speak(text) {
   utter.rate = 1;
   utter.pitch = 1;
   
-  speechSynthesis.speak(utter);
+   if (!voicesLoaded) {
+    speechSynthesis.onvoiceschanged = () => {
+      speechSynthesis.speak(utter);
+    };
+  } else {
+    speechSynthesis.speak(utter);
+  }
 }
 
 function updateTimer() {
