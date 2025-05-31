@@ -1,0 +1,35 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#quiz-container {
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
+#question-word {
+  font-size: 24px;
+  margin: 20px 0;
+}
+#choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.choice-button {
+  padding: 10px;
+  font-size: 16px;
+}
+@media (max-width: 600px) {
+  .choice-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

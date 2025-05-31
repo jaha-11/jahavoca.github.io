@@ -1,157 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>자하 퀴즈 - 중학 숙어</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fffdf6;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-    #question {
-      font-size: 28px;
-      font-weight: bold;
-      text-align: center;
-      word-break: break-word;
-      margin-bottom: 20px;
-    }
-    .choices {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      width: 90%;
-    }
-    .choice {
-      padding: 14px;
-      background: #eee;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 16px;
-    }
-    .correct {
-      background-color: #c8f7c5 !important;
-      border: 2px solid #2ecc71;
-    }
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .nav-btn {
-      padding: 10px 16px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+  <title>중등 숙어 퀴즈</title>
+  <link rel="stylesheet" href="idiom_style.css" />
 </head>
 <body>
-  <div id="question">문제 로딩 중...</div>
-  <div class="choices" id="choices"></div>
-  <div class="controls">
-    <button class="nav-btn" onclick="goBack()">⬅️ 이전</button>
-    <button class="nav-btn" id="pauseBtn" onclick="togglePause()">⏸ 일시 정지</button>
-    <button class="nav-btn" onclick="goNext(true)">➡️ 다음</button>
+  <div id="quiz-container">
+    <div id="question-number">1 / ?</div>
+    <div id="question-word">Loading...</div>
+    <div id="timer">⏱ 5</div>
+    <div id="choices" class="choices-container"></div>
   </div>
-  <script>
-    const quiz = [{'숙어': 'of use', '뜻': '쓸모 있는'}, {'숙어': 'be about to', '뜻': '막 ~하려고 하다'}, {'숙어': 'be good at', '뜻': '~에 능숙하다, 잘하다'}, {'숙어': 'that is (to say)', '뜻': '즉'}, {'숙어': 'turn away', '뜻': '딴 데로 돌리다, 외면하다'}, {'숙어': 'in those days', '뜻': '그 당시에는, 그 때는'}, {'숙어': 'pass out', '뜻': '기절하다, 건네주다'}, {'숙어': 'by chance', '뜻': '우연히, 뜻밖에'}, {'숙어': 'line up', '뜻': '줄을 서다'}, {'숙어': 'go around', '뜻': '~ 둘레를 돌다'}, {'숙어': 'so that', '뜻': '~하기 위하여, ~하도록(목적)'}, {'숙어': 'check out', '뜻': '(책 등을) 체크하고 빌리다, (호텔,, 슈퍼에서) 계산하고 나오다, 확인[점검]하다'}, {'숙어': 'be bound for', '뜻': '~행이다, ~로 향하다'}, {'숙어': 'keep ~ in mind', '뜻': '명심하다, 염두에 두다'}, {'숙어': 'turn on', '뜻': '(전등,TV 등을) 켜다, (수도, 가스 등을) 틀다'}, {'숙어': 'bring about', '뜻': '일으키다, 생기게 하다'}, {'숙어': 'pay for', '뜻': '~의 값을 치르다, 지불하다'}, {'숙어': 'go back (to)', '뜻': '(~로) 돌아가다'}, {'숙어': 'between A and B', '뜻': 'A와 B 사이에'}, {'숙어': 'for a moment', '뜻': '잠시 동안'}, {'숙어': 'fail to 동사', '뜻': '~하지 못하다'}, {'숙어': 'show up', '뜻': '나타나다'}, {'숙어': 'share A with B', '뜻': 'A를 B와 나누다[함께 하다]'}, {'숙어': 'stop by', '뜻': '잠시 들르다'}, {'숙어': 'on earth', '뜻': '(의문문에서) 도대체, (부정문에서) 전혀, 이 세상의'}, {'숙어': 'plan to 동사', '뜻': '~할 계획이다'}, {'숙어': 'these days', '뜻': '요즘'}, {'숙어': 'be made into', '뜻': '~가 되다'}, {'숙어': 'stare at', '뜻': '빤히 보다, 응시하다'}, {'숙어': 'in vain', '뜻': '헛되이, 보람 없이'}, {'숙어': 'be sold out', '뜻': '다 팔리다, 매진되다'}, {'숙어': 'be harmful to 명사', '뜻': '~에 해롭다'}, {'숙어': 'at first', '뜻': '처음에'}, {'숙어': 'put A into B', '뜻': 'A를 B안에 넣다, A를 B로 옮기다(번역하다)'}, {'숙어': 'make out', '뜻': '알아보다, 이해하다'}, {'숙어': 'set out', '뜻': '출발하다, 시작하다, (음식 등을) 차려놓다'}, {'숙어': '동사 + ~ing', '뜻': '~하는 것(주어. 보어 기능)'}, {'숙어': 'for instance', '뜻': '예를 들면'}, {'숙어': 'do A a favor', '뜻': 'A의 부탁을 들어주다, A에게 호의를 베풀다'}, {'숙어': 'as soon as', '뜻': '~하자마자'}, {'숙어': 'wash(do) the dishes', '뜻': '설거지하다'}, {'숙어': 'take ~ apart', '뜻': '(기계 등을) 분해하다'}, {'숙어': 'be impressed by[with]', '뜻': '~에 감동받다'}, {'숙어': 'turn out', '뜻': '~로 판명되다, (전등,,수도 등을) 끄다[잠그다]'}, {'숙어': 'It be 성질형용사 of A to', '뜻': 'A가 ~하는 것은 ~이다'}, {'숙어': 'tumble down', '뜻': '굴러 떨어지다'}, {'숙어': 'for a while', '뜻': '잠시 동안'}, {'숙어': 'get out', '뜻': '나가다'}, {'숙어': 'one after another', '뜻': '(셋 이상이) 차례로, 잇달아'}, {'숙어': 'cause A to B(동사)', '뜻': 'A가 B하게 하다'}];
-    let current = 0;
-    let paused = false;
-    let interval = null;
-    let delayTimeout = null;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
-
-    function speak(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "en-US";
-      const voices = speechSynthesis.getVoices();
-      const native = voices.find(v => v.name.includes("Google US") || v.name === "Samantha");
-      if (native) utter.voice = native;
-      speechSynthesis.speak(utter);
-    }
-
-    function renderQuestion(index) {
-      const q = quiz[index];
-      document.getElementById("question").textContent = q.숙어 || q.word || q.idiom;
-      speak(q.숙어 || q.word || q.idiom);
-
-      const options = [q.뜻 || q.meaning];
-      while (options.length < 4) {
-        let random = quiz[Math.floor(Math.random() * quiz.length)];
-        let m = random.뜻 || random.meaning;
-        if (!options.includes(m)) options.push(m);
-      }
-      shuffle(options);
-
-      const choicesDiv = document.getElementById("choices");
-      choicesDiv.innerHTML = "";
-      options.forEach(opt => {
-        const div = document.createElement("div");
-        div.className = "choice";
-        div.textContent = opt;
-        if (opt === (q.뜻 || q.meaning)) div.dataset.correct = "true";
-        choicesDiv.appendChild(div);
-      });
-
-      clearTimeout(delayTimeout);
-      delayTimeout = setTimeout(() => {
-        const correct = [...choicesDiv.children].find(el => el.dataset.correct === "true");
-        if (correct) {
-          correct.classList.add("correct");
-        }
-      }, 4000);
-
-      if (interval) clearInterval(interval);
-      interval = setInterval(() => {
-        if (!paused) goNext();
-      }, 5000);
-    }
-
-    function goNext(force = false) {
-      if (current < quiz.length - 1) {
-        current++;
-        renderQuestion(current);
-      } else if (force) {
-        alert("마지막 문제입니다!");
-      }
-    }
-
-    function goBack() {
-      if (current > 0) {
-        current--;
-        renderQuestion(current);
-      }
-    }
-
-    function togglePause() {
-      paused = !paused;
-      document.getElementById("pauseBtn").textContent = paused ? "▶️ 재시작" : "⏸ 일시 정지";
-    }
-
-    document.addEventListener("click", (e) => {
-      if (!paused && e.target.id !== "pauseBtn" && !e.target.classList.contains("nav-btn")) goNext();
-    });
-
-    window.onload = function () {
-      shuffle(quiz);
-      renderQuestion(current);
-    };
-  </script>
+  <script src="junior_idioms_data.js"></script>
+  <script src="junior_idioms_quiz.js"></script>
 </body>
 </html>
