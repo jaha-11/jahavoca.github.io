@@ -1,4 +1,3 @@
-
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -70,4 +69,22 @@ body {
     font-size: 14px;
     padding: 10px 6px;
   }
+}
+
+
+/* 📱 반응형 4지선다형 보기 버튼 스타일 */
+.choice-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.choice-container button {
+  width: 45%;
+  min-height: 50px;
+  font-size: 1.1rem;
+  padding: 10px;
+  box-sizing: border-box;
 }
