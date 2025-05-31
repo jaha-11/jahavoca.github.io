@@ -2,13 +2,24 @@
 let currentIndex = 0;
 let timer = 5;
 let interval = null;
+let paused = false;
+let selectedQuiz = [];
 
 const questionNumber = document.getElementById("question-number");
 const questionWord = document.getElementById("question-word");
 const timerEl = document.getElementById("timer");
 const choicesEl = document.getElementById("choices");
+const pauseButton = document.getElementById("pause-button");
 
-let selectedQuiz = [];
+function speak(text) {
+  try {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    window.speechSynthesis.speak(utter);
+  } catch (e) {
+    console.warn("발음 실패:", e);
+  }
+}
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -20,6 +31,7 @@ function shuffle(array) {
 
 function startQuiz() {
   selectedQuiz = shuffle([...quizData]).slice(0, 100);
+  currentIndex = 0;
   showQuestion();
   startTimer();
 }
@@ -32,6 +44,7 @@ function showQuestion() {
   const current = selectedQuiz[currentIndex];
   questionNumber.textContent = `${currentIndex + 1} / ${selectedQuiz.length}`;
   questionWord.textContent = current.expression;
+
   speak(current.expression);
 
   const options = shuffle([
@@ -47,12 +60,19 @@ function showQuestion() {
     choicesEl.appendChild(btn);
   });
 
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(interval);
   interval = setInterval(() => {
-    if (!paused) timer--;
-    timerEl.textContent = `⏱ ${timer}`;
-    if (timer === 0) {
-      clearInterval(interval);
-      handleAnswer(false, "", current.meaning);
+    if (!paused) {
+      timer--;
+      timerEl.textContent = `⏱ ${timer}`;
+      if (timer === 0) {
+        clearInterval(interval);
+        handleAnswer(false, "", selectedQuiz[currentIndex].meaning);
+      }
     }
   }, 1000);
 }
@@ -76,7 +96,6 @@ function handleAnswer(isCorrect, selected, correct) {
     currentIndex++;
     if (currentIndex < selectedQuiz.length) {
       showQuestion();
-      startTimer();
     } else {
       questionWord.textContent = "🎉 퀴즈 완료!";
       questionNumber.textContent = "";
@@ -86,11 +105,9 @@ function handleAnswer(isCorrect, selected, correct) {
   }, 1500);
 }
 
-
-const pauseButton = document.getElementById("pause-button");
-let paused = false;
 pauseButton.onclick = () => {
   paused = !paused;
   pauseButton.textContent = paused ? "▶ 재개" : "⏸ 일시정지";
 };
+
 startQuiz();
