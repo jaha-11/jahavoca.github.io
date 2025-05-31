@@ -9,16 +9,28 @@
 </head>
 <body>
   <div id="quiz-container">
+    <button onclick="history.back()" style="position:absolute; top:10px; left:10px;">⬅ 돌아가기</button>
     <div id="question-number">1 / ?</div>
     <div id="question-word">Loading...</div>
+    <button onclick="speakCurrent()">🔊 발음 듣기</button>
     <div id="timer">⏱ 5</div>
     <div id="choices" class="choices-container"></div>
-    <div id="control-buttons" style="margin-top: 10px; display: flex; justify-content: center; gap: 12px;">
-      <button onclick="history.back()">⬅ 돌아가기</button>
-      <button id="pause-button">⏸ 일시정지</button>
-    </div>
+    <button id="pause-button">⏸ 일시정지</button>
   </div>
   <script src="junior_idioms_data.js"></script>
   <script src="junior_idioms_quiz.js"></script>
+  <script>
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      speechSynthesis.speak(utter);
+    }
+
+    function speakCurrent() {
+      if (window.selectedQuiz && window.selectedQuiz.length > 0) {
+        speak(window.selectedQuiz[window.currentIndex].expression);
+      }
+    }
+  </script>
 </body>
 </html>

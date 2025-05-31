@@ -23,13 +23,13 @@ body {
 }
 
 #question-word {
+  text-align: center;
   font-size: 32px;
   font-weight: bold;
   line-height: 1.4;
   margin: 12px 0 20px;
   word-break: keep-all;
   white-space: pre-line;
-  text-align: center;
 }
 
 #timer {
@@ -41,12 +41,12 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .choice-button {
-  flex: 0 1 calc(50% - 12px);
+  flex: 0 1 calc(50% - 10px);
   padding: 12px 8px;
   font-size: 15px;
   background-color: #f5f5f5;
@@ -54,9 +54,6 @@ body {
   border-radius: 8px;
   cursor: pointer;
   white-space: pre-line;
-  text-align: center;
-  min-width: 140px;
-  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -66,10 +63,11 @@ body {
 
 @media (max-width: 480px) {
   #question-word {
-    font-size: 26px;
+  text-align: center;
+    font-size: 28px;
   }
   .choice-button {
     font-size: 14px;
-    padding: 10px;
+    padding: 10px 6px;
   }
 }
