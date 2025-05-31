@@ -19,9 +19,18 @@ function speak(text) {
       .replace(/\s+/g, " ")        // 공백 정리
       .trim();
     if (cleaned.length > 0) {
-      const utter = new SpeechSynthesisUtterance(cleaned);
+     const utter = new SpeechSynthesisUtterance(cleaned);
+     const voices = window.speechSynthesis.getVoices();
+      
+      // 미국 원어민 목소리 중 하나 선택 (예: 'Daniel' or 'Samantha')
+      utter.voice = voices.find(voice => voice.lang === 'en-US' && voice.name.includes('Samantha'));
+      
+      // 대체 설정
       utter.lang = 'en-US';
+      utter.rate = 1;
+      utter.pitch = 1;
       speechSynthesis.speak(utter);
+
     }
   } catch (e) {
     console.warn("발음 오류:", text, e);
