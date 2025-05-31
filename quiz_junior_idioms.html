@@ -20,18 +20,5 @@
   </div>
   <script src="junior_idioms_data.js"></script>
   <script src="junior_idioms_quiz.js"></script>
-  <script>
-    function speak(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'en-US';
-      speechSynthesis.speak(utter);
-    }
-
-    function speakCurrent() {
-      if (window.selectedQuiz && window.selectedQuiz.length > 0) {
-        speak(window.selectedQuiz[window.currentIndex].expression);
-      }
-    }
-  </script>
 </body>
 </html>
