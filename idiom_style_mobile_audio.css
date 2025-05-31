@@ -23,7 +23,6 @@ body {
 }
 
 #question-word {
-  text-align: center;
   font-size: 32px;
   font-weight: bold;
   line-height: 1.4;
@@ -63,7 +62,6 @@ body {
 
 @media (max-width: 480px) {
   #question-word {
-  text-align: center;
     font-size: 28px;
   }
   .choice-button {

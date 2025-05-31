@@ -9,13 +9,14 @@
 </head>
 <body>
   <div id="quiz-container">
-    <button onclick="history.back()" style="position:absolute; top:10px; left:10px;">⬅ 돌아가기</button>
     <div id="question-number">1 / ?</div>
     <div id="question-word">Loading...</div>
-    <button onclick="speakCurrent()">🔊 발음 듣기</button>
     <div id="timer">⏱ 5</div>
     <div id="choices" class="choices-container"></div>
-    <button id="pause-button">⏸ 일시정지</button>
+    <div id="control-buttons" style="margin-top: 10px; display: flex; justify-content: center; gap: 12px;">
+      <button id="pause-button">⏸ 일시정지</button>
+      <button onclick="history.back()">⬅ 돌아가기</button>
+    </div>
   </div>
   <script src="junior_idioms_data.js"></script>
   <script src="junior_idioms_quiz.js"></script>

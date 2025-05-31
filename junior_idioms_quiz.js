@@ -32,6 +32,7 @@ function showQuestion() {
   const current = selectedQuiz[currentIndex];
   questionNumber.textContent = `${currentIndex + 1} / ${selectedQuiz.length}`;
   questionWord.textContent = current.expression;
+  speak(current.expression);
 
   const options = shuffle([
     current.meaning,
