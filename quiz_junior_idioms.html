@@ -1,17 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>중등 숙어 퀴즈</title>
-  <link rel="stylesheet" href="idiom_style.css" />
+  <link rel="stylesheet" href="idiom_style_mobile.css" />
 </head>
 <body>
   <div id="quiz-container">
+    <button onclick="history.back()" style="position:absolute; top:10px; left:10px;">⬅ 돌아가기</button>
     <div id="question-number">1 / ?</div>
     <div id="question-word">Loading...</div>
     <div id="timer">⏱ 5</div>
     <div id="choices" class="choices-container"></div>
+    <button id="pause-button">⏸ 일시정지</button>
   </div>
   <script src="junior_idioms_data.js"></script>
   <script src="junior_idioms_quiz.js"></script>

@@ -8,6 +8,8 @@ const questionWord = document.getElementById("question-word");
 const timerEl = document.getElementById("timer");
 const choicesEl = document.getElementById("choices");
 
+let selectedQuiz = [];
+
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -17,7 +19,7 @@ function shuffle(array) {
 }
 
 function startQuiz() {
-  quizData.sort(() => Math.random() - 0.5);
+  selectedQuiz = shuffle([...quizData]).slice(0, 100);
   showQuestion();
   startTimer();
 }
@@ -27,8 +29,8 @@ function showQuestion() {
   timer = 5;
   timerEl.textContent = `⏱ ${timer}`;
 
-  const current = quizData[currentIndex];
-  questionNumber.textContent = `${currentIndex + 1} / ${quizData.length}`;
+  const current = selectedQuiz[currentIndex];
+  questionNumber.textContent = `${currentIndex + 1} / ${selectedQuiz.length}`;
   questionWord.textContent = current.expression;
 
   const options = shuffle([
@@ -45,7 +47,7 @@ function showQuestion() {
   });
 
   interval = setInterval(() => {
-    timer--;
+    if (!paused) timer--;
     timerEl.textContent = `⏱ ${timer}`;
     if (timer === 0) {
       clearInterval(interval);
@@ -71,7 +73,7 @@ function handleAnswer(isCorrect, selected, correct) {
 
   setTimeout(() => {
     currentIndex++;
-    if (currentIndex < quizData.length) {
+    if (currentIndex < selectedQuiz.length) {
       showQuestion();
       startTimer();
     } else {
@@ -83,4 +85,11 @@ function handleAnswer(isCorrect, selected, correct) {
   }, 1500);
 }
 
+
+const pauseButton = document.getElementById("pause-button");
+let paused = false;
+pauseButton.onclick = () => {
+  paused = !paused;
+  pauseButton.textContent = paused ? "▶ 재개" : "⏸ 일시정지";
+};
 startQuiz();
