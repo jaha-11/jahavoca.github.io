@@ -13,11 +13,18 @@ const pauseButton = document.getElementById("pause-button");
 
 function speak(text) {
   try {
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'en-US';
-    window.speechSynthesis.speak(utter);
+    const cleaned = text
+      .replace(/\([^)]*\)/g, "")  // 괄호 제거
+      .replace(/[가-힣]/g, "")      // 한글 제거
+      .replace(/\s+/g, " ")        // 공백 정리
+      .trim();
+    if (cleaned.length > 0) {
+      const utter = new SpeechSynthesisUtterance(cleaned);
+      utter.lang = 'en-US';
+      speechSynthesis.speak(utter);
+    }
   } catch (e) {
-    console.warn("발음 실패:", e);
+    console.warn("발음 오류:", text, e);
   }
 }
 
